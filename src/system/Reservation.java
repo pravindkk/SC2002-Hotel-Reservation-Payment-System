@@ -2,9 +2,7 @@ package system;
 
 import java.util.Date;
 
-import javax.xml.crypto.Data;
-
-import system.enums.RoomStatus;
+import system.enums.Enums.RoomStatus;;
 
 
 public class Reservation {
