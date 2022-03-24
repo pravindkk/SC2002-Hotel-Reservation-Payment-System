@@ -1,11 +1,18 @@
 package system;
-
 import java.util.ArrayList;
-// package system;
+public class Menu {
 
-public class menu {
+    // create a ArrayList of menu items
+   private  ArrayList<Item> Items = new ArrayList<Item>();
 
-    ArrayList<menuItem> cars = new ArrayList<String>(); // Create an ArrayList object
+   public Menu(ArrayList <Item> items){
+       this.Items = items;
+
+   }
+
+   public ArrayList<Item> getMenu(){
+       return this.Items;
+   }
 
     
 }
