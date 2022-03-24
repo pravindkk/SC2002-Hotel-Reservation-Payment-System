@@ -1,17 +1,20 @@
 package system;
 
-public enum type{
-    STARTER,MAIN_COURSE,DESERT,DRINKS
-}
 
-public class item {
+
+public class Item {
+    
+    public enum type{
+        STARTER,MAIN_COURSE,DESERT,DRINKS
+    }
+
     private int itemid;
     private String name;
     private String descripiton;
     private double price;
     public type type;
 
-    public item(String name, String descripiton,double price,type type){
+    public Item(String name, String descripiton,double price,type type){
         this.name = name;
         this.descripiton = descripiton;
         this.price = price;
