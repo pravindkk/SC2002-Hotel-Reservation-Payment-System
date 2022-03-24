@@ -1,9 +1,9 @@
 package system;
 // print hello there
 
-import system.enums.BedType;
-import system.enums.RoomStatus;
-import system.enums.RoomType;
+import system.enums.*;
+// import system.enums.RoomStatus;
+// import system.enums.RoomType;
 
 public class Room {
 
