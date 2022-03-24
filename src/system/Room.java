@@ -102,16 +102,22 @@ public class Room {
         this.roomNumber = roomNumber;
     }
 
-    // public boolean 
+    public boolean getWifiEnabled() {
+        return this.wifiEnabled;
+    }
+    public void setWifiEnabled(boolean wifiEnabled) {
+        this.wifiEnabled = wifiEnabled;
+    }
+
+    public boolean getSmokingStatus() {
+        return this.smokingStatus;
+    }
+    public void setSmokingStatus(boolean smokingStatus) {
+        this.smokingStatus = smokingStatus;
+    }
 
 
     
-    
-    
-    // this.roomFloor = roomFloor;
-    // this.roomFloor = roomFloor;
-    // this.wifiEnabled = wifiEnabled;
-    // this.smokingStatus = smokingStatus;
 
 
 }
