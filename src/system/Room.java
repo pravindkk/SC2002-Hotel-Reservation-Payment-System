@@ -1,23 +1,15 @@
 package system;
 // print hello there
 
+import system.enums.BedType;
+import system.enums.RoomStatus;
+import system.enums.RoomType;
 
 public class Room {
-    public enum RoomType {
-        SINGLE, DOUBLE, DELUXE, VIP_SUITE
-    }
 
-    public enum RoomStatus {
-        VACANT, OCCUPIED, RESERVED, UNDER_MAINTAINANCE
-    }
-
-    public enum BedType {
-        SINGLE, DOUBLE, MASTER 
-    }
-
-    RoomType roomType;
-    RoomStatus roomStatus;
-    BedType bedType;
+    private RoomType roomType;
+    private RoomStatus roomStatus;
+    private BedType bedType;
 
     private String roomId;
 	private boolean withView;
