@@ -2,7 +2,7 @@ package system;
 import system.enums.*;
 
 
-public class Item {
+public class Item{
     
     private int itemid;
     private String name;
