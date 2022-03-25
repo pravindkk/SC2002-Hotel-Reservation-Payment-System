@@ -1,24 +1,20 @@
 package system;
-
+import system.enums.*;
 
 
 public class Item {
     
-    public enum type{
-        STARTER,MAIN_COURSE,DESERT,DRINKS
-    }
-
     private int itemid;
     private String name;
     private String descripiton;
     private double price;
-    public type type;
+    public FoodType foodType;
 
-    public Item(String name, String descripiton,double price,type type){
+    public Item(String name, String descripiton,double price,FoodType foodType){
         this.name = name;
         this.descripiton = descripiton;
         this.price = price;
-        this.type = type;
+        this.foodType = foodType;
     }
 
     public int getItemId(){
@@ -50,11 +46,11 @@ public class Item {
         this.price=price;
     }
 
-    public type getType(){
-        return this.type;
+    public FoodType getType(){
+        return this.foodType;
     }
-    public void setType(type Type){
-        this.type=Type;
+    public void setType(FoodType Type){
+        this.foodType=Type;
     }
 
 
