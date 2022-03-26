@@ -18,15 +18,15 @@ public class RoomController {
     static RoomDB allRooms = new RoomDB();
     Scanner sc = new Scanner(System.in);
     // ArrayList hello = test.getAllRooms();
-    public static void main(String[] args) throws IOException {
-        RoomController test = new RoomController();
-        ArrayList hello = test.getAllRooms();
-        // test.updateRoom("02-04");
-        // test.getVacantRooms();
-        test.printAllRooms();
+    // public static void main(String[] args) throws IOException {
+    //     RoomController test = new RoomController();
+    //     ArrayList hello = test.getAllRooms();
+    //     // test.updateRoom("02-04");
+    //     // test.getVacantRooms();
+    //     test.printAllRooms();
         
         
-    }
+    // }
 
     public void createRoom() throws IOException {
 
