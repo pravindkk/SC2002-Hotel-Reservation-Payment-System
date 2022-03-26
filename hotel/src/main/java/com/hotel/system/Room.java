@@ -69,7 +69,7 @@ public class Room {
     public boolean getWithView() {
         return this.withView;
     }
-    public void withView(boolean withView) {
+    public void setWithView(boolean withView) {
         this.withView = withView;
     }
 

@@ -6,9 +6,9 @@ import java.util.regex.Pattern;
 
 import com.hotel.system.enums.*;
 
-public class SetRoom {
+public class UpdateRoomController {
     static Scanner sc = new Scanner(System.in);
-    public static String setRoomId() throws IOException {
+    public static String updateRoomId() throws IOException {
         String roomId;
         // String roomFloor;
         // Integer roomNumber;
@@ -41,7 +41,7 @@ public class SetRoom {
         return roomId;
     }
 
-    public static RoomType setRoomType() {
+    public static RoomType updateRoomType() {
         RoomType roomType = RoomType.SINGLE;
         do {
             System.out.println("Please enter Room Type: ");
@@ -81,7 +81,7 @@ public class SetRoom {
     }
 
 
-    public static BedType setBedType() {
+    public static BedType updateBedType() {
         BedType bedType = BedType.SINGLE;
         do {
             System.out.println("Please enter Room Type: ");
@@ -125,7 +125,7 @@ public class SetRoom {
     }
 
 
-    public static boolean setWithView() {
+    public static boolean updateWithView() {
         boolean withView=false;
         do {
             System.out.println("Does it have a view?:  ");
@@ -158,7 +158,7 @@ public class SetRoom {
     }
 
 
-    public static RoomStatus setRoomStatus() {
+    public static RoomStatus updateRoomStatus() {
         RoomStatus roomStatus = RoomStatus.VACANT;
 
         do {
@@ -198,7 +198,7 @@ public class SetRoom {
         return roomStatus;
     }
 
-    public static Float setRoomRate() {
+    public static Float updateRoomRate() {
         Float roomRate = 0.0f;
 
         do {
@@ -218,7 +218,7 @@ public class SetRoom {
         return roomRate;
     }
 
-    public static boolean setWifiEnabled() {
+    public static boolean updateWifiEnabled() {
         boolean wifiEnabled=false;
         do {
             System.out.println("Does it have wifi?:  ");
@@ -250,7 +250,7 @@ public class SetRoom {
         return wifiEnabled;
     }
 
-    public static boolean setSmokingStatus() {
+    public static boolean updateSmokingStatus() {
         boolean smokingStatus=false;
         do {
             System.out.println("Is smoking allowed in the room?:  ");
