@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 import com.hotel.system.enums.*;
 
-public class UpdateRoomController {
+public class UpdateRoomMenu {
     static Scanner sc = new Scanner(System.in);
     public static String updateRoomId() throws IOException {
         String roomId;
@@ -15,12 +15,14 @@ public class UpdateRoomController {
         String roomRegExp = "[0][2-7][-][0][1-8]";
         Pattern roomIdPattern = Pattern.compile(roomRegExp);
         do {
-            System.out.println("Please enter Room ID(E.g 02-04):");
+            
 			System.out.println("*Format xx-yy where xx is Floor Number and yy is Room Number.");
 			System.out.println("*Floor number from 02 - 07");
 			System.out.println("*Room number from 01 - 08");
+            System.out.print("Please enter Room ID(E.g 02-04):  ");
 
             roomId = sc.nextLine();
+            System.out.println();
 			// Matcher matcher = roomIdPattern.matcher(roomId);
             if(roomId.length() != 5 || !roomIdPattern.matcher(roomId).matches()) {
 				roomId = "";
@@ -31,9 +33,9 @@ public class UpdateRoomController {
 				// roomFloor = parts[0];
 				// roomNumber = Integer.valueOf(parts[1]);
 
-                if (!RoomController.checkRoomIDExists(roomId)) break;
+                if (RoomController.checkRoomIDExists(roomId) == true) break;
                 else {
-                    System.out.println("The Room Id you have entered exist. Please enter another Room Id.");
+                    System.out.println("The Room Id you have entered does not exist. Please enter another Room Id.");
                 }
             }
 
