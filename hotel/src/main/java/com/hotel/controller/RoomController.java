@@ -18,15 +18,15 @@ public class RoomController {
     static RoomDB allRooms = new RoomDB();
     Scanner sc = new Scanner(System.in);
     // ArrayList hello = test.getAllRooms();
-    // public static void main(String[] args) throws IOException {
-    //     RoomController test = new RoomController();
-    //     ArrayList hello = test.getAllRooms();
-    //     // test.updateRoom("02-04");
-    //     // test.getVacantRooms();
-    //     test.printVacantRoom();
+    public static void main(String[] args) throws IOException {
+        RoomController test = new RoomController();
+        ArrayList hello = test.getAllRooms();
+        // test.updateRoom("02-04");
+        // test.getVacantRooms();
+        test.printAllRooms();
         
         
-    // }
+    }
 
     public void createRoom() throws IOException {
 
@@ -288,5 +288,32 @@ public class RoomController {
             System.out.print(((Room) vipRoom.get(0)).getRoomId() + ", ");
         } 
         System.out.println();
+    }
+
+
+    public void printAllRooms() throws IOException {
+        ArrayList allData = getAllRooms();
+        System.out.println("\n====================================");
+        System.out.println("ALL ROOMS");
+        System.out.println("====================================");
+        System.out.printf("%-8s %-13s %-18s %-11s %-19s %-15s %-12s %-13s %-13s %-10s", "RoomID", "Room Type", "Bed Type", "With View", 
+                            "Room Status", "Room Rate(S$)", "Room Floor","Room Number","Wifi Status","Smoking Status");
+        System.out.println();
+        for (int i=0; i<allData.size(); i++) {
+            Room r = (Room) allData.get(i);
+            String wifi;
+            if (r.getWifiEnabled()) wifi = "Enabled";
+            else wifi = "Disabled";
+
+            String smoke;
+            if (r.getSmokingStatus()) smoke = "Allowed";
+            else smoke = "Not Allowed";
+
+
+            System.out.printf("%-8s %-13s %-18s %-11s %-19s %-15s %-12s %-13s %-13s %-10s", 
+                r.getRoomId(), r.getRoomType(), r.getBedType(), r.getWithView(), r.getRoomStatus(), 
+                r.getRoomRate(),r.getRoomFloor(),r.getRoomNumber(), wifi, smoke);
+            System.out.println("");
+        }
     }
 }
