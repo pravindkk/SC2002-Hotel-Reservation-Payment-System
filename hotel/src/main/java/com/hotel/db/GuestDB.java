@@ -9,7 +9,7 @@ import com.hotel.system.Guest;
 import com.hotel.system.enums.Gender;
 
 public class GuestDB implements DB {
-    private File database = new File("hotel/room.csv");
+    private File database = new File("hotel/guest.csv");
     private String path;
 
     public GuestDB(){
@@ -22,6 +22,10 @@ public class GuestDB implements DB {
         this.path = database.getAbsolutePath();
 
     }
+
+    // public static void main(String[] args){
+    //     GuestDB test = new GuestDB();
+    // }
 
     public String getPath() {
         return this.path;
