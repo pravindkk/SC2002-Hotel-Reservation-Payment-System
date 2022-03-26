@@ -1,19 +1,17 @@
-package system;
+package com.hotel.system;
 
+import com.hotel.system.enums.CreditCardType;
 
 public class CreditCard {
-    public enum type{
-        VISA,MASTERCARD,AMEX;
-    }
 
     private int guestID;
     private String Name;
     private int CardNo;
     private String expiry;
     private int CVV;
-    public type cardType;
+    public CreditCardType cardType;
 
-    public CreditCard(int guestID , String Name , int CardNo , String expiry, int CVV , type cardType ){
+    public CreditCard(int guestID , String Name , int CardNo , String expiry, int CVV , CreditCardType cardType ){
         this.guestID = guestID;
         this.Name=Name;
         this.CardNo = CardNo;
@@ -50,11 +48,11 @@ public class CreditCard {
         this.CVV = CVV;
     }
 
-    public type getCardType(){
+    public CreditCardType getCardType(){
         return this.cardType;
     }
 
-    public void setCardType(type cardType){
+    public void setCardType(CreditCardType cardType){
         this.cardType=cardType;
     }
 

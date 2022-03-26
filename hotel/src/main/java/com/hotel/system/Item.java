@@ -1,5 +1,8 @@
-package system;
-import system.enums.*;
+package com.hotel.system;
+
+
+import com.hotel.system.enums.FoodType;
+
 
 
 public class Item{
