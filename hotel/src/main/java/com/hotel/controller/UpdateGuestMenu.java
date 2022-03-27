@@ -9,12 +9,56 @@ public class UpdateGuestMenu {
 
     static Scanner sc = new Scanner(System.in);
 
+    public static String UpdateGuestId() throws IOException{
+        String guestId = null;
+        do{
+            System.out.println("Please Choose Identity Type");
+            System.out.println("(1) Driving License");
+            System.out.println("(2) Passport ");
+
+            int choice =0;
+            try{
+                choice = sc.nextInt();
+            } catch(Exception e){
+                //TODO: handle exception
+            }
+
+            if(choice<1 || choice>2){
+                System.out.println("Enter a valid option!!");
+            }
+            else{
+                switch(choice){
+                    case 1:
+                    do{
+                        System.out.println("Enter Driving License Number:");
+                        guestId = sc.nextLine();
+                    }while(guestId==null || guestId.trim().isEmpty());
+                    break;
+                    
+                    case 2:
+                    do{
+                        System.out.println("Enter passport Number:");
+                        guestId = sc.nextLine();
+                    }while(guestId==null || guestId.trim().isEmpty());
+
+                        
+                }
+                break;
+            }
+            
+        }while(true);
+        return guestId;
+
+
+
+    }
+
     public static String UpdateName() throws IOException{
         String name = null;
         do{
             System.out.println("Enter Name");
             name = sc.nextLine();
-        }while(name == null || name.trim().isEmpty() || StringUtils.isNumeric(name)==true);
+        }while (name == null || name.trim().isEmpty() || StringUtils.isNumeric(name)==true);
 
         return name;
     }
@@ -75,6 +119,33 @@ public class UpdateGuestMenu {
 
         return country;
     }
+
+    public static Integer UpdatePhoneNumber() throws IOException{
+        Integer phoneNumber = null;
+        do{
+            System.out.println("Enter a contact number:");
+            try {
+                phoneNumber = sc.nextInt();
+                
+            } catch (Exception e) {
+                //TODO: handle exception
+            }
+            break;
+        }while(true);
+        return phoneNumber;
+    }
+
+    public static String UpdateCrediCardNo() throws IOException{
+        String creditcard = null;
+        do{
+            System.out.println("Enter Credit Card Number:");
+            creditcard = sc.nextLine();
+        }while (creditcard==null || StringUtils.isNumeric(creditcard)==false);
+
+        return creditcard;
+    }
+
+
 
    
     
