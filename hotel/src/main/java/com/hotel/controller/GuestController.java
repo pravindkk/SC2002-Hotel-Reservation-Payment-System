@@ -164,15 +164,15 @@ public class GuestController {
 
     }
 
-    public ArrayList RetrieveGuest(String GuestID) throws IOException{
+    public static ArrayList RetrieveGuest(String GuestID) throws IOException{
         ArrayList allData = getAllGuests();
         ArrayList toReturn = new ArrayList();
 
         for(int i =0 ;i< allData.size();i++){
             Guest guestSearch = (Guest) allData.get(i);
-            if(guestSearch.getGuestId()==GuestID){
+            if(GuestID.equals(guestSearch.getGuestId())){
                 toReturn.add(i);
-                toReturn.add(r);
+                toReturn.add(guestSearch);
                 return toReturn;
             }
         }

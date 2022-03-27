@@ -22,6 +22,7 @@ public class Reservation {
         Date checkOut, Integer numOfAdults, Integer numOfChilden) {
 
         // this.roomStatus = roomStatus;
+        this.reservationStatus = reservationStatus;
         this.reservationNum = reservationNum;
         this.guestId = guestId;
         this.roomId = roomId;
