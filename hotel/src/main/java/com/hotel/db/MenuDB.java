@@ -33,7 +33,11 @@ public class MenuDB implements DB {
         ArrayList allData = new ArrayList();
 
         for (String [] row : listing ){
-            
+            String itemId = row[0];
+            String name = row[1];
+            String description = row[2];
+            double price = row[3];
+            FoodType foodType = row[4];
         }
 
 
