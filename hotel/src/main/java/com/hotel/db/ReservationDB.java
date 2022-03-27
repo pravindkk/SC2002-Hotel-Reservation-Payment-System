@@ -123,7 +123,7 @@ public class ReservationDB implements DB {
             Integer adults = Integer.valueOf(numOfAdults);
 			Integer children = Integer.valueOf(numOfChildren);
 
-            RoomStatus rStatus = RoomStatus.valueOf(status);
+            ReservationStatus rStatus = ReservationStatus.valueOf(status);
 
             Reservation r = new Reservation(rStatus, reservationNum, guestId, roomId, checkIn, checkOut, adults, children);
             allData.add(r);
@@ -146,7 +146,7 @@ public class ReservationDB implements DB {
             toWrite.add(new String[] { r.getReservationNum(), 
                                        r.getGuestId(), 
                                        r.getRoomId(),
-                                       r.getRoomStatus().toString(),
+                                       r.getReservationStatus().toString(),
                                        df.format(r.getCheckInDate()),
                                        df.format(r.getCheckOutDate()),
                                        String.valueOf(r.getNumOfAdults()),

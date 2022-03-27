@@ -11,7 +11,7 @@ import com.hotel.db.ReadInFile;
 import com.hotel.db.RoomDB;
 import com.hotel.system.Room;
 import com.hotel.system.enums.*;
-import com.hotel.controller.UpdateRoomController;
+import com.hotel.controller.UpdateRoomMenu;
 
 public class RoomController {
     // private RoomDB allRooms;
@@ -30,18 +30,18 @@ public class RoomController {
 
     public void createRoom() throws IOException {
 
-        String roomId = UpdateRoomController.updateRoomId();
+        String roomId = UpdateRoomMenu.updateRoomId();
         String[] parts = roomId.split("-");
         String roomFloor = parts[0];
         Integer roomNumber = Integer.valueOf(parts[1]);
 
-        RoomType roomType = UpdateRoomController.updateRoomType();
-        BedType bedType = UpdateRoomController.updateBedType();
-        boolean withView = UpdateRoomController.updateWithView();
-        RoomStatus roomStatus = UpdateRoomController.updateRoomStatus();
-        Float roomRate = UpdateRoomController.updateRoomRate();
-        boolean wifiEnabled = UpdateRoomController.updateWifiEnabled();
-        boolean smokingStatus = UpdateRoomController.updateSmokingStatus();
+        RoomType roomType = UpdateRoomMenu.updateRoomType();
+        BedType bedType = UpdateRoomMenu.updateBedType();
+        boolean withView = UpdateRoomMenu.updateWithView();
+        RoomStatus roomStatus = UpdateRoomMenu.updateRoomStatus();
+        Float roomRate = UpdateRoomMenu.updateRoomRate();
+        boolean wifiEnabled = UpdateRoomMenu.updateWifiEnabled();
+        boolean smokingStatus = UpdateRoomMenu.updateSmokingStatus();
 
 
         Room room = new Room(roomType,
@@ -62,11 +62,11 @@ public class RoomController {
 
     }
 
-    public void saveData(ArrayList toWrite) {
+    public static void saveData(ArrayList toWrite) {
         
         try {
             allRooms.save(allRooms.getPath(), toWrite);
-            System.out.println("Room successfully added!");
+            System.out.println("Room successfully updated!");
         } catch (Exception e) {
             //TODO: handle exception
             System.out.println("Room not added!");
@@ -83,7 +83,7 @@ public class RoomController {
         }
         Room room = (Room) returned.get(1);
 
-        room.setRoomType(UpdateRoomController.updateRoomType());
+        room.setRoomType(UpdateRoomMenu.updateRoomType());
         allData.set((Integer) returned.get(0), room);
 
         saveData(allData);
@@ -129,34 +129,34 @@ public class RoomController {
 
         switch (choice) {
             case 1:
-                room.setRoomType(UpdateRoomController.updateRoomType());
+                room.setRoomType(UpdateRoomMenu.updateRoomType());
                 break;
             case 2:
-                room.setBedType(UpdateRoomController.updateBedType());
+                room.setBedType(UpdateRoomMenu.updateBedType());
                 break;
             case 3:
-                room.setWithView(UpdateRoomController.updateWithView());
+                room.setWithView(UpdateRoomMenu.updateWithView());
                 break;
             case 4:
-                room.setRoomStatus(UpdateRoomController.updateRoomStatus());
+                room.setRoomStatus(UpdateRoomMenu.updateRoomStatus());
                 break;
             case 5:
-                room.setRoomRate(UpdateRoomController.updateRoomRate());
+                room.setRoomRate(UpdateRoomMenu.updateRoomRate());
                 break;
             case 6:
-                room.setWifiEnabled(UpdateRoomController.updateWifiEnabled());
+                room.setWifiEnabled(UpdateRoomMenu.updateWifiEnabled());
                 break;
             case 7:
-                room.setSmokingStatus(UpdateRoomController.updateSmokingStatus());
+                room.setSmokingStatus(UpdateRoomMenu.updateSmokingStatus());
                 break;
             case 8:
-                room.setRoomType(UpdateRoomController.updateRoomType());
-                room.setBedType(UpdateRoomController.updateBedType());
-                room.setWithView(UpdateRoomController.updateWithView());
-                room.setRoomStatus(UpdateRoomController.updateRoomStatus());
-                room.setRoomRate(UpdateRoomController.updateRoomRate());
-                room.setWifiEnabled(UpdateRoomController.updateWifiEnabled());
-                room.setSmokingStatus(UpdateRoomController.updateSmokingStatus());
+                room.setRoomType(UpdateRoomMenu.updateRoomType());
+                room.setBedType(UpdateRoomMenu.updateBedType());
+                room.setWithView(UpdateRoomMenu.updateWithView());
+                room.setRoomStatus(UpdateRoomMenu.updateRoomStatus());
+                room.setRoomRate(UpdateRoomMenu.updateRoomRate());
+                room.setWifiEnabled(UpdateRoomMenu.updateWifiEnabled());
+                room.setSmokingStatus(UpdateRoomMenu.updateSmokingStatus());
                 break;
             
             default:
@@ -174,7 +174,7 @@ public class RoomController {
         ArrayList allData = getAllRooms();
         for (int i=0; i<allData.size(); i++) {
             Room r = (Room) allData.get(i);
-            if (r.getRoomId() == roomId) return true;
+            if (roomId.equals(r.getRoomId())) return true;
         }
 
         return false;
@@ -183,10 +183,12 @@ public class RoomController {
 
     public static ArrayList getAllRooms() throws IOException {
         ArrayList allData = allRooms.read(allRooms.getPath());
+        // System.out.printf("%-8s %-13s %-18s %-11s %-19s %-15s %-12s %-13s %-13s %-10s", "RoomID", "Room Type", "Bed Type", "With View", 
+        //                     "Room Status", "Room Rate(S$)", "Room Floor","Room Number","Wifi Status","Smoking Status");
         return allData;
     }
 
-    public ArrayList getSpecificRoom(String roomId) throws IOException {
+    public static ArrayList getSpecificRoom(String roomId) throws IOException {
         ArrayList toReturn = new ArrayList();
 
         ArrayList allData = getAllRooms();
@@ -205,8 +207,35 @@ public class RoomController {
         return null;
     }
 
+    public static void printOneRoom(String roomId) throws IOException {
+        ArrayList toPrint = (ArrayList) getSpecificRoom(roomId);
+        Room r = (Room) toPrint.get(1);
 
-    public ArrayList getVacantRooms() throws IOException {
+
+        System.out.println();
+        // for (int i=0; i<allData.size(); i++) {
+            // Room r = (Room) ;
+        String wifi;
+        if (r.getWifiEnabled()) wifi = "Enabled";
+        else wifi = "Disabled";
+
+        String smoke;
+        if (r.getSmokingStatus()) smoke = "Allowed";
+        else smoke = "Not Allowed";
+
+        System.out.printf("%-8s %-13s %-18s %-11s %-19s %-15s %-12s %-13s %-13s %-10s", "RoomID", "Room Type", "Bed Type", "With View", 
+        "Room Status", "Room Rate(S$)", "Room Floor","Room Number","Wifi Status","Smoking Status");
+        System.out.println("");
+        System.out.printf("%-8s %-13s %-18s %-11s %-19s %-15s %-12s %-13s %-13s %-10s", 
+            r.getRoomId(), r.getRoomType(), r.getBedType(), r.getWithView(), r.getRoomStatus(), 
+            r.getRoomRate(),r.getRoomFloor(),r.getRoomNumber(), wifi, smoke);
+        System.out.println("");
+        // }
+        
+    }
+
+
+    public static ArrayList getVacantRooms() throws IOException {
         ArrayList allData = getAllRooms();
         
         allData.removeIf(r -> ((Room)r).getRoomStatus() != RoomStatus.VACANT);
@@ -218,7 +247,9 @@ public class RoomController {
         return allData;
     }
 
-    public ArrayList getRoomsByRoomType(RoomType roomType) throws IOException {
+    // public 
+
+    public static ArrayList getRoomsByRoomType(RoomType roomType) throws IOException {
         ArrayList allData = getAllRooms();
         
         allData.removeIf(r -> ((Room)r).getRoomType() != roomType);
@@ -226,7 +257,7 @@ public class RoomController {
         return allData;
     }
 
-    public ArrayList getRoomsByRoomType(ArrayList allData, RoomType roomType) throws IOException {
+    public static ArrayList getRoomsByRoomType(ArrayList allData, RoomType roomType) throws IOException {
         // ArrayList allData = getAllRooms();
         
         allData.removeIf(r -> ((Room) r).getRoomType() != roomType);
@@ -242,10 +273,18 @@ public class RoomController {
         return allData;
     }
 
+    public static ArrayList getRoomsByBedType(ArrayList allData, BedType bedType) throws IOException {
+        // ArrayList allData = getAllRooms();
+        
+        allData.removeIf(r -> ((Room)r).getBedType() != bedType);
+        
+        return allData;
+    }
 
 
 
-    public void printVacantRoom() throws IOException {
+
+    public static void printVacantRoom() throws IOException {
         // ArrayList vacantRooms = getVacantRooms();
         // System.out.println(((Room) vacantRooms.get(0)).getRoomId());
         
@@ -291,11 +330,34 @@ public class RoomController {
     }
 
 
-    public void printAllRooms() throws IOException {
+    public static void printAllRooms() throws IOException {
         ArrayList allData = getAllRooms();
         System.out.println("\n====================================");
         System.out.println("ALL ROOMS");
         System.out.println("====================================");
+        System.out.printf("%-8s %-13s %-18s %-11s %-19s %-15s %-12s %-13s %-13s %-10s", "RoomID", "Room Type", "Bed Type", "With View", 
+                            "Room Status", "Room Rate(S$)", "Room Floor","Room Number","Wifi Status","Smoking Status");
+        System.out.println();
+        for (int i=0; i<allData.size(); i++) {
+            Room r = (Room) allData.get(i);
+            String wifi;
+            if (r.getWifiEnabled()) wifi = "Enabled";
+            else wifi = "Disabled";
+
+            String smoke;
+            if (r.getSmokingStatus()) smoke = "Allowed";
+            else smoke = "Not Allowed";
+
+
+            System.out.printf("%-8s %-13s %-18s %-11s %-19s %-15s %-12s %-13s %-13s %-10s", 
+                r.getRoomId(), r.getRoomType(), r.getBedType(), r.getWithView(), r.getRoomStatus(), 
+                r.getRoomRate(),r.getRoomFloor(),r.getRoomNumber(), wifi, smoke);
+            System.out.println("");
+        }
+    }
+
+    public static void printRooms(ArrayList allData) throws IOException {
+        // ArrayList allData = getAllRooms();
         System.out.printf("%-8s %-13s %-18s %-11s %-19s %-15s %-12s %-13s %-13s %-10s", "RoomID", "Room Type", "Bed Type", "With View", 
                             "Room Status", "Room Rate(S$)", "Room Floor","Room Number","Wifi Status","Smoking Status");
         System.out.println();

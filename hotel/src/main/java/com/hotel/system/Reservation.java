@@ -9,7 +9,7 @@ import com.hotel.system.enums.*;
 
 public class Reservation {
 
-    private RoomStatus roomStatus;
+    private ReservationStatus reservationStatus;
     private String reservationNum;
     private String guestId;
     private String roomId;
@@ -18,10 +18,10 @@ public class Reservation {
     private Integer numOfAdults;
     private Integer numOfChilden;
 
-    public Reservation(RoomStatus roomStatus, String reservationNum, String guestId, String roomId, Date checkIn, 
+    public Reservation(ReservationStatus reservationStatus, String reservationNum, String guestId, String roomId, Date checkIn, 
         Date checkOut, Integer numOfAdults, Integer numOfChilden) {
 
-        this.roomStatus = roomStatus;
+        // this.roomStatus = roomStatus;
         this.reservationNum = reservationNum;
         this.guestId = guestId;
         this.roomId = roomId;
@@ -33,11 +33,11 @@ public class Reservation {
     }
 
 
-    public RoomStatus getRoomStatus() {
-        return this.roomStatus;
+    public ReservationStatus getReservationStatus() {
+        return this.reservationStatus;
     }
-    public void setRoomStatus(RoomStatus roomStatus) {
-        this.roomStatus = roomStatus;
+    public void setReservationStatus(ReservationStatus reservationStatus) {
+        this.reservationStatus = reservationStatus;
     }
 
     public String getReservationNum() {
