@@ -52,6 +52,22 @@ public class ReservationController {
         }
     }
 
+    public static void saveSpecificReservationByGuestId(Reservation toChange) throws IOException {
+        ArrayList allData = getAllReservations();
+
+        for (int i=0; i<allData.size(); i++) {
+            Reservation r = (Reservation) allData.get(i);
+            if (toChange.getGuestId().equals(r.getGuestId())) {
+                allData.set(i, r);
+                saveReservationData(allData);
+                return;
+            }
+        }
+        System.out.println("couldnt save reservation");
+
+
+    }
+
     public void createReservation() throws IOException {
 
         Date checkInDate = UpdateReservationMenu.updateCheckInDate();
@@ -134,15 +150,16 @@ public class ReservationController {
         System.out.print("Enter Reservation Number");
         ArrayList allReservation = getAllReservations();
         String reservationId = sc.next();
-        ArrayList toChangeReservation = getSpecificReservation(reservationId);
+        // ArrayList toChangeReservation = getSpecificReservation(reservationId);
+        Reservation reservation = getReservationByNum(reservationId);
 
-        if (toChangeReservation == null) {
+        if (reservation == null) {
             System.out.println("Wrong Reservation Number");
             return;
         }
 
-        Integer indexReservation = (Integer) toChangeReservation.get(0);
-        Reservation reservation = (Reservation) toChangeReservation.get(1);
+        // Integer indexReservation = (Integer) toChangeReservation.get(0);
+        // Reservation reservation = (Reservation) toChangeReservation.get(1);
 
         
 
@@ -182,33 +199,16 @@ public class ReservationController {
                 break;
         }
 
-        allReservation.set(indexReservation, reservation);
-        saveReservationData(allReservation);
+
+        saveSpecificReservationByGuestId(reservation);
+        // allReservation.set(indexReservation, reservation);
+        // saveReservationData(allReservation);
 
         
     }
 
-    public static ArrayList getReservationByNumWithIndex(String reservationId) throws IOException {
-        ArrayList toReturn = new ArrayList();
-
-        ArrayList allData = getAllReservations();
-
-        for (int i=0; i<allData.size(); i++) {
-            Reservation r = (Reservation) allData.get(i);
-            // System.out.print(r.getRoomId());
-            if (reservationId.equals(r.getReservationNum())) {
-                // System.out.print("hello");
-                toReturn.add(i);
-                toReturn.add(r);
-                return toReturn;
-            }
-        }
-
-        return null;
-    }
-
-    public static ArrayList getReservationByRoomWithIndex(String roomId, ReservationStatus reservationStatus) throws IOException {
-        ArrayList toReturn = new ArrayList();
+    public static Reservation getReservationByRoomWithIndex(String roomId, ReservationStatus reservationStatus) throws IOException {
+        // ArrayList toReturn = new ArrayList();
 
         ArrayList allData = getAllReservations();
 
@@ -217,9 +217,7 @@ public class ReservationController {
             // System.out.print(r.getRoomId());
             if (roomId.equals(r.getRoomId()) && reservationStatus == r.getReservationStatus()) {
                 // System.out.print("hello");
-                toReturn.add(i);
-                toReturn.add(r);
-                return toReturn;
+                return r;
             }
         }
 
@@ -353,18 +351,19 @@ public class ReservationController {
 				System.out.println("Please check in on " + df.format(r.getCheckInDate()));
 			}
 
+            saveSpecificReservationByGuestId(r);
 
-            ArrayList allData = getAllReservations();
-            Integer index = (Integer) getReservationByNumWithIndex(r.getReservationNum()).get(0);
+            // ArrayList allData = getAllReservations();
+            // Integer index = (Integer) getReservationByNumWithIndex(r.getReservationNum()).get(0);
 
-            allData.set(index, r);
+            // allData.set(index, r);
 
-            try {
-                saveReservationData(allData);
-            } catch (Exception e) {
-                //TODO: handle exception
-                System.out.println("Check In unsuccessful");
-            }
+            // try {
+            //     saveReservationData(allData);
+            // } catch (Exception e) {
+            //     //TODO: handle exception
+            //     System.out.println("Check In unsuccessful");
+            // }
 
 
     }
@@ -372,20 +371,24 @@ public class ReservationController {
 
     public static void checkOutGuest(String checkOutRoomId) throws IOException {
 
-        ArrayList toChange = getReservationByRoomWithIndex(checkOutRoomId, ReservationStatus.CHECKED_IN);
+        Reservation r = getReservationByRoomWithIndex(checkOutRoomId, ReservationStatus.CHECKED_IN);
 
-        if (toChange == null) {
+        // get
+
+        if (r == null) {
             System.out.println("Reservation is not checked in");
+            return;
         }
 
-        Reservation r = (Reservation) toChange.get(1);
-        Integer index = (Integer) toChange.get(0);
+        // Reservation r = (Reservation) toChange.get(1);
+        // Integer index = (Integer) toChange.get(0);
 
-        ArrayList allData = getAllReservations();
+        // ArrayList allData = getAllReservations();
         r.setReservationStatus(ReservationStatus.CHECKED_OUT);
         setRoomStatus(r.getRoomId(), RoomStatus.VACANT);
-        allData.set(index, r);
-        saveReservationData(allData);
+        saveSpecificReservationByGuestId(r);
+        // allData.set(index, r);
+        // saveReservationData(allData);
 
 
     }
@@ -519,23 +522,20 @@ public class ReservationController {
 
 
     public static void cancelReservation(String reservationId) throws IOException {
-        ArrayList toChange = getReservationByNumWithIndex(reservationId);
-        if (toChange == null) {
+
+        Reservation r = getReservationByNum(reservationId);
+        if (r == null) {
             System.out.println("cannot find reservation");
             return;
         }
 
-        Reservation r = (Reservation) toChange.get(1);
-        Integer index = (Integer) toChange.get(0);
 
         r.setReservationStatus(ReservationStatus.CANCELLED);
         setRoomStatus(r.getRoomId(), RoomStatus.VACANT);
 
-        ArrayList allData = getAllReservations();
-        allData.set(index, r);
 
         try {
-            saveReservationData(allData);
+            saveSpecificReservationByGuestId(r);
             System.out.println("Cancellation successful");
         } catch (Exception e) {
             //TODO: handle exception
