@@ -36,11 +36,17 @@ public class MenuDB implements DB {
             String itemId = row[0];
             String name = row[1];
             String description = row[2];
-            double price = row[3];
-            FoodType foodType = row[4];
+            double price = Double.valueOf(row[3]);
+            FoodType foodType = FoodType.valueOf(row[4]);
         }
 
+        return null;
+    }
 
+    @Override
+    public void save(String fileName, List al) throws IOException {
+        // TODO Auto-generated method stub
+        
     }
 
 
