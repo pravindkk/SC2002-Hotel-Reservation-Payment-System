@@ -201,7 +201,7 @@ public class ReservationController {
 
 
     public static Reservation getReservationByNum(String reservationId, ReservationStatus reservationStatus) throws IOException {
-        ArrayList allReservations = getAllReservations();
+        // ArrayList allReservations = getAllReservations();
 
         // check the search term "R" for search by ReservationNum while "G" is 
         ArrayList allData = getAllReservations();
