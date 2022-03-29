@@ -16,7 +16,7 @@ public class GuestController {
     Scanner sc = new Scanner(System.in);
     static GuestDB allGuests = new GuestDB();
 
-    public static Guest CreateGuest() throws IOException{
+    public void CreateGuest() throws IOException{
 
         String name = UpdateGuestMenu.UpdateName();
         String guestId = UpdateGuestMenu.UpdateGuestId();
@@ -28,50 +28,24 @@ public class GuestController {
 
         Guest guest = new Guest(guestId, name, gender, nationality, country, phoneNumber, creditCardNumber);
 
-        
-        return guest;
-
-    }
-
-    public static void saveGuests(ArrayList toWrite) {
-        try {
-            allGuests.save(allGuests.getPath(), toWrite);
-            System.out.println("Guests successfully updated!");
-        } catch (Exception e) {
-            //TODO: handle exception
-
-            System.out.println("Guest not added!");
-            System.out.println(e);
-
-        }
-    }
-
-    public static void saveGuestByID(Guest guest) throws IOException {
         ArrayList allData = getAllGuests();
+        allData.add(guest);
+        saveData(allData);
 
-        for (int i=0; i<allData.size(); i++) {
-            Guest g = (Guest) allData.get(i);
-            if (guest.getGuestId().equals(g.getGuestId())) {
-                allData.set(i, guest);
-                saveGuests(allData);
-                return;
-            }
-        }
-        System.out.println("Not updated guest");
     }
 
     public void UpdateGuest(String guestId) throws IOException{
 
         ArrayList allGuests = getAllGuests();
-        Guest guest = RetrieveGuest(guestId);
+        ArrayList guestList = RetrieveGuest(guestId);
 
-        if(guest==null){
+        if(guestList==null){
             System.out.println("Invalid guestID");
             return;
         }
 
-        // Integer index = (Integer) guestList.get(0);
-        // Guest guest = (Guest) guestList.get(1);
+        Integer index = (Integer) guestList.get(0);
+        Guest guest = (Guest) guestList.get(1);
 
         System.out.println("\nPlease choose guest details to update \n" + 
         "(1) Name \n"+
@@ -131,24 +105,22 @@ public class GuestController {
         }
 
 
-        // allGuests.set(index, guest);
-        saveGuestByID(guest);
+        allGuests.set(index, guest);
 
-        // saveData(allGuests);
+        saveData(allGuests);
     }
 
     public void DeleteGuest(String guestId) throws IOException{
         ArrayList allData = getAllGuests();
-        Guest guestToDelete = RetrieveGuest(guestId);
+        ArrayList guestList = RetrieveGuest(guestId);
 
-        if(guestToDelete==null){
+        if(guestList==null){
             System.out.println("Invalid guestID");
             return;
         }
 
         allData.removeIf(g -> ((Guest)g).getGuestId() == guestId);
-        // System.out.println("Guest Details Successfully removed.");
-        saveData(allData);
+        System.out.println("Guest Details Successfully removed.");
 
 
     }
@@ -192,14 +164,16 @@ public class GuestController {
 
     }
 
-    public static Guest RetrieveGuest(String GuestID) throws IOException{
+    public static ArrayList RetrieveGuest(String GuestID) throws IOException{
         ArrayList allData = getAllGuests();
-        // ArrayList toReturn = new ArrayList();
+        ArrayList toReturn = new ArrayList();
 
         for(int i =0 ;i< allData.size();i++){
             Guest guestSearch = (Guest) allData.get(i);
             if(GuestID.equals(guestSearch.getGuestId())){
-                return guestSearch;
+                toReturn.add(i);
+                toReturn.add(guestSearch);
+                return toReturn;
             }
         }
         return null;
@@ -208,7 +182,7 @@ public class GuestController {
 
     }
 
-    public static void saveData(ArrayList toWrite) {
+    public void saveData(ArrayList toWrite) {
         
         try {
             allGuests.save(allGuests.getPath(), toWrite);

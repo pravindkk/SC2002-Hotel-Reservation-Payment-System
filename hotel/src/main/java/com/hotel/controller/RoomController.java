@@ -97,7 +97,7 @@ public class RoomController {
         for (int i=0; i<allData.size(); i++) {
             Room r = (Room) allData.get(i);
             if (toChange.getRoomId().equals(r.getRoomId())) {
-                allData.set(i, toChange);
+                allData.set(i, r);
                 saveData(allData);
                 return;
             }

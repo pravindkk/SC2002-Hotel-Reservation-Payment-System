@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-import com.hotel.system.Guest;
 import com.hotel.system.Room;
 import com.hotel.system.enums.*;
 
@@ -75,22 +74,10 @@ public class UpdateReservationDetailsDisplayUI {
         return roomId;
     }
 
-    public static String updateGuestId() throws IOException {
+    public static String updateGuestId() {
         // for now i just return normal string
-        do {
-            System.out.print("Are you a new Guest (Y/N)?:  ");
-            String choice = sc.nextLine();
-            if (choice.equalsIgnoreCase("y")) {
-                Guest newGuest = GuestController.CreateGuest();
-                return newGuest.getGuestId();
 
-            } else if (choice.equalsIgnoreCase("n")) {
-                String guestId = UpdateGuestMenu.UpdateGuestId();
-                Guest guest = GuestController.RetrieveGuest(guestId);
-                return guest.getGuestId();
-		}
-        } while(true);
-        // return "Jane Watson";
+        return "Jane Watson";
     }
 
     public static Integer updateNumberOfAdults() {
