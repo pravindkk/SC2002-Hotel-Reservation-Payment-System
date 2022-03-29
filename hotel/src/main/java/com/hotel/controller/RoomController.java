@@ -17,7 +17,9 @@ public class RoomController {
     // private RoomDB allRooms;
     static RoomDB allRooms = new RoomDB();
     Scanner sc = new Scanner(System.in);
-    // ArrayList hello = test.getAllRooms();
+
+
+    
     // public static void main(String[] args) throws IOException {
     //     RoomController test = new RoomController();
     //     ArrayList hello = test.getAllRooms();
@@ -76,36 +78,46 @@ public class RoomController {
 
     public void updateRoomStatus(String roomId) throws IOException {
         ArrayList allData = getAllRooms();
-        ArrayList returned = getSpecificRoom(roomId);
-        if (returned == null) {
+        Room room = getSpecificRoom(roomId);
+        if (room == null) {
             System.out.println("Invalid string");
             return;
         }
-        Room room = (Room) returned.get(1);
 
         room.setRoomType(UpdateRoomMenu.updateRoomType());
-        allData.set((Integer) returned.get(0), room);
 
-        saveData(allData);
-
+        saveSpecificRoomByRoomId(room);
 
         // return room;
     }
+
+    public static void saveSpecificRoomByRoomId(Room toChange) throws IOException {
+        ArrayList allData = getAllRooms();
+
+        for (int i=0; i<allData.size(); i++) {
+            Room r = (Room) allData.get(i);
+            if (toChange.getRoomId().equals(r.getRoomId())) {
+                allData.set(i, r);
+                saveData(allData);
+                return;
+            }
+        }
+        System.out.println("couldnt save reservation");
+    }  
 
 
 
     public void updateRoom(String roomId) throws IOException {
         ArrayList allData = getAllRooms();
-        ArrayList roomList = getSpecificRoom(roomId);
+        Room room = getSpecificRoom(roomId);
         // // Room room = (Room)
-        if (roomList == null) {
+        if (room == null) {
             System.out.println("Invalid Room");
             return;
         }
-        Integer index = (Integer) roomList.get(0);
-        Room room = (Room) roomList.get(1);
 
-        System.out.println("\nPlease choose guest details to update \n" + 
+
+        System.out.println("\nPlease choose room details to update \n" + 
                            "(1) Room Type \n"+
                            "(2) Bed Type \n"+ 
                            "(3) View Type \n"+
@@ -163,9 +175,7 @@ public class RoomController {
                 break;
         }
 
-        allData.set(index, room);
-
-        saveData(allData);
+        saveSpecificRoomByRoomId(room);
 
 
     }
@@ -183,13 +193,11 @@ public class RoomController {
 
     public static ArrayList getAllRooms() throws IOException {
         ArrayList allData = allRooms.read(allRooms.getPath());
-        // System.out.printf("%-8s %-13s %-18s %-11s %-19s %-15s %-12s %-13s %-13s %-10s", "RoomID", "Room Type", "Bed Type", "With View", 
-        //                     "Room Status", "Room Rate(S$)", "Room Floor","Room Number","Wifi Status","Smoking Status");
         return allData;
     }
 
-    public static ArrayList getSpecificRoom(String roomId) throws IOException {
-        ArrayList toReturn = new ArrayList();
+
+    public static Room getSpecificRoom(String roomId) throws IOException {
 
         ArrayList allData = getAllRooms();
 
@@ -198,9 +206,7 @@ public class RoomController {
             // System.out.print(r.getRoomId());
             if (roomId.equals(r.getRoomId())) {
                 // System.out.print("hello");
-                toReturn.add(i);
-                toReturn.add(r);
-                return toReturn;
+                return r;
             }
         }
 
@@ -208,8 +214,7 @@ public class RoomController {
     }
 
     public static void printOneRoom(String roomId) throws IOException {
-        ArrayList toPrint = (ArrayList) getSpecificRoom(roomId);
-        Room r = (Room) toPrint.get(1);
+        Room r = (Room) getSpecificRoom(roomId);
 
 
         System.out.println();
@@ -239,15 +244,10 @@ public class RoomController {
         ArrayList allData = getAllRooms();
         
         allData.removeIf(r -> ((Room)r).getRoomStatus() != RoomStatus.VACANT);
-        
-        // System.out.println(allData.size());
-        // for (int i=0; i<allData.size(); i++) {
-        //     System.out.print(((Room)allData.get(i)).getRoomFloor());
-        // }
+
+
         return allData;
     }
-
-    // public 
 
     public static ArrayList getRoomsByRoomType(RoomType roomType) throws IOException {
         ArrayList allData = getAllRooms();
@@ -258,7 +258,6 @@ public class RoomController {
     }
 
     public static ArrayList getRoomsByRoomType(ArrayList allData, RoomType roomType) throws IOException {
-        // ArrayList allData = getAllRooms();
         
         allData.removeIf(r -> ((Room) r).getRoomType() != roomType);
 
@@ -274,7 +273,6 @@ public class RoomController {
     }
 
     public static ArrayList getRoomsByBedType(ArrayList allData, BedType bedType) throws IOException {
-        // ArrayList allData = getAllRooms();
         
         allData.removeIf(r -> ((Room)r).getBedType() != bedType);
         
@@ -285,8 +283,7 @@ public class RoomController {
 
 
     public static void printVacantRoom() throws IOException {
-        // ArrayList vacantRooms = getVacantRooms();
-        // System.out.println(((Room) vacantRooms.get(0)).getRoomId());
+
         
         int singleRoomCount = getRoomsByRoomType(RoomType.SINGLE).size();
         int doubleRoomCount = getRoomsByRoomType(RoomType.DOUBLE).size();
@@ -298,7 +295,6 @@ public class RoomController {
         ArrayList doubleRoom = getRoomsByRoomType(getVacantRooms(), RoomType.DOUBLE);
         ArrayList deluxeRoom = getRoomsByRoomType(getVacantRooms(), RoomType.DELUXE);
         ArrayList vipRoom = getRoomsByRoomType(getVacantRooms(), RoomType.VIP_SUITE);
-        // System.out.println(((Room) vacantRooms.get(0)).getRoomId());
 
         System.out.println("Single Room: " + singleRoom.size()+ " out of " + singleRoomCount);
         System.out.print("\t\t\tRooms: ");

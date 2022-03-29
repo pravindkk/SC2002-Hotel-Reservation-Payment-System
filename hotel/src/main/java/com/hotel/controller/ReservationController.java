@@ -8,15 +8,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
-import javax.swing.plaf.basic.BasicBorders.ToggleButtonBorder;
-import javax.xml.crypto.Data;
 
 import com.hotel.db.ReservationDB;
 import com.hotel.system.Guest;
 import com.hotel.system.Reservation;
 import com.hotel.system.Room;
 import com.hotel.system.enums.*;
-// import com.hotel.controller.UpdateReservationMenu;
+
 
 public class ReservationController {
     static Scanner sc = new Scanner(System.in);
@@ -33,8 +31,6 @@ public class ReservationController {
 
     public static ArrayList getAllReservations() throws IOException {
         ArrayList allData = allReservations.read(allReservations.getPath());
-        // System.out.printf("%-8s %-13s %-18s %-11s %-19s %-15s %-12s %-13s %-13s %-10s", "RoomID", "Room Type", "Bed Type", "With View", 
-        //                     "Room Status", "Room Rate(S$)", "Room Floor","Room Number","Wifi Status","Smoking Status");
         return allData;
     }
 
@@ -91,25 +87,12 @@ public class ReservationController {
         String confirmation = sc.next();
 
         if (confirmation.equalsIgnoreCase("y")) {
-			// String type = RoomController.retrieveRoomType(roomId);
-            // ArrayList toUse = RoomController.getSpecificRoom(roomId);
-
-            // Integer index = (Integer) toUse.get(0);
-            // Room r = (Room) toUse.get(1);
-
-			// String type = String.valueOf(r.getRoomType());
 
             setRoomStatus(roomId, RoomStatus.RESERVED);
 			String reservationDate = df.format(checkInDate).replaceAll("\\D", "");
 			String reservationRoomId = roomId.replaceAll("\\D", "");
 
 			String reservationNum = guestId.charAt(0) + "-" + reservationDate + "-" + reservationRoomId;
-
-            // r.setRoomStatus(RoomStatus.RESERVED);
-            
-			// status = "CONFIRMED";
-
-
 
 			Reservation reservation = new Reservation(ReservationStatus.CONFIRMED,reservationNum, guestId, roomId, checkInDate, checkOutDate,
 					numOfAdults, numOfChildren);
@@ -126,25 +109,6 @@ public class ReservationController {
 
     }
 
-    public static ArrayList getSpecificReservation(String reservationId) throws IOException {
-        ArrayList toReturn = new ArrayList();
-
-        ArrayList allData = getAllReservations();
-
-        for (int i=0; i<allData.size(); i++) {
-            Reservation r = (Reservation) allData.get(i);
-            // System.out.print(r.getRoomId());
-            if (reservationId.equals(r.getReservationNum())) {
-                // System.out.print("hello");
-                toReturn.add(i);
-                toReturn.add(r);
-                return toReturn;
-            }
-        }
-
-        return null;
-    }
-
 
     public static void updateReservation() throws IOException {
         System.out.print("Enter Reservation Number");
@@ -157,10 +121,6 @@ public class ReservationController {
             System.out.println("Wrong Reservation Number");
             return;
         }
-
-        // Integer indexReservation = (Integer) toChangeReservation.get(0);
-        // Reservation reservation = (Reservation) toChangeReservation.get(1);
-
         
 
 
@@ -201,31 +161,10 @@ public class ReservationController {
 
 
         saveSpecificReservationByGuestId(reservation);
-        // allReservation.set(indexReservation, reservation);
-        // saveReservationData(allReservation);
-
         
     }
 
-    public static Reservation getReservationByRoomWithIndex(String roomId, ReservationStatus reservationStatus) throws IOException {
-        // ArrayList toReturn = new ArrayList();
-
-        ArrayList allData = getAllReservations();
-
-        for (int i=0; i<allData.size(); i++) {
-            Reservation r = (Reservation) allData.get(i);
-            // System.out.print(r.getRoomId());
-            if (roomId.equals(r.getRoomId()) && reservationStatus == r.getReservationStatus()) {
-                // System.out.print("hello");
-                return r;
-            }
-        }
-
-        return null;
-    }
-
     public static Reservation getReservationByNum(String reservationId) throws IOException {
-        // ArrayList toReturn = new ArrayList();
 
         ArrayList allData = getAllReservations();
 
@@ -353,17 +292,6 @@ public class ReservationController {
 
             saveSpecificReservationByGuestId(r);
 
-            // ArrayList allData = getAllReservations();
-            // Integer index = (Integer) getReservationByNumWithIndex(r.getReservationNum()).get(0);
-
-            // allData.set(index, r);
-
-            // try {
-            //     saveReservationData(allData);
-            // } catch (Exception e) {
-            //     //TODO: handle exception
-            //     System.out.println("Check In unsuccessful");
-            // }
 
 
     }
@@ -371,25 +299,16 @@ public class ReservationController {
 
     public static void checkOutGuest(String checkOutRoomId) throws IOException {
 
-        Reservation r = getReservationByRoomWithIndex(checkOutRoomId, ReservationStatus.CHECKED_IN);
-
-        // get
+        Reservation r = getReservationByNum(checkOutRoomId, ReservationStatus.CHECKED_IN);
 
         if (r == null) {
             System.out.println("Reservation is not checked in");
             return;
         }
 
-        // Reservation r = (Reservation) toChange.get(1);
-        // Integer index = (Integer) toChange.get(0);
-
-        // ArrayList allData = getAllReservations();
         r.setReservationStatus(ReservationStatus.CHECKED_OUT);
         setRoomStatus(r.getRoomId(), RoomStatus.VACANT);
         saveSpecificReservationByGuestId(r);
-        // allData.set(index, r);
-        // saveReservationData(allData);
-
 
     }
 
@@ -416,33 +335,17 @@ public class ReservationController {
         String confirmation = sc.next();
 
         if (confirmation.equalsIgnoreCase("y")) {
-			// String type = RoomController.retrieveRoomType(roomId);
-            // ArrayList toUse = RoomController.getSpecificRoom(roomId);
-
-            // Integer index = (Integer) toUse.get(0);
-            // Room r = (Room) toUse.get(1);
-
-			// String type = String.valueOf(r.getRoomType());
-
             setRoomStatus(roomId, RoomStatus.OCCUPIED);
 			String reservationDate = df.format(checkInDate).replaceAll("\\D", "");
 			String reservationRoomId = roomId.replaceAll("\\D", "");
 
 			String reservationNum = guestId.charAt(0) + "-" + reservationDate + "-" + reservationRoomId;
 
-            // r.setRoomStatus(RoomStatus.RESERVED);
-            
-			// status = "CONFIRMED";
-
-
-
 			Reservation reservation = new Reservation(ReservationStatus.CHECKED_IN,reservationNum, guestId, roomId, checkInDate, checkOutDate,
 					numOfAdults, numOfChildren);
 
 			ArrayList allReserve = getAllReservations();
-            // System.out.println(allReserve.size());
             allReserve.add(reservation);
-            // System.out.println(allReserve.size());
             saveReservationData(allReserve);
 
 		} else {
@@ -452,53 +355,27 @@ public class ReservationController {
     }
 
 
-
-
-
-
-
-
     public static void setRoomStatus(String newRoomId, RoomStatus roomStatus) throws IOException {
-        ArrayList toUse = RoomController.getSpecificRoom(newRoomId);
-
-        Integer index = (Integer) toUse.get(0);
-        Room r = (Room) toUse.get(1);
-
+        Room r = RoomController.getSpecificRoom(newRoomId);
         r.setRoomStatus(roomStatus);
-
-        ArrayList allRoom = RoomController.getAllRooms();
-        allRoom.set(index, r);
-        RoomController.saveData(allRoom);
+        RoomController.saveSpecificRoomByRoomId(r);
     }
 
     public static void switchRoomStatus(String oldRoomId, String newRoomId) throws IOException {
-        ArrayList allRoom = RoomController.getAllRooms();
-        ArrayList toUse = RoomController.getSpecificRoom(oldRoomId);
+        // ArrayList allRoom = RoomController.getAllRooms();
+        Room oldRoom = RoomController.getSpecificRoom(oldRoomId);
+        oldRoom.setRoomStatus(RoomStatus.VACANT);
+        RoomController.saveSpecificRoomByRoomId(oldRoom);
+        
+        Room newRoom = RoomController.getSpecificRoom(newRoomId);
+        newRoom.setRoomStatus(RoomStatus.VACANT);
+        RoomController.saveSpecificRoomByRoomId(newRoom);
 
-        Integer index = (Integer) toUse.get(0);
-        Room r = (Room) toUse.get(1);
-
-        r.setRoomStatus(RoomStatus.VACANT);
-        allRoom.set(index, r);
-
-
-        toUse = RoomController.getSpecificRoom(newRoomId);
-
-        index = (Integer) toUse.get(0);
-        r = (Room) toUse.get(1);
-
-        r.setRoomStatus(RoomStatus.RESERVED);
-        allRoom.set(index, r);
-
-
-
-        RoomController.saveData(allRoom);
     }
 
 
     public static void printReservation(String reservationId) throws IOException {
         Reservation r = getReservationByNum(reservationId);
-        // Reservation r = null;
 
 
         if (r == null) {
