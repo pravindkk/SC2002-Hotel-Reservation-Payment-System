@@ -54,7 +54,7 @@ public class ReservationController {
         for (int i=0; i<allData.size(); i++) {
             Reservation r = (Reservation) allData.get(i);
             if (toChange.getGuestId().equals(r.getGuestId())) {
-                allData.set(i, r);
+                allData.set(i, toChange);
                 saveReservationData(allData);
                 return;
             }
@@ -383,7 +383,7 @@ public class ReservationController {
             return;
         }
 
-			Guest g = (Guest) GuestController.RetrieveGuest(r.getGuestId()).get(1);
+			Guest g = (Guest) GuestController.RetrieveGuest(r.getGuestId());
 			System.out.println("\n==================================================");
 			System.out.println(" Reservation Details ");
 			System.out.println("==================================================");

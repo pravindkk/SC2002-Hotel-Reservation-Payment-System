@@ -8,11 +8,12 @@ import java.util.List;
 import com.hotel.system.Guest;
 import com.hotel.system.enums.Gender;
 
-public class GuestDB implements DB {
+public class GuestDB extends DB {
     private File database = new File("hotel/guest.csv");
     private String path;
 
     public GuestDB(){
+        super();
         try {
             database.createNewFile();
         } catch (IOException e) {
@@ -34,7 +35,7 @@ public class GuestDB implements DB {
     @Override
     public ArrayList read(String fileName) throws IOException {
         // TODO Auto-generated method stub
-        List<String[]> listing = ReadInFile.readAllData(fileName);
+        List<String[]> listing = super.readAllData(fileName);
         ArrayList allData = new ArrayList();
 
 
@@ -86,7 +87,7 @@ public class GuestDB implements DB {
             
         }
 
-        ReadInFile.writeAllData(fileName, toWrite);
+        super.writeAllData(fileName, toWrite);
         
     }
     

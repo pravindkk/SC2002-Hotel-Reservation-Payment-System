@@ -16,13 +16,14 @@ import com.hotel.system.enums.*;
 // import Entity.Reservation;
 
 
-public class ReservationDB implements DB {
+public class ReservationDB extends DB {
 	
 	// public static final String SEPARATOR = "|";
     private File database = new File("hotel/reservation.csv");
     private String path;
 
     public ReservationDB(){
+        super();
         try {
             database.createNewFile();
         } catch (IOException e) {
@@ -86,7 +87,7 @@ public class ReservationDB implements DB {
 
 	@Override
 	public ArrayList read(String fileName) throws IOException {
-        List<String[]> listing = ReadInFile.readAllData(fileName);
+        List<String[]> listing = super.readAllData(fileName);
         ArrayList allData = new ArrayList();
 
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
@@ -157,7 +158,7 @@ public class ReservationDB implements DB {
             
         }
 
-        ReadInFile.writeAllData(filename, toWrite);
+        super.writeAllData(filename, toWrite);
 	// 	List alw = new ArrayList();
 	// 	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	// 	for (int i = 0; i < al.size(); i++) {

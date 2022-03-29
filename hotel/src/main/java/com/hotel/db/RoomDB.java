@@ -11,11 +11,12 @@ import com.hotel.system.enums.BedType;
 import com.hotel.system.enums.RoomStatus;
 import com.hotel.system.enums.RoomType;
 
-public class RoomDB implements DB{
+public class RoomDB extends DB{
     private File database = new File("hotel/room.csv");
     private String path;
 
     public RoomDB(){
+        super();
         try {
             database.createNewFile();
         } catch (IOException e) {
@@ -32,7 +33,7 @@ public class RoomDB implements DB{
 
     @Override
 	public ArrayList read(String fileName) throws IOException {
-        List<String[]> listing = ReadInFile.readAllData(fileName);
+        List<String[]> listing = super.readAllData(fileName);
         ArrayList allData = new ArrayList();
 
 
@@ -94,7 +95,7 @@ public class RoomDB implements DB{
             
         }
 
-        ReadInFile.writeAllData(fileName, toWrite);
+        super.writeAllData(fileName, toWrite);
 
         
     }
