@@ -11,7 +11,7 @@ import com.hotel.db.ReadInFile;
 import com.hotel.db.RoomDB;
 import com.hotel.system.Room;
 import com.hotel.system.enums.*;
-import com.hotel.controller.UpdateRoomMenu;
+import com.hotel.controller.UpdateRoomMenuDisplayUI;
 
 public class RoomController {
     // private RoomDB allRooms;
@@ -32,18 +32,18 @@ public class RoomController {
 
     public void createRoom() throws IOException {
 
-        String roomId = UpdateRoomMenu.updateRoomId();
+        String roomId = UpdateRoomMenuDisplayUI.updateRoomId();
         String[] parts = roomId.split("-");
         String roomFloor = parts[0];
         Integer roomNumber = Integer.valueOf(parts[1]);
 
-        RoomType roomType = UpdateRoomMenu.updateRoomType();
-        BedType bedType = UpdateRoomMenu.updateBedType();
-        boolean withView = UpdateRoomMenu.updateWithView();
-        RoomStatus roomStatus = UpdateRoomMenu.updateRoomStatus();
-        Float roomRate = UpdateRoomMenu.updateRoomRate();
-        boolean wifiEnabled = UpdateRoomMenu.updateWifiEnabled();
-        boolean smokingStatus = UpdateRoomMenu.updateSmokingStatus();
+        RoomType roomType = UpdateRoomMenuDisplayUI.updateRoomType();
+        BedType bedType = UpdateRoomMenuDisplayUI.updateBedType();
+        boolean withView = UpdateRoomMenuDisplayUI.updateWithView();
+        RoomStatus roomStatus = UpdateRoomMenuDisplayUI.updateRoomStatus();
+        Float roomRate = UpdateRoomMenuDisplayUI.updateRoomRate();
+        boolean wifiEnabled = UpdateRoomMenuDisplayUI.updateWifiEnabled();
+        boolean smokingStatus = UpdateRoomMenuDisplayUI.updateSmokingStatus();
 
 
         Room room = new Room(roomType,
@@ -84,7 +84,7 @@ public class RoomController {
             return;
         }
 
-        room.setRoomType(UpdateRoomMenu.updateRoomType());
+        room.setRoomType(UpdateRoomMenuDisplayUI.updateRoomType());
 
         saveSpecificRoomByRoomId(room);
 
@@ -141,34 +141,34 @@ public class RoomController {
 
         switch (choice) {
             case 1:
-                room.setRoomType(UpdateRoomMenu.updateRoomType());
+                room.setRoomType(UpdateRoomMenuDisplayUI.updateRoomType());
                 break;
             case 2:
-                room.setBedType(UpdateRoomMenu.updateBedType());
+                room.setBedType(UpdateRoomMenuDisplayUI.updateBedType());
                 break;
             case 3:
-                room.setWithView(UpdateRoomMenu.updateWithView());
+                room.setWithView(UpdateRoomMenuDisplayUI.updateWithView());
                 break;
             case 4:
-                room.setRoomStatus(UpdateRoomMenu.updateRoomStatus());
+                room.setRoomStatus(UpdateRoomMenuDisplayUI.updateRoomStatus());
                 break;
             case 5:
-                room.setRoomRate(UpdateRoomMenu.updateRoomRate());
+                room.setRoomRate(UpdateRoomMenuDisplayUI.updateRoomRate());
                 break;
             case 6:
-                room.setWifiEnabled(UpdateRoomMenu.updateWifiEnabled());
+                room.setWifiEnabled(UpdateRoomMenuDisplayUI.updateWifiEnabled());
                 break;
             case 7:
-                room.setSmokingStatus(UpdateRoomMenu.updateSmokingStatus());
+                room.setSmokingStatus(UpdateRoomMenuDisplayUI.updateSmokingStatus());
                 break;
             case 8:
-                room.setRoomType(UpdateRoomMenu.updateRoomType());
-                room.setBedType(UpdateRoomMenu.updateBedType());
-                room.setWithView(UpdateRoomMenu.updateWithView());
-                room.setRoomStatus(UpdateRoomMenu.updateRoomStatus());
-                room.setRoomRate(UpdateRoomMenu.updateRoomRate());
-                room.setWifiEnabled(UpdateRoomMenu.updateWifiEnabled());
-                room.setSmokingStatus(UpdateRoomMenu.updateSmokingStatus());
+                room.setRoomType(UpdateRoomMenuDisplayUI.updateRoomType());
+                room.setBedType(UpdateRoomMenuDisplayUI.updateBedType());
+                room.setWithView(UpdateRoomMenuDisplayUI.updateWithView());
+                room.setRoomStatus(UpdateRoomMenuDisplayUI.updateRoomStatus());
+                room.setRoomRate(UpdateRoomMenuDisplayUI.updateRoomRate());
+                room.setWifiEnabled(UpdateRoomMenuDisplayUI.updateWifiEnabled());
+                room.setSmokingStatus(UpdateRoomMenuDisplayUI.updateSmokingStatus());
                 break;
             
             default:
@@ -218,8 +218,6 @@ public class RoomController {
 
 
         System.out.println();
-        // for (int i=0; i<allData.size(); i++) {
-            // Room r = (Room) ;
         String wifi;
         if (r.getWifiEnabled()) wifi = "Enabled";
         else wifi = "Disabled";
@@ -235,7 +233,6 @@ public class RoomController {
             r.getRoomId(), r.getRoomType(), r.getBedType(), r.getWithView(), r.getRoomStatus(), 
             r.getRoomRate(),r.getRoomFloor(),r.getRoomNumber(), wifi, smoke);
         System.out.println("");
-        // }
         
     }
 
@@ -249,26 +246,10 @@ public class RoomController {
         return allData;
     }
 
-    public static ArrayList getRoomsByRoomType(RoomType roomType) throws IOException {
-        ArrayList allData = getAllRooms();
-        
-        allData.removeIf(r -> ((Room)r).getRoomType() != roomType);
-
-        return allData;
-    }
-
     public static ArrayList getRoomsByRoomType(ArrayList allData, RoomType roomType) throws IOException {
         
         allData.removeIf(r -> ((Room) r).getRoomType() != roomType);
 
-        return allData;
-    }
-
-    public ArrayList getRoomsByBedType(BedType bedType) throws IOException {
-        ArrayList allData = getAllRooms();
-        
-        allData.removeIf(r -> ((Room)r).getBedType() != bedType);
-        
         return allData;
     }
 
@@ -285,10 +266,10 @@ public class RoomController {
     public static void printVacantRoom() throws IOException {
 
         
-        int singleRoomCount = getRoomsByRoomType(RoomType.SINGLE).size();
-        int doubleRoomCount = getRoomsByRoomType(RoomType.DOUBLE).size();
-        int deluxeRoomCount = getRoomsByRoomType(RoomType.DELUXE).size();
-        int vipRoomCount = getRoomsByRoomType(RoomType.VIP_SUITE).size();
+        int singleRoomCount = getRoomsByRoomType(getAllRooms(), RoomType.SINGLE).size();
+        int doubleRoomCount = getRoomsByRoomType(getAllRooms(), RoomType.DOUBLE).size();
+        int deluxeRoomCount = getRoomsByRoomType(getAllRooms(), RoomType.DELUXE).size();
+        int vipRoomCount = getRoomsByRoomType(getAllRooms(), RoomType.VIP_SUITE).size();
 
 
         ArrayList singleRoom = getRoomsByRoomType(getVacantRooms(), RoomType.SINGLE);

@@ -66,12 +66,12 @@ public class ReservationController {
 
     public void createReservation() throws IOException {
 
-        Date checkInDate = UpdateReservationMenu.updateCheckInDate();
-        Date checkOutDate = UpdateReservationMenu.updateCheckOutDate();
-        String roomId = UpdateReservationMenu.updateRoomId();
-        String guestId = UpdateReservationMenu.updateGuestId();
-        Integer numOfAdults = UpdateReservationMenu.updateNumberOfAdults();
-        Integer numOfChildren = UpdateReservationMenu.updateNumberOfChildren();
+        Date checkInDate = UpdateReservationDetailsDisplayUI.updateCheckInDate();
+        Date checkOutDate = UpdateReservationDetailsDisplayUI.updateCheckOutDate();
+        String roomId = UpdateReservationDetailsDisplayUI.updateRoomId();
+        String guestId = UpdateReservationDetailsDisplayUI.updateGuestId();
+        Integer numOfAdults = UpdateReservationDetailsDisplayUI.updateNumberOfAdults();
+        Integer numOfChildren = UpdateReservationDetailsDisplayUI.updateNumberOfChildren();
 
         System.out.println("");
 		System.out.println("Check-in Date: " + df.format(checkInDate));
@@ -88,7 +88,7 @@ public class ReservationController {
 
         if (confirmation.equalsIgnoreCase("y")) {
 
-            setRoomStatus(roomId, RoomStatus.RESERVED);
+            changeRoomStatus(roomId, RoomStatus.RESERVED);
 			String reservationDate = df.format(checkInDate).replaceAll("\\D", "");
 			String reservationRoomId = roomId.replaceAll("\\D", "");
 
@@ -137,21 +137,21 @@ public class ReservationController {
         switch (choice) {
             case 1:
                 RoomController.printRooms(RoomController.getVacantRooms());
-                String roomId = UpdateRoomMenu.updateRoomId();
+                String roomId = UpdateRoomMenuDisplayUI.updateRoomId();
                 switchRoomStatus(reservation.getRoomId(), roomId);
                 reservation.setRoomId(roomId);
                 break;
             case 2:
-                Date checkIn = UpdateReservationMenu.updateCheckInDate();
+                Date checkIn = UpdateReservationDetailsDisplayUI.updateCheckInDate();
                 reservation.setCheckInDate(checkIn);
                 break;
             case 3:
-                Date checkOut = UpdateReservationMenu.updateCheckOutDate();
+                Date checkOut = UpdateReservationDetailsDisplayUI.updateCheckOutDate();
                 reservation.setCheckOutDate(checkOut);
                 break;
             case 4:
-                Integer numOfAdults = UpdateReservationMenu.updateNumberOfAdults();
-                Integer numOfChild = UpdateReservationMenu.updateNumberOfChildren();
+                Integer numOfAdults = UpdateReservationDetailsDisplayUI.updateNumberOfAdults();
+                Integer numOfChild = UpdateReservationDetailsDisplayUI.updateNumberOfChildren();
                 reservation.setNumOfAdults(numOfAdults);
                 reservation.setNumOfChildren(numOfChild);
                 break;
@@ -278,14 +278,14 @@ public class ReservationController {
 				// r.setStatus("CHECKED-IN");
                 
                 r.setReservationStatus(ReservationStatus.CHECKED_IN);
-                setRoomStatus(r.getRoomId(), RoomStatus.OCCUPIED);
+                changeRoomStatus(r.getRoomId(), RoomStatus.OCCUPIED);
                 System.out.println("Check In success");
 
 
 			} else if (r.getCheckInDate().before(today)) {
 				System.out.println("Reservation expired");
 				r.setReservationStatus(ReservationStatus.EXPIRED);
-				setRoomStatus(r.getRoomId(), RoomStatus.VACANT);
+				changeRoomStatus(r.getRoomId(), RoomStatus.VACANT);
 			} else if (r.getCheckInDate().after(today)) {
 				System.out.println("Please check in on " + df.format(r.getCheckInDate()));
 			}
@@ -307,7 +307,7 @@ public class ReservationController {
         }
 
         r.setReservationStatus(ReservationStatus.CHECKED_OUT);
-        setRoomStatus(r.getRoomId(), RoomStatus.VACANT);
+        changeRoomStatus(r.getRoomId(), RoomStatus.VACANT);
         saveSpecificReservationByGuestId(r);
 
     }
@@ -315,11 +315,11 @@ public class ReservationController {
 
     public static void walkIn() throws IOException {
         Date checkInDate = new Date();
-        Date checkOutDate = UpdateReservationMenu.updateCheckOutDate();
-        String roomId = UpdateReservationMenu.updateRoomId();
-        String guestId = UpdateReservationMenu.updateGuestId();
-        Integer numOfAdults = UpdateReservationMenu.updateNumberOfAdults();
-        Integer numOfChildren = UpdateReservationMenu.updateNumberOfChildren();
+        Date checkOutDate = UpdateReservationDetailsDisplayUI.updateCheckOutDate();
+        String roomId = UpdateReservationDetailsDisplayUI.updateRoomId();
+        String guestId = UpdateReservationDetailsDisplayUI.updateGuestId();
+        Integer numOfAdults = UpdateReservationDetailsDisplayUI.updateNumberOfAdults();
+        Integer numOfChildren = UpdateReservationDetailsDisplayUI.updateNumberOfChildren();
 
         System.out.println("");
 		System.out.println("Check-in Date: " + df.format(checkInDate));
@@ -335,7 +335,7 @@ public class ReservationController {
         String confirmation = sc.next();
 
         if (confirmation.equalsIgnoreCase("y")) {
-            setRoomStatus(roomId, RoomStatus.OCCUPIED);
+            changeRoomStatus(roomId, RoomStatus.OCCUPIED);
 			String reservationDate = df.format(checkInDate).replaceAll("\\D", "");
 			String reservationRoomId = roomId.replaceAll("\\D", "");
 
@@ -355,7 +355,7 @@ public class ReservationController {
     }
 
 
-    public static void setRoomStatus(String newRoomId, RoomStatus roomStatus) throws IOException {
+    public static void changeRoomStatus(String newRoomId, RoomStatus roomStatus) throws IOException {
         Room r = RoomController.getSpecificRoom(newRoomId);
         r.setRoomStatus(roomStatus);
         RoomController.saveSpecificRoomByRoomId(r);
@@ -408,7 +408,7 @@ public class ReservationController {
 
 
         r.setReservationStatus(ReservationStatus.CANCELLED);
-        setRoomStatus(r.getRoomId(), RoomStatus.VACANT);
+        changeRoomStatus(r.getRoomId(), RoomStatus.VACANT);
 
 
         try {

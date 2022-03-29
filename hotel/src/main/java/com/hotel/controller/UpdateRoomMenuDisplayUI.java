@@ -6,12 +6,10 @@ import java.util.regex.Pattern;
 
 import com.hotel.system.enums.*;
 
-public class UpdateRoomMenu {
+public class UpdateRoomMenuDisplayUI {
     static Scanner sc = new Scanner(System.in);
     public static String updateRoomId() throws IOException {
         String roomId;
-        // String roomFloor;
-        // Integer roomNumber;
         String roomRegExp = "[0][2-7][-][0][1-8]";
         Pattern roomIdPattern = Pattern.compile(roomRegExp);
         do {
@@ -28,10 +26,6 @@ public class UpdateRoomMenu {
 				roomId = "";
 				System.out.println("You have entered a invalid Room Id. Please try again. (E.g. 02-04)");
             } else {
-                // room.setRoomId(roomId);
-				// String[] parts = roomId.split("-");
-				// roomFloor = parts[0];
-				// roomNumber = Integer.valueOf(parts[1]);
 
                 if (RoomController.checkRoomIDExists(roomId) == true) break;
                 else {
