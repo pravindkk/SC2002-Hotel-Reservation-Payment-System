@@ -4,14 +4,14 @@ import java.util.ArrayList;
 
 public class Payment {
 
-    private int paymentId;
+    private Integer paymentId;
     private double subTotal;
     private double total;
     private String reservationNum;
-    private ArrayList<Order> orders;
     private SimpleDateFormat date;
+    private ArrayList<Order> orders;
 
-    Payment(int paymentId , ArrayList<Order> orders , String reservationNum , SimpleDateFormat date){
+    Payment(Integer paymentId , ArrayList<Order> orders , String reservationNum , SimpleDateFormat date){
         this.paymentId = paymentId;
         this.orders = orders;
         this.reservationNum=reservationNum;
@@ -21,11 +21,23 @@ public class Payment {
 
     }
 
+    Payment(Integer paymentId , ArrayList<Order> orders , String reservationNum , SimpleDateFormat date, double total, double subTotal){
+        this.paymentId = paymentId;
+        this.orders = orders;
+        this.reservationNum=reservationNum;
+        this.date=date;
+        this.total = total;
+        this.subTotal = subTotal;
+
+    }
+
+
+
     public int getPaymentId(){
         return this.paymentId;
     }
 
-    public void setPaymentId(int paymentId){
+    public void setPaymentId(Integer paymentId){
         this.paymentId=paymentId;
     }
 
