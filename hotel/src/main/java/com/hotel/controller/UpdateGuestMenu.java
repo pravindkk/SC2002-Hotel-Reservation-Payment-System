@@ -31,16 +31,14 @@ public class UpdateGuestMenu {
                     case 1:
                     do{
                         System.out.println("Enter Driving License Number:");
-                        sc.next();
-                        guestId = sc.nextLine();
+                        guestId = sc.next();
                     }while(guestId==null);
                     break;
                     
                     case 2:
                     do{
                         System.out.println("Enter passport Number:");
-                        sc.next();
-                        guestId = sc.nextLine();
+                        guestId = sc.next();
                     }while(guestId==null);
 
                         
@@ -59,8 +57,7 @@ public class UpdateGuestMenu {
         String name = null;
         do{
             System.out.println("Enter Name");
-            sc.next();
-            name = sc.nextLine();
+            name = sc.next();
         }while (name == null);
 
         return name;
@@ -107,8 +104,7 @@ public class UpdateGuestMenu {
         String nationality = null;
         do{
             System.out.println("Enter Nationality:");
-            sc.next();
-            nationality = sc.nextLine();
+            nationality = sc.next();
         }while(nationality == null);
 
         return nationality;
@@ -118,8 +114,7 @@ public class UpdateGuestMenu {
         String country = null;
         do{
             System.out.println("Enter the country you are from:");
-            sc.next();
-            country = sc.nextLine();
+            country = sc.next();
         }while(country == null);
 
         return country;
@@ -144,9 +139,8 @@ public class UpdateGuestMenu {
         String creditcard = null;
         do{
             System.out.println("Enter Credit Card Number:");
-            sc.next();
-            creditcard = sc.nextLine();
-        }while (creditcard==null);
+            creditcard = sc.next();
+        }while (creditcard==null );
 
         return creditcard;
     }

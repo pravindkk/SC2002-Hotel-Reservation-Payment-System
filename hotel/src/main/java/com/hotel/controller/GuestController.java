@@ -25,11 +25,16 @@ public class GuestController {
         String country = UpdateGuestMenu.UpdateCountry();
         Integer phoneNumber=UpdateGuestMenu.UpdatePhoneNumber();
         String creditCardNumber = UpdateGuestMenu.UpdateCrediCardNo();
-        
+
         Guest guest = new Guest(guestId, name, gender, nationality, country, phoneNumber, creditCardNumber);
+        // System.out.println(guest.getGuestId());
+        // System.out.println(guest.getName());
+        // System.out.println(guest.getNationality());
+        // System.out.println(guest.getCountry());
+        // System.out.println(guest.getPhoneNumber());
+        // System.out.println(guest.getCreditCardNumber());
         ArrayList allData = getAllGuests();
         allData.add(guest);
-        System.out.println("Hello");
         saveData(allData);
         return guest;
     }
@@ -223,8 +228,8 @@ public class GuestController {
 
     public static void main(String[] args) throws IOException {
         GuestController g = new GuestController();
-        g.CreateGuest();
-        // g.PrintAllGuestDetails();
+        // g.CreateGuest();
+        g.PrintAllGuestDetails();
     }
 
 
