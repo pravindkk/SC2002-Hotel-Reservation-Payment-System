@@ -27,10 +27,10 @@ public class GuestController {
         String creditCardNumber = UpdateGuestMenu.UpdateCrediCardNo();
 
         Guest guest = new Guest(guestId, name, gender, nationality, country, phoneNumber, creditCardNumber);
-
-        
+        ArrayList allData = getAllGuests();
+        allData.add(guest);
+        saveData(allData);
         return guest;
-
     }
 
     public static void saveGuests(ArrayList toWrite) {
@@ -222,6 +222,7 @@ public class GuestController {
 
     public static void main(String[] args) throws IOException {
         GuestController g = new GuestController();
+        // g.CreateGuest();
         g.PrintAllGuestDetails();
     }
 

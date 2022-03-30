@@ -52,7 +52,7 @@ public class GuestDB extends DB {
 			String address = row[6];
 			String creditCardNumber = row[7];
 
-            Guest room = new Guest(guestId, 
+            Guest guest = new Guest(guestId, 
                                    name, 
                                    Gender.valueOf(gender), 
                                    nationality, 
@@ -60,7 +60,7 @@ public class GuestDB extends DB {
                                    Integer.valueOf(phoneNumber), 
                                    creditCardNumber
                                    );
-            allData.add(room);
+            allData.add(guest);
 
         }
 
