@@ -9,6 +9,8 @@ import com.hotel.db.MenuDB;
 import com.hotel.system.Item;
 import com.hotel.system.enums.FoodType;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 public class MenuController {
     static Scanner sc = new Scanner(System.in);
     static SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
@@ -26,7 +28,13 @@ public class MenuController {
         for (int i=0; i<items.size(); i++) {
             Item curr = (Item) items.get(i);
             if (curr.getType().equals(FoodType.STARTER)) {
-                System.out.println(curr.getItemId());
+                System.out.println(
+                        curr.getItemId() +
+                        curr.getName() +
+                        curr.getPrice() + 
+                        curr.getDescription() + 
+                        curr.getType()
+                );
             }
 
         }
@@ -51,14 +59,51 @@ public class MenuController {
         saveAllItems(allData);
     }
 
-    public static Item getItem(String itemId) throws IOException {
+    public static Item getItem(Integer itemId) throws IOException {
         ArrayList<Item> allData = getAllItems();
 
         for (int i=0; i<allData.size(); i++) {
             // if ()
+            Item item = (Item) allData.get(i);
+            if (itemId.equals(item.getItemId())) {
+                return item;
+            }
         }
         return null;
     }
 
-    // public static deleteItem()
+    public static void deleteItem(Integer itemId) throws IOException {
+        ArrayList<Item> allData = getAllItems();
+
+        for (int i=0; i<allData.size(); i++) {
+            // if ()
+            Item item = (Item) allData.get(i);
+            if (itemId.equals(item.getItemId())) {
+                // return item;
+
+                // ArrayList.remove(allData, i);
+                allData.remove(i);
+                saveAllItems(allData);
+                return;
+            }
+        }
+        System.out.println("cannot delete item");
+    }
+
+    public static void updateItem(Item newItem) throws IOException {
+        ArrayList<Item> allData = getAllItems();
+
+        for (int i=0; i<allData.size(); i++) {
+            // if ()
+            Item item = (Item) allData.get(i);
+
+            
+            if (newItem.getItemId() == item.getItemId()) {
+                allData.set(i, newItem);
+                saveAllItems(allData);
+                return;
+            }
+        }
+        System.out.println("cannot delete item");
+    }
 }
