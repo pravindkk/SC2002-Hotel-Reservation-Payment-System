@@ -29,6 +29,7 @@ public class GuestController {
         Guest guest = new Guest(guestId, name, gender, nationality, country, phoneNumber, creditCardNumber);
         ArrayList allData = getAllGuests();
         allData.add(guest);
+        System.out.println("Hello");
         saveData(allData);
         return guest;
     }
@@ -154,7 +155,7 @@ public class GuestController {
     }
 
     public static ArrayList getAllGuests() throws IOException {
-        ArrayList allData = allGuests.read(allGuests.getPath());
+        ArrayList<Guest> allData = allGuests.read(allGuests.getPath());
         return allData;
     }
 
@@ -222,8 +223,8 @@ public class GuestController {
 
     public static void main(String[] args) throws IOException {
         GuestController g = new GuestController();
-        // g.CreateGuest();
-        g.PrintAllGuestDetails();
+        g.CreateGuest();
+        // g.PrintAllGuestDetails();
     }
 
 
