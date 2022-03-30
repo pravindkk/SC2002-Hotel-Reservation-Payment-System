@@ -54,7 +54,7 @@ public class ReservationController {
         for (int i=0; i<allData.size(); i++) {
             Reservation r = (Reservation) allData.get(i);
             if (toChange.getGuestId().equals(r.getGuestId())) {
-                allData.set(i, r);
+                allData.set(i, toChange);
                 saveReservationData(allData);
                 return;
             }
@@ -383,13 +383,13 @@ public class ReservationController {
             return;
         }
 
-			Guest g = (Guest) GuestController.RetrieveGuest(r.getGuestId()).get(1);
+			Guest g = (Guest) GuestController.RetrieveGuest(r.getGuestId());
 			System.out.println("\n==================================================");
 			System.out.println(" Reservation Details ");
 			System.out.println("==================================================");
 			System.out.println("Reservation No: " + r.getReservationNum());
 			System.out.println("Guest Id: " + r.getGuestId());
-			// System.out.println("Guest Name: " + g.getName());
+			System.out.println("Guest Name: " + g.getName());
 			System.out.println("Reservation Status: " + r.getReservationStatus());
 			System.out.println("Check-in Date:" + df.format(r.getCheckInDate()));
 			System.out.println("Check-out Date:" + df.format(r.getCheckOutDate()));

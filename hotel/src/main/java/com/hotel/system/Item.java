@@ -9,13 +9,14 @@ public class Item{
     
     private int itemid;
     private String name;
-    private String descripiton;
+    private String description;
     private double price;
     public FoodType foodType;
 
-    public Item(String name, String descripiton,double price,FoodType foodType){
+    public Item(int itemid, String name, String description,double price,FoodType foodType){
+        this.itemid = itemid;
         this.name = name;
-        this.descripiton = descripiton;
+        this.description = description;
         this.price = price;
         this.foodType = foodType;
     }
@@ -35,10 +36,10 @@ public class Item{
     }
 
     public String getDescription(){
-        return this.descripiton;
+        return this.description;
     }
     public void setDescription(String description){
-        this.descripiton=description;
+        this.description=description;
 
     }
 

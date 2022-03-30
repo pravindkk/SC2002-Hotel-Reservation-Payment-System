@@ -8,11 +8,12 @@ import java.util.List;
 import com.hotel.system.Item;
 import com.hotel.system.enums.FoodType;
 
-public class MenuDB implements DB {
+public class MenuDB extends DB {
     private File database = new File("hotel/menu.csv");
     private String path;
 
     public MenuDB(){
+        super();
         try {
             database.createNewFile();
         } catch (IOException e) {
@@ -29,7 +30,7 @@ public class MenuDB implements DB {
 
     @Override
     public ArrayList read(String fileName) throws IOException{
-        List<String[]> listing = ReadInFile.readAllData(fileName);
+        List<String[]> listing = super.readAllData(fileName);
         ArrayList allData = new ArrayList();
 
         for (String [] row : listing ){
