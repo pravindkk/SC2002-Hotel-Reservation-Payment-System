@@ -58,6 +58,13 @@ public class Payment {
         this.orders = order;
     }
 
+    public SimpleDateFormat getDate(){
+        return this.date;
+    }
+    public void setDate(SimpleDateFormat date){
+        this.date = date;
+    }
+
 
     
 
