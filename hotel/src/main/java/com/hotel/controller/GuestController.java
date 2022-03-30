@@ -25,7 +25,7 @@ public class GuestController {
         String country = UpdateGuestMenu.UpdateCountry();
         Integer phoneNumber=UpdateGuestMenu.UpdatePhoneNumber();
         String creditCardNumber = UpdateGuestMenu.UpdateCrediCardNo();
-
+        
         Guest guest = new Guest(guestId, name, gender, nationality, country, phoneNumber, creditCardNumber);
         ArrayList allData = getAllGuests();
         allData.add(guest);
