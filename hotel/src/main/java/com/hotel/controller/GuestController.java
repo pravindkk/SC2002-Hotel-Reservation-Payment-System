@@ -68,7 +68,7 @@ public class GuestController {
 
     public void UpdateGuest(String guestId) throws IOException{
 
-        ArrayList allGuests = getAllGuests();
+        // ArrayList allGuests = getAllGuests();
         Guest guest = RetrieveGuest(guestId);
 
         if(guest==null){
