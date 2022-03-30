@@ -27,16 +27,9 @@ public class GuestController {
         String creditCardNumber = UpdateGuestMenu.UpdateCrediCardNo();
 
         Guest guest = new Guest(guestId, name, gender, nationality, country, phoneNumber, creditCardNumber);
-<<<<<<< HEAD
-
-        ArrayList allGuests = getAllGuests();
-        allGuests.add(guest);
-        saveData(allGuests);
-=======
         ArrayList allData = getAllGuests();
         allData.add(guest);
         saveData(allData);
->>>>>>> 15df1b13463bc7a3bec8078b064f8a8d321d24c0
         return guest;
     }
 
