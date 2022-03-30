@@ -35,7 +35,7 @@ public class GuestController {
         // System.out.println(guest.getCreditCardNumber());
         ArrayList allData = getAllGuests();
         allData.add(guest);
-        saveData(allData);
+        saveGuests(allData);
         return guest;
     }
 
@@ -68,7 +68,7 @@ public class GuestController {
 
     public void UpdateGuest(String guestId) throws IOException{
 
-        ArrayList allGuests = getAllGuests();
+        // ArrayList allGuests = getAllGuests();
         Guest guest = RetrieveGuest(guestId);
 
         if(guest==null){
@@ -145,16 +145,29 @@ public class GuestController {
 
     public void DeleteGuest(String guestId) throws IOException{
         ArrayList allData = getAllGuests();
-        Guest guestToDelete = RetrieveGuest(guestId);
-
-        if(guestToDelete==null){
-            System.out.println("Invalid guestID");
-            return;
+        // Guest guestToDelete = RetrieveGuest(guestId);
+        // if(guestToDelete==null){
+        //     System.out.println("Invalid guestID");
+        //     return;
+        // }
+        for (int i=0; i<allData.size(); i++) {
+            Guest test = (Guest) allData.get(i);
+            if (test.getGuestId().equals(guestId)) {
+                // System.out.println("hello");
+                allData.remove(i);
+                saveGuests(allData);
+                return;
+            }
         }
+        System.out.println("cannot find the guest");
+        // allData.remove(guestToDelete);
+        
+        // if (RetrieveGuest(guestToDelete.getGuestId()) == null) System.out.println("Hello");
+        
 
-        allData.removeIf(g -> ((Guest)g).getGuestId() == guestId);
+        // allData.removeIf(g -> ((Guest)g).getGuestId() == guestId);
         // System.out.println("Guest Details Successfully removed.");
-        saveData(allData);
+        // saveGuests(allData);
 
 
     }
@@ -170,33 +183,33 @@ public class GuestController {
         System.out.println("\n====================================");
         System.out.println("ALL Guests");
         System.out.println("====================================");
-        System.out.printf("%-8s %-5s %-7s %-12s %-8s %-9s %-10s", "GuestID", "Name", "Gender", "Nationality", 
+        System.out.printf("%-8s %-9s %-10s %-12s %-10s %-13s %-15s", "GuestID", "Name", "Gender", "Nationality", 
         "Country", "Phone Number", "Credit Card Number");
         System.out.println();
 
         for(int i=0;i<allGuests.size();i++){
             Guest g = (Guest) allGuests.get(i);
-            System.out.printf("%-8s %-5s %-7s %-12s %-8s %-9s %-10s", g.getGuestId(), g.getName(), g.getGender(), g.getNationality(), 
-            g.getCountry(), g.getCountry(), g.getCreditCardNumber());
+            System.out.printf("%-8s %-9s %-10s %-12s %-10s %-13s %-15s", g.getGuestId(), g.getName(), g.getGender(), g.getNationality(), 
+            g.getCountry(), g.getPhoneNumber(), g.getCreditCardNumber());
         }
         System.out.println("");
 
     }
 
-    public Guest RetrieveGuest(Guest g) throws IOException{
-        // retrieve guest by guestID
-        ArrayList allData = getAllGuests();
-        // return guest object using search 
+    // public Guest RetrieveGuest(Guest g) throws IOException{
+    //     // retrieve guest by guestID
+    //     ArrayList allData = getAllGuests();
+    //     // return guest object using search 
 
-        for(int i =0 ;i< allData.size();i++){
-            Guest guestSearch = (Guest) allData.get(i);
-            if(guestSearch.getGuestId()==g.getGuestId()){
-                return guestSearch;
-            }
-        }
-        return null;
+    //     for(int i =0 ;i< allData.size();i++){
+    //         Guest guestSearch = (Guest) allData.get(i);
+    //         if(guestSearch.getGuestId()==g.getGuestId()){
+    //             return guestSearch;
+    //         }
+    //     }
+    //     return null;
 
-    }
+    // }
 
     public static Guest RetrieveGuest(String GuestID) throws IOException{
         ArrayList allData = getAllGuests();
@@ -214,17 +227,17 @@ public class GuestController {
 
     }
 
-    public static void saveData(ArrayList toWrite) {
+    // public static void saveData(ArrayList toWrite) {
         
-        try {
-            allGuests.save(allGuests.getPath(), toWrite);
-            System.out.println("Guest successfully added!");
-        } catch (Exception e) {
-            //TODO: handle exception
-            System.out.println("Guest not added!");
+    //     try {
+    //         allGuests.save(allGuests.getPath(), toWrite);
+    //         System.out.println("Guest successfully added!");
+    //     } catch (Exception e) {
+    //         //TODO: handle exception
+    //         System.out.println("Guest not added!");
 
-        }
-    }
+    //     }
+    // }
 
     public static void main(String[] args) throws IOException {
         GuestController g = new GuestController();

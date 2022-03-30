@@ -48,8 +48,6 @@ public class GuestDB extends DB {
 			String nationality = row[3];
 			String country = row[4];
 			String phoneNumber = row[5];
-			//int phoneNo = Integer.parseInt(star.nextToken().trim());
-			// String address = row[6];
 			String creditCardNumber = row[6];
 
             Guest room = new Guest(guestId, 

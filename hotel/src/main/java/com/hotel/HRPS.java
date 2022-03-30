@@ -19,6 +19,10 @@ public class HRPS {
         // RoomController.saveSpecificRoomByRoomId(r);
 
         GuestController g = new GuestController();
-        Guest hotel = g.CreateGuest();
+        // Guest hotel = g.CreateGuest();
+        // g.UpdateGuest("1231");
+        g.DeleteGuest("1231");
+        // Guest hotel = g.RetrieveGuest("1231");
+        // System.out.println(hotel.getGuestId());
     }
 }
