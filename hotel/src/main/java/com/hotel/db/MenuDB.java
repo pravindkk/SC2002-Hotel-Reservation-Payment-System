@@ -34,19 +34,38 @@ public class MenuDB extends DB {
         ArrayList allData = new ArrayList();
 
         for (String [] row : listing ){
-            String itemId = row[0];
+            int itemId = Integer.valueOf(row[0]);
             String name = row[1];
             String description = row[2];
             double price = Double.valueOf(row[3]);
             FoodType foodType = FoodType.valueOf(row[4]);
+            allData.add(new Item(itemId, name, description, price, foodType));
         }
 
-        return null;
+        return allData;
     }
 
     @Override
     public void save(String fileName, List al) throws IOException {
         // TODO Auto-generated method stub
+        List<String[]> toWrite = new ArrayList<String[]>();
+        
+
+        for (int i=0; i<al.size(); i++) {
+            Item item = (Item) al.get(i);
+
+            toWrite.add(new String[] { 
+                String.valueOf(item.getItemId()),
+                item.getName(),
+                item.getDescription(),
+                String.valueOf(item.getPrice()),
+                String.valueOf(item.getType())
+            });
+  
+        }
+        super.writeAllData(fileName, toWrite);
+
+
         
     }
 

@@ -32,4 +32,33 @@ public class MenuController {
         }
         
     }
+
+    public static void saveAllItems(ArrayList toWrite){
+        try {
+            allMenus.save(allMenus.getPath(), toWrite);
+        } catch (Exception e) {
+            //TODO: handle exception
+            System.out.println("Item not added!");
+            System.out.println(e);
+        }
+    }
+
+
+
+    public static void createItem(Item item) throws IOException {
+        ArrayList<Item> allData = getAllItems();
+        allData.add(item);
+        saveAllItems(allData);
+    }
+
+    public static Item getItem(String itemId) throws IOException {
+        ArrayList<Item> allData = getAllItems();
+
+        for (int i=0; i<allData.size(); i++) {
+            // if ()
+        }
+        return null;
+    }
+
+    // public static deleteItem()
 }
