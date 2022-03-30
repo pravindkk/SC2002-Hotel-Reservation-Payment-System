@@ -20,6 +20,9 @@ public class HRPS {
 
         GuestController g = new GuestController();
         // Guest hotel = g.CreateGuest();
-        g.UpdateGuest("1231");
+        // g.UpdateGuest("1231");
+        g.DeleteGuest("1231");
+        // Guest hotel = g.RetrieveGuest("1231");
+        // System.out.println(hotel.getGuestId());
     }
 }
