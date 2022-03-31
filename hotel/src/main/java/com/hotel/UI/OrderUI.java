@@ -1,9 +1,13 @@
 package com.hotel.UI;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.hotel.controller.MenuController;
+import com.hotel.controller.OrderController;
 import com.hotel.system.Item;
+import com.hotel.system.Order;
 
 public class OrderUI {
     static Scanner sc = new Scanner(System.in);
@@ -51,22 +55,33 @@ public class OrderUI {
 
     public void createNewOrder() {
         // get all the items
-        int choice;
+        Integer choice;
         ArrayList<Item> items = new ArrayList<Item>();
 
         do {
             // print all the items
-            System.out.println("What item do want (1-XX) (enter -1 to exit)?: ");
+            try {
+                MenuController.printAllItems();
+            } catch (IOException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+            System.out.println("What item do want (enter the item id) (enter -1 to exit)?: ");
             try {
                 choice = sc.nextInt();
-                // items.add(new Item(itemid, name, description, price, foodType))
                 if (choice == -1) break;
+                Item item = MenuController.getItem(choice);
+                items.add(item);
+                // items.add(new Item(itemid, name, description, price, foodType))
+                
             } catch (Exception e) {
                 //TODO: handle exception
-                System.out.println("Wrong value entered!! Please enter a value (1-4)!!");
+                System.out.println("Wrong value entered!! Please enter a value (enter the item id)!!");
             }
         } while (true);
 
+        // new Order(orderId, roomId, reservationNum, items, date, orderStatus, remarks)
+        // OrderController.saveOrders(toWrite);
     }
 
 

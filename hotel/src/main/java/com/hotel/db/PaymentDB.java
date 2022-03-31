@@ -62,25 +62,9 @@ public class PaymentDB extends DB {
             for(int i=5;i<listing.size();i+=4){
                 // get orders
                 String orderid = row[i];
-                String roomid = row[i+1];
-                String rNum = row[i+2];
-                Date d = Date.valueOf(row[i+3]);
-                OrderStatus orderStatus = OrderStatus.valueOf(row[i+4]);
-                String remarks = row[i+5];
+                
 
-                // get items
-                ArrayList<Item> allItems = new ArrayList<Item>();
-                for (int j=11; i<listing.size(); j+=10) {
-                    int itemid = Integer.valueOf(row[j]);
-                    String name = row[j+1];
-                    String description = row[j+2];
-                    Double price = Double.valueOf(row[j+3]);
-                    FoodType foodType = FoodType.valueOf(row[j+4]);
-                    allItems.add(new Item(itemid, name, description, price, foodType));
-                }
-
-
-                allOrders.add(new Order(orderid,roomid,rNum,allItems,d,orderStatus,remarks));
+                // allOrders.add(new Order(orderid,roomid,rNum,allItems,d,orderStatus,remarks));
             
             }
 
