@@ -11,17 +11,7 @@ public class Payment {
     private SimpleDateFormat date;
     private ArrayList<Order> orders;
 
-    Payment(Integer paymentId , ArrayList<Order> orders , String reservationNum , SimpleDateFormat date){
-        this.paymentId = paymentId;
-        this.orders = orders;
-        this.reservationNum=reservationNum;
-        this.date=date;
-        this.total = 0.00;
-        this.subTotal = 0.00;
-
-    }
-
-    Payment(Integer paymentId , ArrayList<Order> orders , String reservationNum , SimpleDateFormat date, double total, double subTotal){
+    public Payment(Integer paymentId , ArrayList<Order> orders , String reservationNum , SimpleDateFormat date, double total, double subTotal){
         this.paymentId = paymentId;
         this.orders = orders;
         this.reservationNum=reservationNum;
@@ -31,9 +21,21 @@ public class Payment {
 
     }
 
+    public Payment(Integer paymentId , ArrayList<Order> orders , String reservationNum , SimpleDateFormat date){
+        this.paymentId = paymentId;
+        this.orders = orders;
+        this.reservationNum=reservationNum;
+        this.date=date;
+        this.total = 0.00;
+        this.subTotal = 0.00;
+
+    }
 
 
-    public int getPaymentId(){
+
+
+
+    public Integer getPaymentId(){
         return this.paymentId;
     }
 
