@@ -16,10 +16,30 @@ import com.hotel.system.Order;
 import com.hotel.system.enums.OrderStatus;
 import com.hotel.system.enums.FoodType;
 import com.hotel.system.Item;
+import java.text.SimpleDateFormat;
 
 
 
 public class PaymentDB extends DB {
+    private File database = new File("hotel/payments.csv");
+    private String path;
+
+
+    public PaymentDB(){
+        super();
+        try {
+            database.createNewFile();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        this.path = database.getAbsolutePath();
+
+    }
+
+    public String getPath() {
+        return this.path;
+    }
 
     @Override
 	public ArrayList read(String fileName) throws IOException {
@@ -48,7 +68,7 @@ public class PaymentDB extends DB {
 
                 // get items
                 ArrayList<Item> allItems = new ArrayList<Item>();
-                for (int j=11; i<listing.size(); j+=11) {
+                for (int j=11; i<listing.size(); j+=10) {
                     int itemid = Integer.valueOf(row[j]);
                     String name = row[j+1];
                     String description = row[j+2];
