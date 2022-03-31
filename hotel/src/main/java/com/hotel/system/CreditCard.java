@@ -6,12 +6,12 @@ public class CreditCard {
 
     private String guestID;
     private String Name;
-    private int CardNo;
+    private Integer CardNo;
     private String expiry;
-    private int CVV;
+    private Integer CVV;
     public CreditCardType cardType;
 
-    public CreditCard(String guestID , String Name , int CardNo , String expiry, int CVV , CreditCardType cardType ){
+    public CreditCard(String guestID , String Name , Integer CardNo , String expiry, Integer CVV , CreditCardType cardType ){
         this.guestID = guestID;
         this.Name=Name;
         this.CardNo = CardNo;
@@ -27,7 +27,7 @@ public class CreditCard {
         this.Name=Name;
     }
 
-    public int getCardNo(){
+    public Integer getCardNo(){
         return this.CardNo;
     }
     public void setCardNo(int CardNo){
@@ -41,7 +41,7 @@ public class CreditCard {
         this.expiry=expiry;
     }
 
-    public int getCVV(){
+    public Integer getCVV(){
         return this.CVV;
     }
     public void setCVV(int CVV){
