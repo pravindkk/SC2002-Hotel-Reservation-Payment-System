@@ -48,8 +48,8 @@ public class Order {
     public ArrayList<Item> getItem() {
         return this.items;
     }
-    public void setItems(ArrayList<Item> items) {
-        this.items = items;
+    public void setItems(Item item) {
+        this.items.add(item);
     }
 
     public OrderStatus getOrderStatus() {
@@ -71,6 +71,38 @@ public class Order {
     }
     public void setRemarks(String remarks) {
         this.remarks = remarks;
+    }
+
+
+    public void addItem(Item item) {
+        this.items.add(item);
+    }
+
+    public boolean removeItem(Item newitem) {
+        for (Item item : items) {
+            if (item.getItemId() == newitem.getItemId()) {
+                this.items.remove(item);
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public void viewOrder() {
+        System.out.println("ID   Room   Date                          Remarks                       Status   ");
+        System.out.println(toString());
+        System.out.println("=================================================================================");
+        System.out.println("ID   Name                          Description                          Price(S$)");
+        System.out.println("=================================================================================");
+        for (Item item : items) {
+        	System.out.println(item.toString());
+        }
+        System.out.println("=================================================================================");
+    }
+    
+    public String toString() {
+
+        return (String.format("%-5d%-7s%-30s%-30s%-10s", orderId, roomId, date, remarks, orderStatus));
     }
 
 
