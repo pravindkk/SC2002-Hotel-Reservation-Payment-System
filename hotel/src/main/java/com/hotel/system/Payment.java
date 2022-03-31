@@ -9,10 +9,10 @@ public class Payment {
     private double total;
     private String reservationNum;
     private SimpleDateFormat date;
-    private ArrayList<Order> orders;
+    private ArrayList<Order> orders; // use string to have an array of orderId
 
     public Payment(Integer paymentId , ArrayList<Order> orders , String reservationNum , SimpleDateFormat date, double total, double subTotal){
-        this.paymentId = paymentId;
+        this.paymentId = paymentId;     // change the get set and this also
         this.orders = orders;
         this.reservationNum=reservationNum;
         this.date=date;

@@ -8,7 +8,7 @@ public class MenuUI {
     MenuController menu = new MenuController();
     Scanner sc = new Scanner(System.in);
 
-
+    
     
     public static void createNewItem() {
         do {
