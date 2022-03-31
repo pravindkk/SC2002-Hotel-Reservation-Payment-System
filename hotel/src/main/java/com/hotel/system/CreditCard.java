@@ -4,14 +4,14 @@ import com.hotel.system.enums.CreditCardType;
 
 public class CreditCard {
 
-    private int guestID;
+    private String guestID;
     private String Name;
     private int CardNo;
     private String expiry;
     private int CVV;
     public CreditCardType cardType;
 
-    public CreditCard(int guestID , String Name , int CardNo , String expiry, int CVV , CreditCardType cardType ){
+    public CreditCard(String guestID , String Name , int CardNo , String expiry, int CVV , CreditCardType cardType ){
         this.guestID = guestID;
         this.Name=Name;
         this.CardNo = CardNo;
@@ -56,10 +56,10 @@ public class CreditCard {
         this.cardType=cardType;
     }
 
-    public int getGuestID(){
+    public String getGuestID(){
         return this.guestID;
     }
-    public void setGuestID(int guestID){
+    public void setGuestID(String guestID){
         this.guestID=guestID;
     }
 
