@@ -22,17 +22,25 @@ public class OrderController {
         else System.out.println("This item does not exist");
     }
 
-    public void updateOrder(Order order) throws IOException {
+    public static void updateOrder(Order order) throws IOException {
         ArrayList<Order> orderList = getAllOrders();
-        orderList.remove(order);
-        // checkID(); 
-        orderList.add(order);
+        for (int i=0; i<orderList.size(); i++) {
+            Order curr = (Order) orderList.get(i);
+            if (curr.getOrderId().equals(order.getOrderId())){
+                orderList.set(i, order);
+            }
+        }
         saveAllItems(orderList);
     }
 
-    public void deleteOrder(Order order) throws IOException {
+    public static void deleteOrder(Order order) throws IOException {
         ArrayList<Order> orderList = getAllOrders();
-        orderList.remove(order);
+        for (int i=0; i<orderList.size(); i++) {
+            Order curr = (Order) orderList.get(i);
+            if (curr.getOrderId().equals(order.getOrderId())){
+                orderList.remove(i);
+            }
+        }
         saveAllItems(orderList);
     }
 
@@ -56,7 +64,7 @@ public class OrderController {
     	else return null;
     }
 
-    public void displayOrder(String orderID) throws IOException {
+    public static void displayOrder(String orderID) throws IOException {
         Order order;
         order = getOrderById(orderID);
         // if (order == null) System.out.println("nope");

@@ -1,5 +1,6 @@
 package com.hotel.system;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -13,8 +14,10 @@ public class Order {
     private Date date;
     private OrderStatus orderStatus;
     private String remarks;
+    SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
     public Order(String orderId, String roomId, String reservationNum, ArrayList<Item> items, Date date, OrderStatus orderStatus, String remarks) {
+        
         this.orderId = orderId;
         this.roomId = roomId;
         this.reservationNum = reservationNum;
@@ -81,6 +84,7 @@ public class Order {
     public boolean removeItem(Item newitem) {
         for (Item item : items) {
             if (item.getItemId() == newitem.getItemId()) {
+                System.out.println(item.getItemId());
                 this.items.remove(item);
                 return true;
             }
@@ -91,20 +95,20 @@ public class Order {
     public void viewOrder() {
 
         System.out.println("ID   Room   Date                          Remarks                       Status   ");
-        // System.out.println(toString());
+        System.out.println(toString());
         System.out.println("=================================================================================");
         System.out.println("ID   Name                          Description                          Price(S$)");
         System.out.println("=================================================================================");
         for (Item item : items) {
-            System.out.println("Hello");
-        	System.out.println(item.getName());
+        	System.out.println(item.toString());
         }
         System.out.println("=================================================================================");
     }
     
     public String toString() {
-        
-        return (String.format("%-5d%-7s%-30s%-30s%-10s", orderId, roomId, date, remarks, orderStatus));
+        String newDate = df.format(date);
+        return (String.format("%-5s%-7s%-30s%-30s%-10s", orderId, roomId, newDate, remarks, orderStatus));
+        // return (String.format("%-5s", orderId));
     }
 
 
