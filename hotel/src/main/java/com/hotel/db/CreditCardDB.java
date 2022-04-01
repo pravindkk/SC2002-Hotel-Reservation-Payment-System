@@ -37,9 +37,9 @@ public class CreditCardDB extends DB {
         for (String [] row : listing ){
             String guestID = row[0];
             String name = row[1];
-            Integer cardno = Integer.valueOf(row[2]);
+            String cardno = row[2];
             String expiry = row[3];
-            Integer cvv = Integer.valueOf(row[4]);
+            String cvv = row[4];
             CreditCardType cardType = CreditCardType.valueOf(row[5]);
 
             allData.add(new CreditCard(guestID,name,cardno,expiry,cvv,cardType));

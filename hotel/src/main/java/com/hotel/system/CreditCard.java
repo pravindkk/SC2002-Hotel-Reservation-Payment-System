@@ -6,12 +6,12 @@ public class CreditCard {
 
     private String guestID;
     private String Name;
-    private Integer CardNo;
+    private String CardNo;
     private String expiry;
-    private Integer CVV;
+    private String CVV;
     public CreditCardType cardType;
 
-    public CreditCard(String guestID , String Name , Integer CardNo , String expiry, Integer CVV , CreditCardType cardType ){
+    public CreditCard(String guestID , String Name , String CardNo , String expiry, String CVV , CreditCardType cardType ){
         this.guestID = guestID;
         this.Name=Name;
         this.CardNo = CardNo;
@@ -27,10 +27,10 @@ public class CreditCard {
         this.Name=Name;
     }
 
-    public Integer getCardNo(){
+    public String getCardNo(){
         return this.CardNo;
     }
-    public void setCardNo(int CardNo){
+    public void setCardNo(String CardNo){
         this.CardNo=CardNo;
     }
 
@@ -41,10 +41,10 @@ public class CreditCard {
         this.expiry=expiry;
     }
 
-    public Integer getCVV(){
+    public String getCVV(){
         return this.CVV;
     }
-    public void setCVV(int CVV){
+    public void setCVV(String CVV){
         this.CVV = CVV;
     }
 
@@ -63,7 +63,7 @@ public class CreditCard {
         this.guestID=guestID;
     }
 
-    // do we need to validate creditcard
+
 
 
 

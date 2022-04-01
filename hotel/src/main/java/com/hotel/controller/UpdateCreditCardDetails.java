@@ -5,6 +5,9 @@ import com.hotel.system.enums.CreditCardType;
 
 import java.io.IOException;
 import java.util.Scanner;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import org.apache.commons.lang3.StringUtils;
 
 public class UpdateCreditCardDetails {
@@ -62,42 +65,61 @@ public class UpdateCreditCardDetails {
         return name;
     }
 
-    public static Integer UpdateCardNo() throws IOException{
-        Integer cardno = null;
-        do{
-            System.out.println("Enter card number:");
-            try {
-                cardno = sc.nextInt();
-                
-            } catch (Exception e) {
-                //TODO: handle exception
-            }
-            break;
-        }while(true);
-        return cardno;
+    public static String UpdateCardNo() throws IOException{
+        String cardFormat = "\\d{16}";
+        String card = null;
+		do {
+			System.out.println("Please Enter Card No: ");
+			card= sc.next();
+		} while (card.equals("") || !card.matches(cardFormat));
+        return card;
     }
 
-    public static Integer UpdateCVV() throws IOException{
-        Integer cvv = null;
-        do{
-            System.out.println("Enter CVV:");
-            try {
-                cvv = sc.nextInt();
-                
-            } catch (Exception e) {
-                //TODO: handle exception
-            }
-            break;
-        }while(true);
+    public static String UpdateCVV() throws IOException{
+        String cvvFormat = "\\d{3}";
+        String cvv = null;
+		do {
+			System.out.println("Please Enter CVV: ");
+			cvv= sc.next();
+		} while (cvv.equals("") || !cvv.matches(cvvFormat));
         return cvv;
     }
 
     public static String UpdateExpiry() throws IOException{
-        String expiry = null;
-        do{
-            System.out.println("Enter Expiry:");
-            expiry = sc.next();
-        }while(expiry==null);
+		boolean checker = false;
+        String expiry  = null;
+
+		do {
+			System.out.println("Please Enter Exp (MM/YY): ");
+			expiry = sc.next();
+
+			SimpleDateFormat sdf = new SimpleDateFormat("MM/yy");
+			sdf.setLenient(false);
+			Date todaysdate = new Date();
+			Date inputdate = null;
+
+			try {
+
+				inputdate = sdf.parse(expiry);
+
+				if (inputdate.before(todaysdate)) {
+
+					System.out.println("Please enter a valid Credit Card Expiration Date.\n");
+
+				} else {
+					checker = true;
+					break;
+
+				}
+
+			} catch (ParseException e1) {
+				if (inputdate == null) {
+
+					System.out.println("Please enter a valid Credit Card Expiration Date.\n");
+
+				}
+			}
+		} while (!checker);
 
         return expiry;
     }
