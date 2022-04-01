@@ -160,5 +160,12 @@ public class CreditCardController {
         saveCardByID(card);
     }
 
+
+    public static void main(String[] args) throws IOException {
+        CreditCardController c = new CreditCardController();
+        c.createCreditCard();
+ 
+    }
+
     
 }

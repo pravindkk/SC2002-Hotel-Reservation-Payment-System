@@ -63,23 +63,33 @@ public class UpdateCreditCardDetails {
     }
 
     public static Integer UpdateCardNo() throws IOException{
-        String cardno = null;
+        Integer cardno = null;
         do{
-            System.out.println("Enter Card no:");
-            cardno = sc.next();
-        }while(cardno==null || StringUtils.isNumeric(cardno)==false);
-
-        return Integer.valueOf(cardno);
+            System.out.println("Enter card number:");
+            try {
+                cardno = sc.nextInt();
+                
+            } catch (Exception e) {
+                //TODO: handle exception
+            }
+            break;
+        }while(true);
+        return cardno;
     }
 
     public static Integer UpdateCVV() throws IOException{
-        String cvv = null;
+        Integer cvv = null;
         do{
-            System.out.println("Enter Card no:");
-            cvv = sc.next();
-        }while(cvv==null || StringUtils.isNumeric(cvv)==false || cvv.length()!=3);
-
-        return Integer.valueOf(cvv);
+            System.out.println("Enter CVV:");
+            try {
+                cvv = sc.nextInt();
+                
+            } catch (Exception e) {
+                //TODO: handle exception
+            }
+            break;
+        }while(true);
+        return cvv;
     }
 
     public static String UpdateExpiry() throws IOException{
