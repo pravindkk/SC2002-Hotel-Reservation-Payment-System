@@ -7,13 +7,13 @@ import com.hotel.system.enums.FoodType;
 
 public class Item{
     
-    private int itemid;
+    private Integer itemid;
     private String name;
     private String description;
     private double price;
     public FoodType foodType;
 
-    public Item(int itemid, String name, String description,double price,FoodType foodType){
+    public Item(Integer itemid, String name, String description,double price,FoodType foodType){
         this.itemid = itemid;
         this.name = name;
         this.description = description;

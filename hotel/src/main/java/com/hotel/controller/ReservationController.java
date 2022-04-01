@@ -219,6 +219,25 @@ public class ReservationController {
 
         return null;
     }
+    public static Reservation getReservationByRoomId(String roomId) throws IOException {
+        // ArrayList allReservations = getAllReservations();
+
+        // check the search term "R" for search by ReservationNum while "G" is 
+        ArrayList allData = getAllReservations();
+
+        for (int i=0; i<allData.size(); i++) {
+            Reservation r = (Reservation) allData.get(i);
+            // System.out.print(r.getRoomId());
+            // if (reservationId.equals(r.getReservationNum())) {
+            if (roomId.equals(r.getRoomId())) {
+                // System.out.print(r.getReservationStatus());
+                return r;
+            }
+        }
+
+
+        return null;
+    }
 
     public static Reservation getReservationByGuest(String guestId, ReservationStatus reservationStatus) throws IOException {
         ArrayList allReservations = getAllReservations();

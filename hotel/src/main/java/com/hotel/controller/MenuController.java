@@ -24,10 +24,38 @@ public class MenuController {
 
     public static void printAllItems() throws IOException {
         ArrayList<Item> items = getAllItems();
-
+        System.out.println("====================================Starter====================================");
         for (int i=0; i<items.size(); i++) {
             Item curr = (Item) items.get(i);
             if (curr.getType().equals(FoodType.STARTER)) {
+                System.out.println(
+                        curr.getItemId() +
+                        curr.getName() +
+                        curr.getPrice() + 
+                        curr.getDescription() + 
+                        curr.getType()
+                );
+            }
+
+        }
+        System.out.println("====================================Main Courses====================================");
+        for (int i=0; i<items.size(); i++) {
+            Item curr = (Item) items.get(i);
+            if (curr.getType().equals(FoodType.MAIN_COURSE)) {
+                System.out.println(
+                        curr.getItemId() +
+                        curr.getName() +
+                        curr.getPrice() + 
+                        curr.getDescription() + 
+                        curr.getType()
+                );
+            }
+
+        }
+        System.out.println("====================================Beverages====================================");
+        for (int i=0; i<items.size(); i++) {
+            Item curr = (Item) items.get(i);
+            if (curr.getType().equals(FoodType.DRINKS)) {
                 System.out.println(
                         curr.getItemId() +
                         curr.getName() +
