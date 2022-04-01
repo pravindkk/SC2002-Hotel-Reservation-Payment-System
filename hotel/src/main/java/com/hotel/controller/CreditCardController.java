@@ -22,8 +22,8 @@ public class CreditCardController {
     public static CreditCard createCreditCard() throws IOException{
         String guestId = UpdateCreditCardDetails.UpdateGuestId();
         String name = UpdateCreditCardDetails.UpdateName();
-        Integer cardno = UpdateCreditCardDetails.UpdateCardNo();
-        Integer cvv = UpdateCreditCardDetails.UpdateCVV();
+        String cardno = UpdateCreditCardDetails.UpdateCardNo();
+        String cvv = UpdateCreditCardDetails.UpdateCVV();
         String expiry = UpdateCreditCardDetails.UpdateExpiry();
         CreditCardType type = UpdateCreditCardDetails.updateCreditCardType();
 
