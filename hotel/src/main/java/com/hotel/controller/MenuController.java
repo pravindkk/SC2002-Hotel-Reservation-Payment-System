@@ -24,48 +24,48 @@ public class MenuController {
 
     public static void printAllItems() throws IOException {
         ArrayList<Item> items = getAllItems();
-        System.out.println("====================================Starter====================================");
+        ArrayList<Item> starter = new ArrayList<Item>();
+        ArrayList<Item> main = new ArrayList<Item>();
+        ArrayList<Item> drink = new ArrayList<Item>();
         for (int i=0; i<items.size(); i++) {
             Item curr = (Item) items.get(i);
             if (curr.getType().equals(FoodType.STARTER)) {
-                System.out.println(
-                        curr.getItemId() +
-                        curr.getName() +
-                        curr.getPrice() + 
-                        curr.getDescription() + 
-                        curr.getType()
-                );
+                starter.add(curr);
             }
-
-        }
-        System.out.println("====================================Main Courses====================================");
-        for (int i=0; i<items.size(); i++) {
-            Item curr = (Item) items.get(i);
-            if (curr.getType().equals(FoodType.MAIN_COURSE)) {
-                System.out.println(
-                        curr.getItemId() +
-                        curr.getName() +
-                        curr.getPrice() + 
-                        curr.getDescription() + 
-                        curr.getType()
-                );
+            else if (curr.getType().equals(FoodType.MAIN_COURSE)) {
+                main.add(curr);
             }
-
-        }
-        System.out.println("====================================Beverages====================================");
-        for (int i=0; i<items.size(); i++) {
-            Item curr = (Item) items.get(i);
-            if (curr.getType().equals(FoodType.DRINKS)) {
-                System.out.println(
-                        curr.getItemId() +
-                        curr.getName() +
-                        curr.getPrice() + 
-                        curr.getDescription() + 
-                        curr.getType()
-                );
+            else if (curr.getType().equals(FoodType.DRINKS)){
+                drink.add(curr);
             }
-
         }
+        System.out.println("ID   Name                          Description                          Price(S$)");
+        if (starter.size()!=0) {
+            System.out.println("====================================Starter=======================================");
+            for (int i=0; i<starter.size(); i++) {
+                Item curr = (Item) starter.get(i);
+                System.out.println(curr.toString());
+
+            }
+        }
+
+        if (main.size()!=0) {
+            System.out.println("====================================Main Courses====================================");
+            for (int i=0; i<main.size(); i++) {
+                Item curr = (Item) main.get(i);
+                System.out.println(curr.toString());
+
+            }
+        }
+        if (drink.size()!=0) {
+            System.out.println("====================================Drink=========================================");
+            for (int i=0; i<drink.size(); i++) {
+                Item curr = (Item) drink.get(i);
+                System.out.println(curr.toString());
+
+            }
+        }
+    
         
     }
 

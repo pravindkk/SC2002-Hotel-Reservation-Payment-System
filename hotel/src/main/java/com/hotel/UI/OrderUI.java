@@ -118,7 +118,7 @@ public class OrderUI {
         }
         Integer choice=0;
         ArrayList<Item> itemArray = new ArrayList<Item>();
-        System.out.println("Enter the ID of the item that you want (-1) to exit): ");
+        System.out.println("\nEnter the ID of the item that you want (-1) to exit): ");
         do {
             try {
                 choice = sc.nextInt();
@@ -170,6 +170,7 @@ public class OrderUI {
         Order order=null;
         sc.nextLine();
         try {
+            System.out.print("Enter the orderId to be updated?:  ");
             String orderId = sc.nextLine();
             order = OrderController.getOrderById(orderId);
             if (order == null) System.out.println("order doesnt exit");
@@ -196,11 +197,13 @@ public class OrderUI {
         order.viewOrder();
         int choice =0;
         do {
-            System.out.println("Please Choose a option to Continue: \n" + 
+            System.out.print(
                 "(1) Add item\n" +
                 "(2) Remove item\n" + 
                 "(3) Update Status\n" +
-                "(4) Change Remarks\n" 
+                "(4) Change Remarks\n" + 
+                "(5) Back\n" +
+                "Please Choose a option to Continue: "
             );
 
             choice = sc.nextInt();
@@ -287,7 +290,8 @@ public class OrderUI {
                     }
                     break;
                     
-
+                case 5:
+                    return;
             
                 default:
                     System.out.println("Invalid Input");
