@@ -24,29 +24,40 @@ public class OrderUI {
     static SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
     public OrderUI () {
-        int choice  = displayOptions();
+        int choice =0;
+        do {
+            choice  = displayOptions();
+            switch (choice) {
+                case 1:
+                    createNewOrder();
+                    break;
+                case 2:
+                    updateOrder();
+                    break;
+                
+                case 3:
+                    try {
+                        deleteOrder();
+                    } catch (IOException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                    break;
+                case 4:
+                    displayOrder();
+                    break;
 
-        switch (choice) {
-            case 1:
-                createNewOrder();
-                break;
-            case 2:
-                updateOrder();
-                break;
+                case 5:
+                    return;
             
-            case 3:
-                try {
-                    deleteOrder();
-                } catch (IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-                break;
+                default:
+                    System.out.println("Invalid input");
+                    break;
+            }
+        } while (true);
         
-            default:
-                System.out.println("Invalid input");
-                break;
-        }
+
+        
 
     }
 
@@ -61,16 +72,17 @@ public class OrderUI {
                                "(2) Update Order\n"+
                                "(3) Remove Order\n"+
                                "(4) View Order\n"+
+                               "(5) Back\n"+
                                "========================\n"
             );
 
-            System.out.print("What is your choice (1-4)?: ");
+            System.out.print("What is your choice (1-5)?: ");
             try {
                 choice = sc.nextInt();
-                if (choice >0 && choice <5) break;
+                if (choice >0 && choice <6) break;
             } catch (Exception e) {
                 //TODO: handle exception
-                System.out.println("Enter a number between (1-4)!!");
+                System.out.println("Enter a number between (1-5)!!");
             }
         } while (true);
 
@@ -185,10 +197,10 @@ public class OrderUI {
         int choice =0;
         do {
             System.out.println("Please Choose a option to Continue: \n" + 
-                "(1) Add item" +
-                "(2) Remove item" + 
-                "(3) Update Status" +
-                "(4) Change Remarks" 
+                "(1) Add item\n" +
+                "(2) Remove item\n" + 
+                "(3) Update Status\n" +
+                "(4) Change Remarks\n" 
             );
 
             choice = sc.nextInt();
@@ -208,7 +220,8 @@ public class OrderUI {
                         item = MenuController.getItem(itemId);
                         if (item == null) break;
                         order.addItem(item);
-                        OrderController.saveOneOrder(order);
+                        // OrderController.saveOneOrder(order);
+                        OrderController.updateOrder(order);
                     } catch (IOException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
@@ -223,7 +236,7 @@ public class OrderUI {
                         item = MenuController.getItem(itemId);
                         if (item == null) break;
                         order.removeItem(item);
-                        OrderController.saveOneOrder(order);
+                        OrderController.updateOrder(order);
                     } catch (Exception e) {
                         //TODO: handle exception
                     }
@@ -241,15 +254,15 @@ public class OrderUI {
                         switch (newChoice) {
                             case 1:
                                 order.setOrderStatus(OrderStatus.PREPARING);
-                                OrderController.saveOneOrder(order);
+                                OrderController.updateOrder(order);
                                 break;
                             case 2:
                                 order.setOrderStatus(OrderStatus.PREPARED);
-                                OrderController.saveOneOrder(order);
+                                OrderController.updateOrder(order);
                                 break;
                             case 3:
                                 order.setOrderStatus(OrderStatus.DELIVERED);
-                                OrderController.saveOneOrder(order);
+                                OrderController.updateOrder(order);
                                 break;
                         
                             default:
@@ -265,9 +278,10 @@ public class OrderUI {
                 case 4:
                     String remark =null;
                     try {
+                        sc.nextLine();
                         remark = sc.nextLine();
                         if (remark != null || remark != "") order.setRemarks(remark);
-                        OrderController.saveOneOrder(order);
+                        OrderController.updateOrder(order);
                     } catch (Exception e) {
                         //TODO: handle exception
                     }
@@ -288,13 +302,14 @@ public class OrderUI {
 
 
     public static void deleteOrder() throws IOException {
-        ArrayList<Order> allOrders = OrderController.getAllOrders();
+        // ArrayList<Order> allOrders = OrderController.getAllOrders();
         
         String orderId=null;
         Order order=null;
+        sc.nextLine();
         do {
             try {
-                System.out.println("Enter order ID to be updated: ");
+                System.out.println("Enter order ID to be deleted: ");
                 orderId = sc.nextLine();
                 // if(id <= 0) System.out.printf("Invalid input! ");
                 order = OrderController.getOrderById(orderId);
@@ -305,9 +320,29 @@ public class OrderUI {
             sc.nextLine();
         } while (true);
 
-        allOrders.remove(order);
-        MenuController.saveAllItems(allOrders);
+        OrderController.deleteOrder(order);
 
+    }
+
+    public static void displayOrder() {
+        Order order=null;
+        sc.nextLine();
+        try {
+            System.out.print("What is the orderId?: ");
+            String orderId = sc.nextLine();
+            order = OrderController.getOrderById(orderId);
+            if (order == null) System.out.println("order doesnt exit");
+        } catch (IOException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+        try {
+            OrderController.displayOrder(order.getOrderId());
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
     }
 
 
