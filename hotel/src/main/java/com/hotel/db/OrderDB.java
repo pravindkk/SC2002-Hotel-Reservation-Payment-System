@@ -66,7 +66,6 @@ public class OrderDB extends DB{
 			}
             // String [] nextLine;
             int rowNumber = 6;
-            System.out.println();
 
             while (rowNumber < row.length) {
                 int itemid = Integer.valueOf(row[rowNumber++]);

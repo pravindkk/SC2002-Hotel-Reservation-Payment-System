@@ -16,6 +16,7 @@ import com.hotel.system.Order;
 import com.hotel.system.enums.OrderStatus;
 import com.hotel.system.enums.FoodType;
 import com.hotel.system.Item;
+import com.hotel.controller.OrderController;
 import java.text.SimpleDateFormat;
 
 
@@ -58,17 +59,27 @@ public class PaymentDB extends DB {
 
             // use my menudb to refer to change this then change the write portion accordingly
             // in the payment controller just use OrderController.getOrder(String orderId)
-            ArrayList<Order> allOrders = new ArrayList<Order>();
-            for(int i=5;i<listing.size();i+=4){
-                // get orders
-                String orderid = row[i];
-                
 
-                // allOrders.add(new Order(orderid,roomid,rNum,allItems,d,orderStatus,remarks));
+            ArrayList<String> orderId = new ArrayList<String>();
+            int rowNumber = 5;
+
+            while (rowNumber < row.length) {
+                // get orders
+                // String orderid = row[rowNumber++];
+                // String roomId = row[rowNumber++];
+                // String rNum = row[rowNumber++];
+
+                // String date = row[rowNumber++];
+                // OrderStatus orderStatus = OrderStatus.valueOf(row[rowNumber++]);
+                // String remarks = row[rowNumber++];
+                // Order newOrder = new Order(orderid, roomId, rNum, items, date, orderStatus, remarks)
+
+                // allOrders.add(new Order(orderid,roomId,rNum,allItems,d,orderStatus,remarks));
+                orderId.add(row[rowNumber++]);
             
             }
 
-            Payment p = new Payment(paymentId , allOrders ,reservationNum ,formatter,total,subTotal);
+            Payment p = new Payment(paymentId , orderId ,reservationNum ,formatter,total,subTotal);
             allData.add(p);
 
         }
@@ -93,46 +104,21 @@ public class PaymentDB extends DB {
             };
 
         
+            ArrayList<String> orders = payment.getOrders();
 
-            for (int j=0; i<al.size(); j++) {
-                Order order = (Order) al.get(i);
-
-                String[] toAddOrder = new String[] {
-                    order.getOrderId(),
-                    order.getRoomId(),
-                    order.getReservationNum(),
-                    String.valueOf(order.getDate()),
-                    String.valueOf(order.getOrderStatus()),
-                    order.getRemarks(),
+            for (int j=0; j<orders.size(); j++) {
+                String[] toadd = new String[] {
+                    orders.get(j)
                 };
+                toAddPayment = ArrayUtils.addAll(toAddPayment, toadd);
+            }
 
-                // String[] both = ArrayUtils.addAll(first, second)
-
-                ArrayList items = order.getItem();
-                for (int k=0; j<items.size(); k++) {
-                    Item oneItem = (Item) items.get(j);
-                    String[] toAddItem = new String[] {
-                        String.valueOf(oneItem.getItemId()),
-                        oneItem.getName(),
-                        oneItem.getDescription(),
-                        String.valueOf(oneItem.getPrice()),
-                        String.valueOf(oneItem.getType())
-                    };
-
-                    toAddOrder = ArrayUtils.addAll(toAddOrder, toAddItem);
-                    // hello.add(String.valueOf(oneItem.getItemId()));
-                    // hello[hello.size()++] = newItem;
-
-                }
-                toAddPayment = ArrayUtils.addAll(toAddPayment, toAddOrder);
-
+            toWrite.add(toAddPayment);
+            
             
 
         }
 
-        toWrite.add(toAddPayment);
-
-    }
         
 
 

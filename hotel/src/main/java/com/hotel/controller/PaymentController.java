@@ -38,3 +38,13 @@ public class PaymentController {
     }
     
 }
+
+// use order controller to calculate all the orders
+// use reservation controller to get check in and check out date ---> no of days
+// use reservation controller to get room id,
+// use roomc controller to get room price
+
+
+// display an array
+
+

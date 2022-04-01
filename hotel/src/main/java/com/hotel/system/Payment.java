@@ -9,9 +9,9 @@ public class Payment {
     private double total;
     private String reservationNum;
     private SimpleDateFormat date;
-    private ArrayList<Order> orders; // use string to have an array of orderId
+    private ArrayList<String> orders; // use string to have an array of orderId
 
-    public Payment(Integer paymentId , ArrayList<Order> orders , String reservationNum , SimpleDateFormat date, double total, double subTotal){
+    public Payment(Integer paymentId , ArrayList<String> orders , String reservationNum , SimpleDateFormat date, double total, double subTotal){
         this.paymentId = paymentId;     // change the get set and this also
         this.orders = orders;
         this.reservationNum=reservationNum;
@@ -21,7 +21,7 @@ public class Payment {
 
     }
 
-    public Payment(Integer paymentId , ArrayList<Order> orders , String reservationNum , SimpleDateFormat date){
+    public Payment(Integer paymentId , ArrayList<String> orders , String reservationNum , SimpleDateFormat date){
         this.paymentId = paymentId;
         this.orders = orders;
         this.reservationNum=reservationNum;
@@ -64,11 +64,11 @@ public class Payment {
         this.reservationNum=reservationNum;
     }
 
-    public ArrayList<Order> getOrders(){
+    public ArrayList<String> getOrders(){
         return this.orders;
     }
 
-    public void setOrders(ArrayList<Order> order){
+    public void setOrders(ArrayList<String> order){
         this.orders = order;
     }
 
