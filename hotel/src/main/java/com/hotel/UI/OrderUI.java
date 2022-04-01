@@ -154,11 +154,13 @@ public class OrderUI {
     }
 
     public static void updateOrder() {
-        String orderId=null;
+        // String orderId=null;
         Order order=null;
         sc.nextLine();
         try {
-            order = OrderController.getOrderById(sc.nextLine());
+            String orderId = sc.nextLine();
+            order = OrderController.getOrderById(orderId);
+            if (order == null) System.out.println("order doesnt exit");
         } catch (IOException e1) {
             // TODO Auto-generated catch block
             e1.printStackTrace();
@@ -296,12 +298,12 @@ public class OrderUI {
                 orderId = sc.nextLine();
                 // if(id <= 0) System.out.printf("Invalid input! ");
                 order = OrderController.getOrderById(orderId);
-                if (order == null) orderId=null;
+                if (order != null) break;
             } catch (Exception e) {
                 System.out.printf("Invalid input of orderId! ");
             }
             sc.nextLine();
-        } while (orderId==null);
+        } while (true);
 
         allOrders.remove(order);
         MenuController.saveAllItems(allOrders);

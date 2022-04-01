@@ -57,6 +57,11 @@ public class Item{
         this.foodType=Type;
     }
 
+    public String toString() {
+
+        return (String.format("%-5d%-15s%-52s%.2f", itemid, name, description, price));
+    }
+
 
 
 
