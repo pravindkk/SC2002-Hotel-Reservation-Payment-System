@@ -59,7 +59,7 @@ public class Item{
 
     public String toString() {
 
-        return (String.format("%-5d%-15s%-52s%.2f", itemid, name, description, price));
+        return (String.format("%-5d%-25s%-45s%.2f", itemid, name, description, price));
     }
 
 

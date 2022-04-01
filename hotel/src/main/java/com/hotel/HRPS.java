@@ -29,9 +29,9 @@ public class HRPS {
         // Guest hotel = g.RetrieveGuest("1231");
         // System.out.println(hotel.getGuestId());
 
-        OrderUI test = new OrderUI();
+        // OrderUI test = new OrderUI();
 
-        OrderController order = new OrderController();
+        // OrderController order = new OrderController();
         // order.displayOrder("0-J-01042022");
         // Order hello = order.getOrderById("0-J-01042022");
         // System.out.print(hello.getItem().get(0).getItemId());
@@ -39,9 +39,9 @@ public class HRPS {
         //     System.out
         // }
         // for (int i=0; i<)
-        // MenuUI menu = new MenuUI();
+        MenuUI menu = new MenuUI();
         // menu.createNewItem();
-        // menu.displayOptions();
+        menu.displayOptions();
         // test.displayOptions();
     }
 }

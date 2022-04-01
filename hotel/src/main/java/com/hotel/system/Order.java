@@ -94,7 +94,7 @@ public class Order {
     
     public void viewOrder() {
 
-        System.out.println("ID   Room   Date                          Remarks                       Status   ");
+        System.out.println("    ID          Room        Date                 Remarks                  Status   ");
         System.out.println(toString());
         System.out.println("=================================================================================");
         System.out.println("ID   Name                          Description                          Price(S$)");
@@ -107,7 +107,7 @@ public class Order {
     
     public String toString() {
         String newDate = df.format(date);
-        return (String.format("%-5s%-7s%-30s%-30s%-10s", orderId, roomId, newDate, remarks, orderStatus));
+        return (String.format("%-15s%-11s%-20s%-25s%-10s", orderId, roomId, newDate, remarks, orderStatus));
         // return (String.format("%-5s", orderId));
     }
 
