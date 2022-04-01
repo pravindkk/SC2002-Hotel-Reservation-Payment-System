@@ -1,8 +1,10 @@
 package com.hotel.UI;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
@@ -79,6 +81,7 @@ public class OrderUI {
         // gesc = new Scanner(System.in);
     	String roomId;
         String reservationNum=null;
+        sc.nextLine();
         System.out.println("Enter room number:");
         roomId = sc.nextLine();
         System.out.println("");
@@ -118,10 +121,22 @@ public class OrderUI {
             }
             
         } while (true);
+        sc.nextLine();
         System.out.print("Are there are remarks? ");
         String remarks = sc.nextLine();
-        Date date = new Date();
-        
+        // Date date = new Date();
+        // Date todayDate = new Date();
+        Date todayDate = Calendar.getInstance().getTime();
+
+
+        String today = df.format(todayDate);
+        Date date=null;
+        try {
+            date = df.parse(today);
+        } catch (ParseException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
         // Integer orderId = ThreadLocalRandom.current().nextInt(1, 100 + 1);
         String orderId = roomId.charAt(0) + "-" + reservationNum.charAt(0) + "-" + df.format(date).replaceAll("\\D", "");;
         Order toAdd = new Order(orderId, roomId, reservationNum, itemArray, date, OrderStatus.PREPARING, remarks);
@@ -141,18 +156,26 @@ public class OrderUI {
     public static void updateOrder() {
         String orderId=null;
         Order order=null;
-        do {
-            try {
-                System.out.println("Enter order ID to be updated: ");
-                orderId = sc.nextLine();
-                // if(id <= 0) System.out.printf("Invalid input! ");
-                order = OrderController.getOrderById(orderId);
-                if (order == null) orderId=null;
-            } catch (Exception e) {
-                System.out.printf("Invalid input of orderId! ");
-            }
-            sc.nextLine();
-        } while (orderId==null);
+        sc.nextLine();
+        try {
+            order = OrderController.getOrderById(sc.nextLine());
+        } catch (IOException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+        // do {
+        //     try {
+                
+        //         System.out.println("Enter order ID to be updated: ");
+        //         orderId = sc.nextLine();
+        //         // if(id <= 0) System.out.printf("Invalid input! ");
+        //         order = OrderController.getOrderById(orderId);
+        //         // if (order == null) orderId=null;
+        //     } catch (Exception e) {
+        //         System.out.println("Invalid input of orderId! ");
+        //     }
+        //     // sc.nextLine();
+        // } while (order==null);
         // Order order = OrderController.retrieveOrder(orderId);
         // if (order != null) updateOrder(order);
         // else System.out.println("Order does not exist!");

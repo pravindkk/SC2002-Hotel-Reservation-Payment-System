@@ -2,7 +2,8 @@ package com.hotel.db;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Date;
+import java.util.Date;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,18 +43,26 @@ public class OrderDB extends DB{
 	public ArrayList read(String fileName) throws IOException {
         List<String[]> listing = super.readAllData(fileName);
         ArrayList allData = new ArrayList();
-
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         for (String[] row : listing) {
 
 
             String orderId = row[0];
 			String roomId = row[1];
 			String reservationNum = row[2];
-			Date date = Date.valueOf(row[3]);
+			String date = row[3];
 			OrderStatus orderStatus = OrderStatus.valueOf(row[4]);
 			String remarks = row[5];
 			// String roomFloor = row[6];
 			// String roomNumber = row[7];
+
+            Date orderDate = null;
+			try {
+				orderDate = df.parse(date);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
             ArrayList<Item> allItems = new ArrayList<Item>();
             for (int i=6; i<listing.size(); i+=5) {
@@ -64,7 +73,7 @@ public class OrderDB extends DB{
                 FoodType foodType = FoodType.valueOf(row[i+4]);
                 allItems.add(new Item(itemid, name, description, price, foodType));
             }
-            allData.add(new Order(orderId, roomId, reservationNum, allItems, date, orderStatus, remarks));
+            allData.add(new Order(orderId, roomId, reservationNum, allItems, orderDate, orderStatus, remarks));
 
         }
         return allData;

@@ -30,12 +30,14 @@ public class MenuUI {
                     break;
                 case 2:
                 	// updateIn();
+                    updateMenuItem();
                     break;
                 case 3:
                 	// removeIn();
+                    deleteMenuItem();
                     break;
                 case 4:
-                    break;
+                    return;
                 default:
                 	System.out.println("Please enter a valid option!");
 					choice = 0;
@@ -148,6 +150,7 @@ public class MenuUI {
         do {
             System.out.println("Enter the name of the item to add:  ");
             try {
+                sc.nextLine();
                 itemName = sc.nextLine();
             } catch (Exception e) {
                 //TODO: handle exception
@@ -163,6 +166,7 @@ public class MenuUI {
         do {
             System.out.println("Enter the description of the item to add:  ");
             try {
+                sc.nextLine();
                 itemDesc = sc.nextLine();
             } catch (Exception e) {
                 //TODO: handle exception
@@ -178,11 +182,12 @@ public class MenuUI {
             System.out.println("Enter the price of the item to add (e.g 26.5):  ");
             try {
                 price = sc.nextDouble();
+                if (price != 0.0) break;
             } catch (Exception e) {
                 //TODO: handle exception
                 System.out.println("Wrong price input!");
             }
-        } while (price > 0.0);
+        } while (true);
         return price;
     }
 
