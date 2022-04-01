@@ -21,6 +21,7 @@ import org.apache.commons.lang3.ArrayUtils;
 
 public class OrderDB extends DB{
     private File database = new File("hotel/orders.csv");
+    SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
     private String path;
 
     public OrderDB(){
@@ -43,9 +44,9 @@ public class OrderDB extends DB{
 	public ArrayList read(String fileName) throws IOException {
         List<String[]> listing = super.readAllData(fileName);
         ArrayList allData = new ArrayList();
-        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        
         for (String[] row : listing) {
-
+            ArrayList<Item> allItems = new ArrayList<Item>();
 
             String orderId = row[0];
 			String roomId = row[1];
@@ -63,16 +64,22 @@ public class OrderDB extends DB{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+            // String [] nextLine;
+            int rowNumber = 6;
+            System.out.println();
 
-            ArrayList<Item> allItems = new ArrayList<Item>();
-            for (int i=6; i<listing.size(); i+=5) {
-                int itemid = Integer.valueOf(row[i]);
-                String name = row[i+1];
-                String description = row[i+2];
-                Double price = Double.valueOf(row[i+3]);
-                FoodType foodType = FoodType.valueOf(row[i+4]);
-                allItems.add(new Item(itemid, name, description, price, foodType));
+            while (rowNumber < row.length) {
+                int itemid = Integer.valueOf(row[rowNumber++]);
+                String name = row[rowNumber++];
+                String description = row[rowNumber++];
+                Double price = Double.valueOf(row[rowNumber++]);
+                FoodType foodType = FoodType.valueOf(row[rowNumber++]);
+                Item newItem = new Item(itemid, name, description, price, foodType);
+                
+                allItems.add(newItem);
+                // allItems.add(new Item(itemid, name, description, price, foodType));
             }
+
             allData.add(new Order(orderId, roomId, reservationNum, allItems, orderDate, orderStatus, remarks));
 
         }
@@ -92,7 +99,7 @@ public class OrderDB extends DB{
                 order.getOrderId(),
                 order.getRoomId(),
                 order.getReservationNum(),
-                String.valueOf(order.getDate()),
+                df.format(order.getDate()),
                 String.valueOf(order.getOrderStatus()),
                 order.getRemarks(),
             };

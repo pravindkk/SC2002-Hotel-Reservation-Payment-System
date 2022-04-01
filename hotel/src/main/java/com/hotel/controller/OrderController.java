@@ -39,7 +39,7 @@ public class OrderController {
     public static Order getOrderById(String orderID) throws IOException {
         ArrayList<Order> orderList = getAllOrders();
         for (Order order : orderList) {
-            if (order.getOrderId() == orderID)
+            if (order.getOrderId().equals(orderID))
                 return order;
         }
         return null;
@@ -59,6 +59,7 @@ public class OrderController {
     public void displayOrder(String orderID) throws IOException {
         Order order;
         order = getOrderById(orderID);
+        // if (order == null) System.out.println("nope");
         order.viewOrder();
     }
 

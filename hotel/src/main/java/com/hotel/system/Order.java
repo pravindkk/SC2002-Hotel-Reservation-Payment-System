@@ -89,19 +89,21 @@ public class Order {
     }
     
     public void viewOrder() {
+
         System.out.println("ID   Room   Date                          Remarks                       Status   ");
-        System.out.println(toString());
+        // System.out.println(toString());
         System.out.println("=================================================================================");
         System.out.println("ID   Name                          Description                          Price(S$)");
         System.out.println("=================================================================================");
         for (Item item : items) {
-        	System.out.println(item.toString());
+            System.out.println("Hello");
+        	System.out.println(item.getName());
         }
         System.out.println("=================================================================================");
     }
     
     public String toString() {
-
+        
         return (String.format("%-5d%-7s%-30s%-30s%-10s", orderId, roomId, date, remarks, orderStatus));
     }
 
