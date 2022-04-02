@@ -15,6 +15,8 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Date;
 import java.time.Period;
+import java.util.Arrays ;
+import org.apache.commons.lang3.ArrayUtils;
 
 public class PaymentController {
 
@@ -120,6 +122,32 @@ public class PaymentController {
             }
         }
         saveAllPayments(paymentList);
+    }
+
+
+    public static ArrayList viewPayment(Payment payment) throws IOException{
+
+        ArrayList<String[]> toDisplay = new ArrayList<String[]>();
+        String[] toAddPayment = new String[]{
+                payment.getGuestId(),
+                String.valueOf(payment.getSubTotal()),
+                String.valueOf(payment.getTotal()),
+                payment.getReservationNum(),
+                String.valueOf(payment.getDate()),
+            };
+
+            ArrayList<String> orders = payment.getOrders();
+
+            for (int j=0; j<orders.size(); j++) {
+                String[] toadd = new String[] {
+                    orders.get(j)
+                };
+                toAddPayment = ArrayUtils.addAll(toAddPayment, toadd);
+            }
+
+        toDisplay.add(toAddPayment);
+        return toDisplay;
+
     }
 
 
