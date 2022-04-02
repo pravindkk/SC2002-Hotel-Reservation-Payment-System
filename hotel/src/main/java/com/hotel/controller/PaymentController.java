@@ -34,12 +34,12 @@ public class PaymentController {
     }
 
 
-    public static void savePayments(ArrayList toWrite) throws IOException {
+    public static void saveAllPayments(ArrayList toWrite) throws IOException {
         try {
             allPayments.save(allPayments.getPath(), toWrite);
         } catch (Exception e) {
             //TODO: handle exception
-            System.out.println("Order not added!");
+            System.out.println("Payment not added!");
             System.out.println(e);
         }
     }
@@ -87,6 +87,44 @@ public class PaymentController {
 
     }
 
+    public double CalculateSubTotal(String roomId , String guestId) throws IOException{
+        return (getOrderTotal(roomId) + getRoomTotal(roomId, guestId));
+    }
+
+    public double CalculateTotal(String roomId, String guestId) throws IOException{
+
+        double subTotal = CalculateSubTotal(roomId, guestId);
+        double total  = subTotal * (serviceCharge + gst);
+        return total;
+
+    }
+
+
+    public static void updatePayment(Payment payment) throws IOException {
+        ArrayList<Payment> PaymentList = getAllPayments();
+        for (int i=0; i<PaymentList.size(); i++) {
+            Payment curr = (Payment) PaymentList.get(i);
+            if (curr.getGuestId().equals(payment.getGuestId())){
+                PaymentList.set(i, payment);
+            }
+        }
+        saveAllPayments(PaymentList);
+    }
+
+    public static void deletePayment(Payment payment) throws IOException {
+        ArrayList<Payment> paymentList = getAllPayments();
+        for (int i=0; i<paymentList.size(); i++) {
+            Payment curr = (Payment) paymentList.get(i);
+            if (curr.getGuestId().equals(payment.getGuestId())){
+                paymentList.remove(i);
+            }
+        }
+        saveAllPayments(paymentList);
+    }
+
+
+
+
     public static void main(String[] args) throws IOException {
         PaymentController p = new PaymentController();
         p.getAllPayments();
@@ -95,12 +133,5 @@ public class PaymentController {
     
 }
 
-// use order controller to calculate all the orders
-// use reservation controller to get check in and check out date ---> no of days
-// use reservation controller to get room id,
-// use roomc controller to get room price
-
-
-// display an array
 
 

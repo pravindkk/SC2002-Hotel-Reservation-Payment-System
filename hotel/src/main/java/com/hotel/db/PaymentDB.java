@@ -49,7 +49,7 @@ public class PaymentDB extends DB {
 
         for (String[] row : listing) {
 
-            Integer paymentId = Integer.valueOf(row[0]);
+            String guestId = row[0];
 			Double subTotal = Double.valueOf(row[1]);
 			Double total = Double.valueOf(row[2]);
             String reservationNum = row[3];
@@ -79,7 +79,7 @@ public class PaymentDB extends DB {
             
             }
 
-            Payment p = new Payment(paymentId , orderId ,reservationNum ,formatter,total,subTotal);
+            Payment p = new Payment(guestId , orderId ,reservationNum ,formatter,total,subTotal);
             allData.add(p);
 
         }
@@ -96,7 +96,7 @@ public class PaymentDB extends DB {
         for(int i =0; i<al.size();i++){
             Payment payment = (Payment)al.get(i);
             String[] toAddPayment = new String[]{
-                String.valueOf(payment.getPaymentId()),
+                payment.getGuestId(),
                 String.valueOf(payment.getSubTotal()),
                 String.valueOf(payment.getTotal()),
                 payment.getReservationNum(),
