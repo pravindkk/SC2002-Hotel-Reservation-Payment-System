@@ -46,6 +46,15 @@ public class PaymentController {
         }
     }
 
+    public static Payment getPaymentByGuestId(String guestID) throws IOException {
+        ArrayList<Payment> paymentList = getAllPayments();
+        for (Payment payment : paymentList) {
+            if (payment.getGuestId().equals(guestID))
+                return payment;
+        }
+        return null;
+    }
+
     public static double getOrderTotal(String roomId) throws IOException{
 
         //assumption here is that the room exists
@@ -90,7 +99,8 @@ public class PaymentController {
     }
 
     public double CalculateSubTotal(String roomId , String guestId) throws IOException{
-        return (getOrderTotal(roomId) + getRoomTotal(roomId, guestId));
+        double subTotal = getOrderTotal(roomId) + getRoomTotal(roomId, guestId);
+        return subTotal;
     }
 
     public double CalculateTotal(String roomId, String guestId) throws IOException{
