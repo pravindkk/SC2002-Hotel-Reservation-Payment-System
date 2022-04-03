@@ -95,12 +95,23 @@ public class ReservationUI {
     }
 
     public void removeRes() {
-        // reservationController.cancelReservation(reservationId);
+        try {
+            String reservationId = sc.nextLine();
+            reservationController.cancelReservation(reservationId);
+        } catch (Exception e) {
+            //TODO: handle exception
+        }
+        
     }
 
     public void printRese() {
-
-        // reservationController.printReservation(reservationId);
+        try {
+            String reservationId = sc.nextLine();
+            reservationController.printReservation(reservationId);
+        } catch (Exception e) {
+            //TODO: handle exception
+        }
+        
     }
 
     public void printAllRes() {
