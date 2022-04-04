@@ -4,15 +4,15 @@ import java.util.ArrayList;
 
 public class Payment {
 
-    private Integer paymentId;
+    private String guestId;
     private double subTotal;
     private double total;
     private String reservationNum;
     private SimpleDateFormat date;
-    private ArrayList<String> orders; // use string to have an array of orderId
+    private ArrayList<String> orders; 
 
-    public Payment(Integer paymentId , ArrayList<String> orders , String reservationNum , SimpleDateFormat date, double total, double subTotal){
-        this.paymentId = paymentId;     // change the get set and this also
+    public Payment(String guestId , ArrayList<String> orders , String reservationNum , SimpleDateFormat date, double total, double subTotal){
+        this.guestId = guestId;     
         this.orders = orders;
         this.reservationNum=reservationNum;
         this.date=date;
@@ -21,26 +21,13 @@ public class Payment {
 
     }
 
-    public Payment(Integer paymentId , ArrayList<String> orders , String reservationNum , SimpleDateFormat date){
-        this.paymentId = paymentId;
-        this.orders = orders;
-        this.reservationNum=reservationNum;
-        this.date=date;
-        this.total = 0.00;
-        this.subTotal = 0.00;
 
+    public String getGuestId(){
+        return this.guestId;
     }
 
-
-
-
-
-    public Integer getPaymentId(){
-        return this.paymentId;
-    }
-
-    public void setPaymentId(Integer paymentId){
-        this.paymentId=paymentId;
+    public void setGuestId(String guestId){
+        this.guestId=guestId;
     }
 
     public double getSubTotal(){
@@ -78,6 +65,9 @@ public class Payment {
     public void setDate(SimpleDateFormat date){
         this.date = date;
     }
+
+
+
 
 
     
