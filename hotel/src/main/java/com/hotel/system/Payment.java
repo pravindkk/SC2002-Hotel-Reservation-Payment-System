@@ -1,17 +1,22 @@
 package com.hotel.system;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class Payment {
-
+    private String paymentId;
     private String guestId;
     private double subTotal;
     private double total;
     private String reservationNum;
-    private SimpleDateFormat date;
+    private Date date;
     private ArrayList<String> orders; 
+    SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
-    public Payment(String guestId , ArrayList<String> orders , String reservationNum , SimpleDateFormat date, double total, double subTotal){
+    public Payment(String paymentId, String guestId , ArrayList<String> orders , String reservationNum , Date date, double total, double subTotal){
+        this.paymentId = paymentId;
         this.guestId = guestId;     
         this.orders = orders;
         this.reservationNum=reservationNum;
@@ -21,6 +26,23 @@ public class Payment {
 
     }
 
+    public Payment(ArrayList<String> orders, String reservationNum) throws ParseException {
+    	this.paymentId = paymentId;
+    	this.reservationNum = reservationNum;
+        this.orders = orders;
+        // Calendar c = Calendar.getInstance();
+        String d = df.format(Calendar.getInstance().getTime());
+        this.date = df.parse(d);
+    }
+
+
+    public String getPaymentId() {
+        return this.paymentId;
+    }
+
+    public void setPaymentId(String paymentId) {
+        this.paymentId = paymentId;
+    }
 
     public String getGuestId(){
         return this.guestId;
@@ -59,10 +81,10 @@ public class Payment {
         this.orders = order;
     }
 
-    public SimpleDateFormat getDate(){
+    public Date getDate(){
         return this.date;
     }
-    public void setDate(SimpleDateFormat date){
+    public void setDate(Date date){
         this.date = date;
     }
 

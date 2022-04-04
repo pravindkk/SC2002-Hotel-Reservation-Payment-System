@@ -53,7 +53,7 @@ public class OrderController {
         return null;
     }
 
-    public ArrayList<Order> getOrderListByRoomId(String roomID) throws IOException {
+    public static ArrayList<Order> getOrderListByRoomId(String roomID) throws IOException {
     	ArrayList<Order> ol = new ArrayList<Order>();
         ArrayList<Order> orderList = getAllOrders();
     	for (Order order : orderList) {

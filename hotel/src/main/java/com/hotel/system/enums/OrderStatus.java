@@ -1,5 +1,5 @@
 package com.hotel.system.enums;
 
 public enum OrderStatus {
-    PREPARING, PREPARED, DELIVERED;
+    PREPARING, PREPARED, DELIVERED, PAID;
 }

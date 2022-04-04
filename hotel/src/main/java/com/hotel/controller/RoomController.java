@@ -258,6 +258,15 @@ public class RoomController {
         return allData;
     }
 
+    public static boolean checkIfRoomOccupied(String roomId) throws IOException {
+        ArrayList<Room> allData = getVacantRooms();
+
+        for (Room r:allData) {
+            if (roomId.equals(r.getRoomId())) return false;
+        }
+        return true;
+    }
+
     public static ArrayList getRoomsByRoomType(ArrayList allData, RoomType roomType) throws IOException {
         
         allData.removeIf(r -> ((Room) r).getRoomType() != roomType);

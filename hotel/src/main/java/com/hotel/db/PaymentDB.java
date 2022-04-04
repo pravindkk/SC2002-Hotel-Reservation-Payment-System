@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
-import java.sql.Date;
+import java.util.Date;
 import java.util.Arrays ;
 import org.apache.commons.lang3.ArrayUtils;
 
@@ -24,6 +24,7 @@ import java.text.SimpleDateFormat;
 public class PaymentDB extends DB {
     private File database = new File("hotel/payments.csv");
     private String path;
+    
 
 
     public PaymentDB(){
@@ -46,16 +47,24 @@ public class PaymentDB extends DB {
 	public ArrayList read(String fileName) throws IOException {
         List<String[]> listing = super.readAllData(fileName);
         ArrayList allData = new ArrayList();
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");  
 
         for (String[] row : listing) {
-
-            String guestId = row[0];
-			Double subTotal = Double.valueOf(row[1]);
-			Double total = Double.valueOf(row[2]);
-            String reservationNum = row[3];
-            Date date = Date.valueOf(row[4]);
-            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
-            formatter.format(date);
+            String paymentId = row[0];
+            String guestId = row[1];
+			Double subTotal = Double.valueOf(row[2]);
+			Double total = Double.valueOf(row[3]);
+            String reservationNum = row[4];
+            String date = row[5];
+            // Date date = Date.valueOf(row[5]);
+            
+            Date newDate = null;
+            try {
+                newDate = df.parse(date);
+            } catch (Exception e) {
+                //TODO: handle exception
+            }
+            
 
             // comment
 
@@ -63,7 +72,7 @@ public class PaymentDB extends DB {
             // in the payment controller just use OrderController.getOrder(String orderId)
 
             ArrayList<String> orderId = new ArrayList<String>();
-            int rowNumber = 5;
+            int rowNumber = 6;
 
             while (rowNumber < row.length) {
                 // get orders
@@ -81,7 +90,7 @@ public class PaymentDB extends DB {
             
             }
 
-            Payment p = new Payment(guestId , orderId ,reservationNum ,formatter,total,subTotal);
+            Payment p = new Payment(paymentId, guestId , orderId ,reservationNum ,newDate,total,subTotal);
             allData.add(p);
 
         }
@@ -98,6 +107,7 @@ public class PaymentDB extends DB {
         for(int i =0; i<al.size();i++){
             Payment payment = (Payment)al.get(i);
             String[] toAddPayment = new String[]{
+                payment.getPaymentId(),
                 payment.getGuestId(),
                 String.valueOf(payment.getSubTotal()),
                 String.valueOf(payment.getTotal()),
