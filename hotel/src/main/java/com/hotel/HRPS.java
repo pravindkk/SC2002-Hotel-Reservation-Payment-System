@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import com.hotel.UI.MenuUI;
 import com.hotel.UI.OrderUI;
 import com.hotel.UI.ReservationUI;
+import com.hotel.UI.RoomUI;
 import com.hotel.controller.*;
 import com.hotel.system.Guest;
 import com.hotel.system.Order;
@@ -45,10 +46,12 @@ public class HRPS {
         // menu.displayOptions();
         // test.displayOptions();
 
-        ReservationUI res = new ReservationUI();
+        // ReservationUI res = new ReservationUI();
         // ReservationController resControl = new ReservationController();
         // resControl.createReservation();
         // RoomController roomCon = new RoomController();
+
+        RoomUI room = new RoomUI();
         
         
     }

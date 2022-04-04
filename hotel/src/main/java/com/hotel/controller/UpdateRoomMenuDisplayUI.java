@@ -37,6 +37,35 @@ public class UpdateRoomMenuDisplayUI {
         return roomId;
     }
 
+    public static String createRoomId() throws IOException {
+        String roomId;
+        String roomRegExp = "[0][2-7][-][0][1-8]";
+        Pattern roomIdPattern = Pattern.compile(roomRegExp);
+        do {
+            
+			System.out.println("*Format xx-yy where xx is Floor Number and yy is Room Number.");
+			System.out.println("*Floor number from 02 - 07");
+			System.out.println("*Room number from 01 - 08");
+            System.out.print("Please enter Room ID(E.g 02-04):  ");
+
+            roomId = sc.nextLine();
+            System.out.println();
+			// Matcher matcher = roomIdPattern.matcher(roomId);
+            if(roomId.length() != 5 || !roomIdPattern.matcher(roomId).matches()) {
+				roomId = "";
+				System.out.println("You have entered a invalid Room Id. Please try again. (E.g. 02-04)");
+            } else {
+
+                if (RoomController.checkRoomIDExists(roomId) != true) break;
+                else {
+                    System.out.println("The Room Id you have entered does not exist. Please enter another Room Id.");
+                }
+            }
+
+        } while (true);
+        return roomId;
+    }
+
     public static RoomType updateRoomType() {
         RoomType roomType = RoomType.SINGLE;
         do {
@@ -80,7 +109,7 @@ public class UpdateRoomMenuDisplayUI {
     public static BedType updateBedType() {
         BedType bedType = BedType.SINGLE;
         do {
-            System.out.println("Please enter Room Type: ");
+            System.out.println("Please enter Bed Type: ");
 			System.out.println("(1) Single");
 			System.out.println("(2) Double");
 			System.out.println("(3) Super Single");

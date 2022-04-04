@@ -30,9 +30,9 @@ public class RoomController {
         
     // }
 
-    public void createRoom() throws IOException {
+    public static void createRoom() throws IOException {
 
-        String roomId = UpdateRoomMenuDisplayUI.updateRoomId();
+        String roomId = UpdateRoomMenuDisplayUI.createRoomId();
         String[] parts = roomId.split("-");
         String roomFloor = parts[0];
         Integer roomNumber = Integer.valueOf(parts[1]);
@@ -178,6 +178,18 @@ public class RoomController {
         saveSpecificRoomByRoomId(room);
 
 
+    }
+
+    public static void deleteRoom(String roomId) throws IOException {
+        ArrayList allData = getAllRooms();
+        for (int i=0; i<allData.size(); i++) {
+            Room r = (Room) allData.get(i);
+            if (roomId.equals(r.getRoomId())){
+                allData.remove(i);
+            }
+        }
+        saveData(allData);
+        
     }
 
     public static boolean checkRoomIDExists(String roomId) throws IOException {
