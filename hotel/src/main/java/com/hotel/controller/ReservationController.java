@@ -172,7 +172,7 @@ public class ReservationController {
             Reservation r = (Reservation) allData.get(i);
             // System.out.print(r.getRoomId());
             if (reservationId.equals(r.getReservationNum())) {
-                System.out.print("hello");
+                // System.out.print("hello");
                 return r;
             }
         }
@@ -377,6 +377,7 @@ public class ReservationController {
     public static void changeRoomStatus(String newRoomId, RoomStatus roomStatus) throws IOException {
         Room r = RoomController.getSpecificRoom(newRoomId);
         r.setRoomStatus(roomStatus);
+        System.out.println(r.getRoomId());
         RoomController.saveSpecificRoomByRoomId(r);
     }
 

@@ -23,10 +23,11 @@ public class ReservationUI {
                     break;
                 
                 case 3:
-
+                    removeRes();
                     break;
                 case 4:
                     // displayOrder();
+                    printRese();
                     break;
 
                 case 5:
@@ -95,6 +96,7 @@ public class ReservationUI {
     }
 
     public void removeRes() {
+        sc.nextLine();
         try {
             String reservationId = sc.nextLine();
             reservationController.cancelReservation(reservationId);
@@ -105,7 +107,9 @@ public class ReservationUI {
     }
 
     public void printRese() {
+        sc.nextLine();
         try {
+            System.out.print("What is your reservation number: ");
             String reservationId = sc.nextLine();
             reservationController.printReservation(reservationId);
         } catch (Exception e) {
