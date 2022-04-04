@@ -57,6 +57,8 @@ public class PaymentDB extends DB {
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
             formatter.format(date);
 
+            // comment
+
             // use my menudb to refer to change this then change the write portion accordingly
             // in the payment controller just use OrderController.getOrder(String orderId)
 
