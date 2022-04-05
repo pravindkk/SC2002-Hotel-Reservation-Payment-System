@@ -70,7 +70,7 @@ public class Payment {
 
     
     /** 
-     * Takes a String paymentId and sets it as the new paymentId
+     * Takes String paymentId and sets it as the new paymentId
      * @param paymentId uniquely identifies the instance of payment
      */
     public void setPaymentId(String paymentId) {
@@ -88,7 +88,7 @@ public class Payment {
 
     
     /** 
-     * Takes a String guestId and sets it as the new guestId
+     * Takes String guestId and sets it as the new guestId
      * @param guestId uniquely identifies the guest that is making the payment
      */
     public void setGuestId(String guestId){
@@ -105,7 +105,7 @@ public class Payment {
     }
     
     /** 
-     * Takes a double subTotal and sets it as the new subTotal
+     * Takes double subTotal and sets it as the new subTotal
      * @param subTotal is the subtotal price to pay
      */
     public void setSubTotal(double subTotal){
@@ -122,7 +122,7 @@ public class Payment {
     }
     
     /** 
-     * Takes a double total and sets it as the new total
+     * Takes double total and sets it as the new total
      * @param total is the total price to pay
      */
     public void setTotal(double total){
@@ -139,7 +139,7 @@ public class Payment {
     }
     
     /** 
-     * Takes a String reservationNum and sets it as the new reservationNum
+     * Takes String reservationNum and sets it as the new reservationNum
      * @param reservationNum uniquely identifies the reservation that this payment is related to
      */
     public void setReservationNum(String reservationNum){
@@ -174,7 +174,7 @@ public class Payment {
     }
     
     /** 
-     * Takes a Date date and sets it as the new date
+     * Takes Date date and sets it as the new date
      * @param date is the date at which the payment is made
      */
     public void setDate(Date date){
