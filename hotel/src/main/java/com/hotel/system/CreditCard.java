@@ -2,6 +2,13 @@ package com.hotel.system;
 
 import com.hotel.system.enums.CreditCardType;
 
+/**
+ * Represents the class of CreditCard , which would then allow a guest to input their credit card details
+ * @author Vignesh Ezhil
+ * @version 1.0
+ * @since 2022-04-52
+ */
+
 public class CreditCard {
 
     private String guestID;
@@ -10,6 +17,16 @@ public class CreditCard {
     private String expiry;
     private String CVV;
     public CreditCardType cardType;
+
+    /**
+     * 
+     * @param guestID
+     * @param Name
+     * @param CardNo
+     * @param expiry
+     * @param CVV
+     * @param cardType
+    */
 
     public CreditCard(String guestID , String Name , String CardNo , String expiry, String CVV , CreditCardType cardType ){
         this.guestID = guestID;
