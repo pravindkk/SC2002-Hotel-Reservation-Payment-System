@@ -14,7 +14,12 @@ import com.hotel.system.Reservation;
 import com.hotel.system.enums.*;
 
 // import Entity.Reservation;
-
+/**
+ * Represents the derived class of DB , which is used to read and write all data to the text file that contains Reservation.
+ * @author Vignesh Ezhil
+ * @version 1.0
+ * @since 1.0
+ */
 
 public class ReservationDB extends DB {
 	
@@ -34,9 +39,17 @@ public class ReservationDB extends DB {
 
     }
 
+    
+  
+    /** 
+     * @return The fucntion getPath returns the path of the file as a String
+     */
+
     public String getPath() {
         return this.path;
     }
+
+    
 
     // public static void main(String[] args) throws ParseException, IOException{
     //     File file = new File("hotel/reservation.csv");
@@ -85,6 +98,12 @@ public class ReservationDB extends DB {
     //     // System.out.println("_______________________________________________");
     // }
 
+
+    /** 
+     * @param fileName The name of the text file is passed in as a String input
+     * @return ArrayList of the data in the text file is returned
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
 	@Override
 	public ArrayList read(String fileName) throws IOException {
         List<String[]> listing = super.readAllData(fileName);
@@ -135,7 +154,14 @@ public class ReservationDB extends DB {
 		
 	}
 	
-	@Override
+	
+    /** 
+     * @param fileName The name of the text file that the data is going to be written to is passed in as a String input
+     * @param al ArrayList of the data that is going to be written to is passed as a input
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
+    
+    @Override
 	public void save(String filename, List al) throws IOException {
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         List<String[]> toWrite = new ArrayList<String[]>();

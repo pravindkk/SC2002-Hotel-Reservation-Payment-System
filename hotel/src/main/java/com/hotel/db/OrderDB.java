@@ -19,7 +19,15 @@ import com.hotel.system.enums.RoomType;
 
 import org.apache.commons.lang3.ArrayUtils;
 
+/**
+ * Represents the derived class of DB , which is used to read and write all data to the text file that contains Orders.
+ * @author Vignesh Ezhil
+ * @version 1.0
+ * @since 1.0
+ */
+
 public class OrderDB extends DB{
+
     private File database = new File("hotel/orders.csv");
     SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
     private String path;
@@ -36,9 +44,22 @@ public class OrderDB extends DB{
 
     }
 
+    
+    /** 
+     * @return The fucntion getPath returns the path of the file as a String
+     */
+
+
     public String getPath() {
         return this.path;
     }
+
+    
+    /** 
+     * @param fileName The name of the text file is passed in as a String input
+     * @return ArrayList of the data in the text file is returned
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
 
     @Override
 	public ArrayList read(String fileName) throws IOException {
@@ -84,6 +105,13 @@ public class OrderDB extends DB{
         }
         return allData;
 	}
+
+    
+    /** 
+     * @param fileName The name of the text file that the data is going to be written to is passed in as a String input
+     * @param al ArrayList of the data that is going to be written to is passed as a input
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
 
     @Override
     public void save(String fileName, List al) throws IOException {
