@@ -9,9 +9,38 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents the abstract class of DB , which is used to read and write all data to the text file.
+ * @author Vignesh Ezhil
+ * @version 1.0
+ * @since 1.0
+ */
+
 abstract class DB {
+    /**
+     * 
+     * @param fileName The name of the file is passed as the parameter so that data could be read from the text file
+     * @return
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
     public abstract ArrayList read(String fileName) throws IOException ;
+
+    /**
+     * 
+     * @param fileName The name of the file that is the data is going to be written to 
+     * @param al Contains data that is going to be written in to the file
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
+
+
+
 	public abstract void save(String fileName, List al) throws IOException ;
+
+    /**
+     * 
+     * @param file The name of the file is passed as the parameter so that data could be read from the text file
+     * @return An arraylist of the data is returned
+     */
 
     public static List readAllData(String file)
     {
@@ -34,6 +63,13 @@ abstract class DB {
         }
 		return null;
     }
+
+    /**
+     * 
+     * @param fileName The name of the file that is the data is going to be writtten to 
+     * @param stringArray Contains data that is going to be written in to the file
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
 
     public static void writeAllData(String fileName, List<String[]> stringArray) throws IOException {
         CSVWriter writer = new CSVWriter(new FileWriter(fileName));
