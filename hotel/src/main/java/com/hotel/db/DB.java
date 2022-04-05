@@ -20,7 +20,7 @@ abstract class DB {
     /**
      * 
      * @param fileName The name of the file is passed as the parameter so that data could be read from the text file
-     * @return
+     * @return An arraylist of the data is returned
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
     public abstract ArrayList read(String fileName) throws IOException ;
