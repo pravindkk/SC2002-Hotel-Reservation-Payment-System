@@ -20,46 +20,9 @@ public class HRPS {
     static Scanner sc = new Scanner(System.in);
     static ReservationUI res = new ReservationUI();
     static RoomUI room = new RoomUI();
+    static MenuUI menu = new MenuUI();
+    static OrderUI order = new OrderUI();
     public static void main(String[] args) throws IOException {
-        // ReservationController test = new ReservationController();
-
-        // test.createReservation();
-        // RoomController room = new RoomController();
-        // Room r = room.getSpecificRoom("02-04");
-        // r.setRoomStatus(RoomStatus.OCCUPIED);
-        // RoomController.saveSpecificRoomByRoomId(r);
-
-        // GuestController g = new GuestController();
-        // // Guest hotel = g.CreateGuest();
-        // // g.UpdateGuest("1231");
-        // g.DeleteGuest("1231");
-        // Guest hotel = g.RetrieveGuest("1231");
-        // System.out.println(hotel.getGuestId());
-
-        // OrderUI test = new OrderUI();
-
-        // OrderController order = new OrderController();
-        // order.displayOrder("0-J-01042022");
-        // Order hello = order.getOrderById("0-J-01042022");
-        // System.out.print(hello.getItem().get(0).getItemId());
-        // for (int i=0; i<hello.getItem().size(); i++) {
-        //     System.out
-        // }
-        // for (int i=0; i<)
-        // MenuUI menu = new MenuUI();
-        // // menu.createNewItem();
-        // menu.displayOptions();
-        // test.displayOptions();
-
-        
-        // ReservationController resControl = new ReservationController();
-        // resControl.createReservation();
-        // RoomController roomCon = new RoomController();
-
-        // RoomUI room = new RoomUI();
-
-
-
         
         do {
             int choice = mainDisplayOptions();
@@ -73,10 +36,13 @@ public class HRPS {
                     break;
                 
                 case 3:
-                    MenuUI menuUI = new MenuUI();
+                    chooseMenu();
+                    break;
+                case 4:
+                    chooseOrder();;
                     break;
                 
-                case 6:
+                case 7:
                     return;
                 default:
                     break;
@@ -101,16 +67,18 @@ public class HRPS {
                                "(1) Reservation\n"+
                                "(2) Rooms\n"+
                                "(3) Menu\n"+
-                               "(4) Payment\n"+
-                               "(5) Guest\n"+
-                               "(6) Back");
+                               "(4) Order\n"+
+                               "(5) Payment\n"+
+                               "(6) Guest\n"+
+                               "(7) Back");
             try {
+                System.out.print("What is your choice:  ");
                 choice = sc.nextInt();
             } catch (Exception e) {
                 //TODO: handle exception
             }
 
-        } while (choice<1 || choice >6);
+        } while (choice<1 || choice >7);
 
         return choice;
     }
@@ -156,13 +124,15 @@ public class HRPS {
     }
 
 
+    
+
+
     public static void chooseRoom() {
         int choice =0;
         do {
             choice  = MainDisplayUI.displayRoomOptions();
             switch (choice) {
                 case 1:
-                    // createRes();
                     room.createRoom();
                     break;
                 case 2:
@@ -175,11 +145,10 @@ public class HRPS {
                 case 4:
                     room.printRoom();
                     break;
-
                 case 5:
                     room.viewOccupancyRate();
                     break;
-                
+
                 case 6:
                     room.printAllRooms();
                     break;
@@ -197,4 +166,84 @@ public class HRPS {
         
 
     }
+    public static void chooseMenu() {
+        int choice =0;
+        do {
+            choice  = MainDisplayUI.displayMenuOptions();
+            switch (choice) {
+                case 1:
+                    // createRes();
+                    menu.createNewItem();
+                    break;
+                case 2:
+                    try {
+                        menu.updateMenuItem();
+                    } catch (IOException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                    break;
+                
+                case 3:
+                    try {
+                        menu.deleteMenuItem();
+                    } catch (IOException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                    break;
+                case 4:
+                    
+                    return;
+
+                default:
+                    System.out.println("Invalid input");
+                    break;
+            }
+        } while (true);
+        
+
+    }
+
+
+    public static void chooseOrder() {
+        int choice =0;
+        do {
+            choice  = MainDisplayUI.displayOrderOptions();
+            switch (choice) {
+                case 1:
+                    order.createNewOrder();
+                    break;
+                case 2:
+                    order.updateOrder();
+                    break;
+                
+                case 3:
+                    try {
+                        order.deleteOrder();
+                    } catch (IOException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                    break;
+                case 4:
+                    order.displayOrder();
+                    break;
+
+                case 5:
+                    return;
+            
+                default:
+                    System.out.println("Invalid input");
+                    break;
+            }
+        } while (true);
+        
+
+        
+
+    }
+
+
+
 }

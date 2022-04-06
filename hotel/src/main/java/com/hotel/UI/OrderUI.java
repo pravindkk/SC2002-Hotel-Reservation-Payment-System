@@ -30,80 +30,7 @@ public class OrderUI {
     OrderController orderController = new OrderController();
     static SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
-    /**
-     * This method prints the UI display for Order-related operations 
-     * and runs the user through the relevant operations
-    */
-    public OrderUI () {
-        int choice =0;
-        do {
-            choice  = displayOptions();
-            switch (choice) {
-                case 1:
-                    createNewOrder();
-                    break;
-                case 2:
-                    updateOrder();
-                    break;
-                
-                case 3:
-                    try {
-                        deleteOrder();
-                    } catch (IOException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                    break;
-                case 4:
-                    displayOrder();
-                    break;
-
-                case 5:
-                    return;
-            
-                default:
-                    System.out.println("Invalid input");
-                    break;
-            }
-        } while (true);
-        
-
-        
-
-    }
-
     
-    /** 
-     * This method prints the available options for Orders
-     * @return int
-     */
-    public int displayOptions() {
-        int choice;
-        do {
-            System.out.println("========================\n" + 
-                               "Room Service Orders\n"+
-                               "========================\n"+
-                               "(1) Create Order\n"+
-                               "(2) Update Order\n"+
-                               "(3) Remove Order\n"+
-                               "(4) View Order\n"+
-                               "(5) Back\n"+
-                               "========================\n"
-            );
-
-            System.out.print("What is your choice (1-5)?: ");
-            try {
-                choice = sc.nextInt();
-                if (choice >0 && choice <6) break;
-            } catch (Exception e) {
-                //TODO: handle exception
-                System.out.println("Enter a number between (1-5)!!");
-            }
-        } while (true);
-
-        return choice;
-    }
-
     /**
      * This method runs the relevant operations to create a new order.
      * It obtains all inputs then creates the new order
@@ -116,8 +43,6 @@ public class OrderUI {
         System.out.println("Enter room number:");
         roomId = sc.nextLine();
         System.out.println("");
-        // OrderController.checkID();
-        // Order order = new Order(roomId);
         try {
 			Reservation r = ReservationController.getReservationByRoomId(roomId);
 			if(r == null) {
@@ -178,10 +103,6 @@ public class OrderUI {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        // new Order(orderId, roomId, reservationNum, items, date, orderStatus, remarks)
-
-        // new Order(orderId, roomId, reservationNum, items, date, orderStatus, remarks)
-        // OrderController.saveOrders(toWrite);
     }
 
     /** 
@@ -201,22 +122,6 @@ public class OrderUI {
             // TODO Auto-generated catch block
             e1.printStackTrace();
         }
-        // do {
-        //     try {
-                
-        //         System.out.println("Enter order ID to be updated: ");
-        //         orderId = sc.nextLine();
-        //         // if(id <= 0) System.out.printf("Invalid input! ");
-        //         order = OrderController.getOrderById(orderId);
-        //         // if (order == null) orderId=null;
-        //     } catch (Exception e) {
-        //         System.out.println("Invalid input of orderId! ");
-        //     }
-        //     // sc.nextLine();
-        // } while (order==null);
-        // Order order = OrderController.retrieveOrder(orderId);
-        // if (order != null) updateOrder(order);
-        // else System.out.println("Order does not exist!");
         order.viewOrder();
         int choice =0;
         do {

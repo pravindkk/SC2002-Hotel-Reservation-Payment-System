@@ -2,6 +2,8 @@ package com.hotel.UI;
 
 import java.util.Scanner;
 
+import com.hotel.controller.MenuController;
+
 public class MainDisplayUI {
     static Scanner sc = new Scanner(System.in);
     public static int displayReservationOptions() {
@@ -49,7 +51,7 @@ public class MainDisplayUI {
                                "========================\n"
             );
 
-            System.out.print("What is your choice (1-6)?: ");
+            System.out.print("What is your choice (1-7)?: ");
             try {
                 choice = sc.nextInt();
                 if (choice >0 && choice <8) break;
@@ -62,4 +64,58 @@ public class MainDisplayUI {
 
         return choice;
     }
+
+    public static int displayMenuOptions() {
+        int choice=0;
+        do {
+            
+            try {
+                MenuController.printAllItems();
+                System.out.println("\n==================================================");
+                System.out.println(" Menu item Management: ");
+                System.out.println("==================================================");
+                System.out.println("(1) Create Menu item\t(2) Update Menu item");
+                System.out.println("(3) Remove Menu item\t(4) Back");
+                choice = sc.nextInt();
+                if (choice >0 && choice <5) break;
+                else System.out.println("Enter a number between (1-6)!!");
+            } catch (Exception e) {
+                //TODO: handle exception
+            }
+            
+            
+        } while(true);
+
+        return choice;
+    }
+
+
+    public static int displayOrderOptions() {
+        int choice;
+        do {
+            System.out.println("========================\n" + 
+                               "Room Service Orders\n"+
+                               "========================\n"+
+                               "(1) Create Order\n"+
+                               "(2) Update Order\n"+
+                               "(3) Remove Order\n"+
+                               "(4) View Order\n"+
+                               "(5) Back\n"+
+                               "========================\n"
+            );
+
+            System.out.print("What is your choice (1-5)?: ");
+            try {
+                choice = sc.nextInt();
+                if (choice >0 && choice <6) break;
+            } catch (Exception e) {
+                //TODO: handle exception
+                System.out.println("Enter a number between (1-5)!!");
+            }
+        } while (true);
+
+        return choice;
+    }
+
+    
 }
