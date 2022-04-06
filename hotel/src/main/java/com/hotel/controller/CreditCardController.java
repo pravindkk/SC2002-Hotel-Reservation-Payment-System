@@ -10,7 +10,12 @@ import java.util.ArrayList;
 import com.hotel.controller.UpdateCreditCardDetails;
 import com.hotel.system.enums.*;
 
-
+/**
+ * Represents the abstract class of DB , which is used to read and write all data to the text file.
+ * @author Vignesh Ezhil
+ * @version 1.0
+ * @since 1.0
+ */
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -19,6 +24,11 @@ public class CreditCardController {
     Scanner sc = new Scanner(System.in);
     static CreditCardDB allCreditCards = new CreditCardDB();
 
+    
+    /** 
+     * @return returns an Object of the class CreditCard
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
     public static CreditCard createCreditCard() throws IOException{
         String guestId = UpdateCreditCardDetails.UpdateGuestId();
         String name = UpdateCreditCardDetails.UpdateName();
@@ -36,12 +46,21 @@ public class CreditCardController {
     }
 
 
+    
+    /** 
+     * @return ArrayList
+     * @throws IOException
+     */
     public static ArrayList getAllCreditCards() throws IOException {
         ArrayList<CreditCard> allData = allCreditCards.read(allCreditCards.getPath());
         return allData;
     }
 
 
+    
+    /** 
+     * @param toWrite
+     */
     public static void saveCards(ArrayList toWrite) {
         try {
             allCreditCards.save(allCreditCards.getPath(), toWrite);
@@ -55,6 +74,11 @@ public class CreditCardController {
         }
     }
 
+    
+    /** 
+     * @param card
+     * @throws IOException
+     */
     public static void saveCardByID(CreditCard card) throws IOException {
         ArrayList allData = getAllCreditCards();
 
@@ -69,6 +93,12 @@ public class CreditCardController {
         System.out.println("Not updated CreditCard");
     }
 
+    
+    /** 
+     * @param GuestID
+     * @return CreditCard
+     * @throws IOException
+     */
     public static CreditCard RetrieveCreditCard(String GuestID) throws IOException{
         ArrayList allData = getAllCreditCards();
         // ArrayList toReturn = new ArrayList();
@@ -83,6 +113,11 @@ public class CreditCardController {
 
     }
 
+    
+    /** 
+     * @param guestId
+     * @throws IOException
+     */
     public void DeleteGuest(String guestId) throws IOException{
         ArrayList allData = getAllCreditCards();
         for (int i=0; i<allData.size(); i++) {
@@ -96,6 +131,11 @@ public class CreditCardController {
         System.out.println("cannot find the guest");
     }
 
+    
+    /** 
+     * @param guestId
+     * @throws IOException
+     */
     public void UpdateCreditCard(String guestId) throws IOException{
 
         // ArrayList allGuests = getAllGuests();
@@ -161,6 +201,11 @@ public class CreditCardController {
     }
 
 
+    
+    /** 
+     * @param args
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
         CreditCardController c = new CreditCardController();
         c.createCreditCard();

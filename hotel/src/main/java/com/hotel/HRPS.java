@@ -46,12 +46,12 @@ public class HRPS {
         // menu.displayOptions();
         // test.displayOptions();
 
-        // ReservationUI res = new ReservationUI();
+        ReservationUI res = new ReservationUI();
         // ReservationController resControl = new ReservationController();
         // resControl.createReservation();
         // RoomController roomCon = new RoomController();
 
-        RoomUI room = new RoomUI();
+        // RoomUI room = new RoomUI();
         
         
     }

@@ -64,101 +64,16 @@ public class ReservationController {
 
     }
 
-    public void createReservation() throws IOException {
-
-        Date checkInDate = UpdateReservationDetailsDisplayUI.updateCheckInDate();
-        Date checkOutDate = UpdateReservationDetailsDisplayUI.updateCheckOutDate();
-        String roomId = UpdateReservationDetailsDisplayUI.updateRoomId();
-        String guestId = UpdateReservationDetailsDisplayUI.updateGuestId();
-        Integer numOfAdults = UpdateReservationDetailsDisplayUI.updateNumberOfAdults();
-        Integer numOfChildren = UpdateReservationDetailsDisplayUI.updateNumberOfChildren();
-
-        System.out.println("");
-		System.out.println("Check-in Date: " + df.format(checkInDate));
-		System.out.println("Check-out Date: " + df.format(checkOutDate));
-		System.out.println("--------------------------------------------");
-		RoomController.printOneRoom(roomId);
-        System.out.println("");
-		System.out.println("Guest Id: " + guestId);
-		System.out.println("Number of adults: " + numOfAdults);
-		System.out.println("Number of children: " + numOfChildren);
-		System.out.println("Confirm Reservation? (y/n)");
-        System.out.println("");
-        String confirmation = sc.next();
-
-        if (confirmation.equalsIgnoreCase("y")) {
-
-            changeRoomStatus(roomId, RoomStatus.RESERVED);
-			String reservationDate = df.format(checkInDate).replaceAll("\\D", "");
-			String reservationRoomId = roomId.replaceAll("\\D", "");
-
-			String reservationNum = guestId.charAt(0) + "-" + reservationDate + "-" + reservationRoomId;
-
-			Reservation reservation = new Reservation(ReservationStatus.CONFIRMED,reservationNum, guestId, roomId, checkInDate, checkOutDate,
-					numOfAdults, numOfChildren);
-
-			ArrayList allReserve = getAllReservations();
-            // System.out.println(allReserve.size());
-            allReserve.add(reservation);
-            // System.out.println(allReserve.size());
-            saveReservationData(allReserve);
-
-		} else {
-			System.out.println("Reservation not confirmed!");
-		}
+    public void createReservation(Reservation toAdd) throws IOException {
+        changeRoomStatus(toAdd.getRoomId(), RoomStatus.RESERVED);
+        ArrayList allReserve = getAllReservations();
+        allReserve.add(toAdd);
+        saveReservationData(allReserve);
 
     }
 
 
-    public static void updateReservation() throws IOException {
-        System.out.print("Enter Reservation Number");
-        ArrayList allReservation = getAllReservations();
-        String reservationId = sc.next();
-        // ArrayList toChangeReservation = getSpecificReservation(reservationId);
-        Reservation reservation = getReservationByNum(reservationId);
-
-        if (reservation == null) {
-            System.out.println("Wrong Reservation Number");
-            return;
-        }
-        
-
-
-        int choice = 5;
-        do {
-            System.out.println("Please choose Reservation details to update\n"+
-                            "(1) Room Type\n"+
-                            "(2) Check-in Date\n"+
-                            "(3) Check-out Date\n"+
-                            "(4) Number of People\n");
-            choice = sc.nextInt();
-        } while(choice< 1 || choice > 4);
-
-        switch (choice) {
-            case 1:
-                RoomController.printRooms(RoomController.getVacantRooms());
-                String roomId = UpdateRoomMenuDisplayUI.updateRoomId();
-                switchRoomStatus(reservation.getRoomId(), roomId);
-                reservation.setRoomId(roomId);
-                break;
-            case 2:
-                Date checkIn = UpdateReservationDetailsDisplayUI.updateCheckInDate();
-                reservation.setCheckInDate(checkIn);
-                break;
-            case 3:
-                Date checkOut = UpdateReservationDetailsDisplayUI.updateCheckOutDate();
-                reservation.setCheckOutDate(checkOut);
-                break;
-            case 4:
-                Integer numOfAdults = UpdateReservationDetailsDisplayUI.updateNumberOfAdults();
-                Integer numOfChild = UpdateReservationDetailsDisplayUI.updateNumberOfChildren();
-                reservation.setNumOfAdults(numOfAdults);
-                reservation.setNumOfChildren(numOfChild);
-                break;
-            default:
-                break;
-        }
-
+    public static void updateReservation(Reservation reservation) throws IOException {
 
         saveSpecificReservationByGuestId(reservation);
         
@@ -388,7 +303,7 @@ public class ReservationController {
         RoomController.saveSpecificRoomByRoomId(oldRoom);
         
         Room newRoom = RoomController.getSpecificRoom(newRoomId);
-        newRoom.setRoomStatus(RoomStatus.VACANT);
+        newRoom.setRoomStatus(RoomStatus.RESERVED);
         RoomController.saveSpecificRoomByRoomId(newRoom);
 
     }

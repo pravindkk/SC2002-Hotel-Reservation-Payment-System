@@ -1,14 +1,21 @@
 package com.hotel.UI;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 import com.hotel.controller.ReservationController;
+import com.hotel.controller.RoomController;
 import com.hotel.controller.UpdateReservationDetailsDisplayUI;
+import com.hotel.controller.UpdateRoomMenuDisplayUI;
+import com.hotel.system.Reservation;
+import com.hotel.system.enums.ReservationStatus;
 
 public class ReservationUI {
     static Scanner sc = new Scanner(System.in);
     ReservationController reservationController = new ReservationController();
+    static SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
     public ReservationUI () {
         int choice =0;
@@ -79,7 +86,40 @@ public class ReservationUI {
 
     public void createRes() {
         try {
-            reservationController.createReservation();
+            // reservationController.createReservation();
+            Date checkInDate = UpdateReservationDetailsDisplayUI.updateCheckInDate();
+            Date checkOutDate = UpdateReservationDetailsDisplayUI.updateCheckOutDate();
+            String roomId = UpdateReservationDetailsDisplayUI.updateRoomId();
+            String guestId = UpdateReservationDetailsDisplayUI.updateGuestId();
+            Integer numOfAdults = UpdateReservationDetailsDisplayUI.updateNumberOfAdults();
+            Integer numOfChildren = UpdateReservationDetailsDisplayUI.updateNumberOfChildren();
+
+            System.out.println("");
+            System.out.println("Check-in Date: " + df.format(checkInDate));
+            System.out.println("Check-out Date: " + df.format(checkOutDate));
+            System.out.println("--------------------------------------------");
+            RoomController.printOneRoom(roomId);
+            System.out.println("");
+            System.out.println("Guest Id: " + guestId);
+            System.out.println("Number of adults: " + numOfAdults);
+            System.out.println("Number of children: " + numOfChildren);
+            System.out.println("Confirm Reservation? (y/n)");
+            System.out.println("");
+            String confirmation = sc.next();
+
+            if (confirmation.equalsIgnoreCase("y")) {
+                String reservationDate = df.format(checkInDate).replaceAll("\\D", "");
+                String reservationRoomId = roomId.replaceAll("\\D", "");
+                String reservationNum = guestId.charAt(0) + "-" + reservationDate + "-" + reservationRoomId;
+                Reservation reservation = new Reservation(ReservationStatus.CONFIRMED,reservationNum, guestId, roomId, checkInDate, checkOutDate,
+                        numOfAdults, numOfChildren);
+                reservationController.createReservation(reservation);   
+
+            } else {
+                System.out.println("Reservation not confirmed!");
+            }
+
+
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -88,7 +128,58 @@ public class ReservationUI {
 
     public void updateRes() {
         try {
-            reservationController.updateReservation();
+
+            System.out.print("Enter Reservation Number:  ");
+
+            String reservationId = sc.next();
+
+            Reservation reservation = reservationController.getReservationByNum(reservationId);
+
+            if (reservation == null) {
+                System.out.println("Wrong Reservation Number");
+                return;
+            }
+            
+
+
+            int choice = 5;
+            do {
+                System.out.println("Please choose Reservation details to update\n"+
+                                "(1) Room Type\n"+
+                                "(2) Check-in Date\n"+
+                                "(3) Check-out Date\n"+
+                                "(4) Number of People\n");
+                choice = sc.nextInt();
+            } while(choice< 1 || choice > 4);
+
+            switch (choice) {
+                case 1:
+                    RoomController.printRooms(RoomController.getVacantRooms());
+                    String roomId = UpdateRoomMenuDisplayUI.updateRoomId();
+                    reservationController.switchRoomStatus(reservation.getRoomId(), roomId);
+                    reservation.setRoomId(roomId);
+                    break;
+                case 2:
+                    Date checkIn = UpdateReservationDetailsDisplayUI.updateCheckInDate();
+                    reservation.setCheckInDate(checkIn);
+                    break;
+                case 3:
+                    Date checkOut = UpdateReservationDetailsDisplayUI.updateCheckOutDate();
+                    reservation.setCheckOutDate(checkOut);
+                    break;
+                case 4:
+                    Integer numOfAdults = UpdateReservationDetailsDisplayUI.updateNumberOfAdults();
+                    Integer numOfChild = UpdateReservationDetailsDisplayUI.updateNumberOfChildren();
+                    reservation.setNumOfAdults(numOfAdults);
+                    reservation.setNumOfChildren(numOfChild);
+                    break;
+                default:
+                    break;
+            }
+
+            reservationController.updateReservation(reservation);
+
+
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
