@@ -24,7 +24,7 @@ public class ReservationUI {
     ReservationController reservationController = new ReservationController();
     static SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
-    public ReservationUI () {
+    public void ReservationUI () {
         int choice =0;
         do {
             choice  = displayOptions();
@@ -49,8 +49,8 @@ public class ReservationUI {
                     break;
                 
                 case 6:
-                    // return;
-                    System.exit(1);
+                    return;
+                    // System.exit(1);
             
                 default:
                     System.out.println("Invalid input");

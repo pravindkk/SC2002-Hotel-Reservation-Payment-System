@@ -48,7 +48,7 @@ public class HRPS {
         // menu.displayOptions();
         // test.displayOptions();
 
-        // ReservationUI res = new ReservationUI();
+        ReservationUI res = new ReservationUI();
         // ReservationController resControl = new ReservationController();
         // resControl.createReservation();
         // RoomController roomCon = new RoomController();
@@ -56,11 +56,12 @@ public class HRPS {
         // RoomUI room = new RoomUI();
 
 
+
         int choice = mainDisplayOptions();
         do {
             switch (choice) {
                 case 1:
-                    new ReservationUI();
+                    res.ReservationUI();
                     break;
     
                 case 2:
