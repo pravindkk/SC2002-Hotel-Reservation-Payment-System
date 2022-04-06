@@ -19,7 +19,7 @@ import com.hotel.system.Reservation;
 import com.hotel.system.enums.OrderStatus;
 
 /**
- * Represents the class of Payment, which holds the information at the instance the payment is made
+* Represents the class of OrderUI, which prints the UI for Order-related operations 
  * @author Melissa Ng Li Yun
  * @version 1.0
  * @since 1.0
@@ -30,6 +30,10 @@ public class OrderUI {
     OrderController orderController = new OrderController();
     static SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
+    /**
+     * This method prints the UI display for Order-related operations 
+     * and runs the user through the relevant operations
+    */
     public OrderUI () {
         int choice =0;
         do {
@@ -68,9 +72,9 @@ public class OrderUI {
 
     }
 
-
     
     /** 
+     * This method prints the available options for Orders
      * @return int
      */
     public int displayOptions() {
@@ -100,6 +104,10 @@ public class OrderUI {
         return choice;
     }
 
+    /**
+     * This method runs the relevant operations to create a new order.
+     * It obtains all inputs then creates the new order
+     */
     public void createNewOrder() {
         // gesc = new Scanner(System.in);
     	String roomId;
@@ -176,6 +184,10 @@ public class OrderUI {
         // OrderController.saveOrders(toWrite);
     }
 
+    /** 
+     * This method runs the relevant operations to update an Order
+     * It obtains all relevant inputs then updates the order
+     */
     public static void updateOrder() {
         // String orderId=null;
         Order order=null;
@@ -318,6 +330,8 @@ public class OrderUI {
 
     
     /** 
+     * This method runs the relevant operations and deletes an order
+     * It obtains the relevant inputs then deletes the user-specified order
      * @throws IOException
      */
     public static void deleteOrder() throws IOException {
@@ -343,6 +357,9 @@ public class OrderUI {
 
     }
 
+    /**
+     * This method displays the details of the order to the user
+     */
     public static void displayOrder() {
         Order order=null;
         sc.nextLine();

@@ -8,20 +8,45 @@ import com.hotel.db.OrderDB;
 import com.hotel.system.Item;
 import com.hotel.system.Order;
 
+/**
+ * Represents the controller function of Order
+ * @author Vignesh Ezhil
+ * @version 1.0
+ * @since 1.0
+ */
+
+
 public class OrderController {
     static OrderDB allOrders = new OrderDB();
     Scanner sc = new Scanner(System.in);
 
+    
+    /** 
+     * @return ArrayList returns an ArrayList of all the Guests stored in the database
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
     public static ArrayList<Order> getAllOrders() throws IOException {
         return allOrders.read(allOrders.getPath());
     }
 
+    
+    /** 
+     * @param order Order object in which the Item needs to be added in 
+     * @param itemId Integer input of itemtID is entered so that the corresponding item is added to the Order object
+     * @throws IOException IOException Due to communication with the DataBase IOexception is required
+     */
     public void createOrderItem(Order order, Integer itemId) throws IOException {
         Item item = MenuController.getItem(itemId);
         if (item != null) order.addItem(item);
         else System.out.println("This item does not exist");
     }
 
+    
+    /** 
+     * @param order Order object in which the order needs to be updated. 
+     * Once order is updated, it is stored in the database
+     * @throws IOException IOException Due to communication with the DataBase IOexception is required
+     */
     public static void updateOrder(Order order) throws IOException {
         ArrayList<Order> orderList = getAllOrders();
         for (int i=0; i<orderList.size(); i++) {
@@ -33,6 +58,11 @@ public class OrderController {
         saveAllItems(orderList);
     }
 
+    
+    /** 
+     * @param order Order object in which the order needs to be updated. 
+     * @throws IOException OException Due to communication with the DataBase IOexception is required
+     */
     public static void deleteOrder(Order order) throws IOException {
         ArrayList<Order> orderList = getAllOrders();
         for (int i=0; i<orderList.size(); i++) {
@@ -44,6 +74,12 @@ public class OrderController {
         saveAllItems(orderList);
     }
 
+    
+    /** 
+     * @param orderID String input of orderID is entered so that the corresponding order object is retrieved
+     * @return Corresponding record for the input OrderID
+     * @throws IOException IOException OException Due to communication with the DataBase IOexception is required
+     */
     public static Order getOrderById(String orderID) throws IOException {
         ArrayList<Order> orderList = getAllOrders();
         for (Order order : orderList) {
@@ -53,6 +89,12 @@ public class OrderController {
         return null;
     }
 
+    
+    /** 
+     * @param roomID String input of roomID is entered so that the corresponding order object is retrieved
+     * @return Returns an ArrayList<Order> of corresponding orders from the databse
+     * @throws IOException IOException OException Due to communication with the DataBase IOexception is required
+     */
     public static ArrayList<Order> getOrderListByRoomId(String roomID) throws IOException {
     	ArrayList<Order> ol = new ArrayList<Order>();
         ArrayList<Order> orderList = getAllOrders();
@@ -64,6 +106,11 @@ public class OrderController {
     	else return null;
     }
 
+    
+    /** 
+     * @param orderID String input of orderID is entered so that the corresponding order object could be displayed
+     * @throws IOException IOException OException Due to communication with the DataBase IOexception is required
+     */
     public static void displayOrder(String orderID) throws IOException {
         Order order;
         order = getOrderById(orderID);
@@ -71,6 +118,11 @@ public class OrderController {
         order.viewOrder();
     }
 
+    
+    /** 
+     * @param item Item is passed in as input so that the item in the orders could be updated
+     * @throws IOException IOException OException Due to communication with the DataBase IOexception is required
+     */
     public void updateItemInOrders(Item item) throws IOException {
         ArrayList<Order> orderList = getAllOrders();
         for (Order order : orderList) {
@@ -87,6 +139,10 @@ public class OrderController {
         
     }
 
+    
+    /** 
+     * @param toWrite Contains an ArrayList of all the Orders that is going to be stored in the database
+     */
     public static void saveAllItems(ArrayList toWrite){
         try {
             allOrders.save(allOrders.getPath(), toWrite);
@@ -97,6 +153,11 @@ public class OrderController {
         }
     }
 
+    
+    /** 
+     * @param newOrder Order is passed as input so that it can be written to the database
+     * @throws IOException IOException OException Due to communication with the DataBase IOexception is required
+     */
     public static void saveOneOrder(Order newOrder) throws IOException {
         ArrayList<Order> orders = getAllOrders();
         orders.add(newOrder);
