@@ -24,6 +24,11 @@ public class GuestController {
     Scanner sc = new Scanner(System.in);
     static GuestDB allGuests = new GuestDB();
 
+    
+    /** 
+     * @return returns an Object of the class Guest
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
     public static Guest CreateGuest() throws IOException{
 
         String name = UpdateGuestMenu.UpdateName();
@@ -47,6 +52,10 @@ public class GuestController {
         return guest;
     }
 
+    
+    /** 
+     * @param toWrite Contains an ArrayList of all the Guests that is going to be stored in the database
+     */
     public static void saveGuests(ArrayList toWrite) {
         try {
             allGuests.save(allGuests.getPath(), toWrite);
@@ -60,6 +69,11 @@ public class GuestController {
         }
     }
 
+    
+    /** 
+     * @param guest Contains an object of the class Guest that is going to be stored in the database
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
     public static void saveGuestByID(Guest guest) throws IOException {
         ArrayList allData = getAllGuests();
 
@@ -74,6 +88,11 @@ public class GuestController {
         System.out.println("Not updated guest");
     }
 
+    
+    /** 
+     * @param guestId String input of GuestID is entered so that the corresponding Guest object is returned
+     * @throws IOException ue to communication with the DataBase IOexception is required
+     */
     public void UpdateGuest(String guestId) throws IOException{
 
         // ArrayList allGuests = getAllGuests();
@@ -151,6 +170,11 @@ public class GuestController {
         // saveData(allGuests);
     }
 
+    
+    /** 
+     * @param guestId String input of GuestID is entered so that the corresponding guest object is deleted
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
     public void DeleteGuest(String guestId) throws IOException{
         ArrayList allData = getAllGuests();
         // Guest guestToDelete = RetrieveGuest(guestId);
@@ -180,11 +204,21 @@ public class GuestController {
 
     }
 
+    
+    /** 
+     * @return ArrayList returns an ArrayList of all the Guests stored in the database
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
     public static ArrayList getAllGuests() throws IOException {
         ArrayList<Guest> allData = allGuests.read(allGuests.getPath());
         return allData;
     }
 
+    
+    /** 
+     * Prints out all the guest details in the database
+     * @throws IOException ue to communication with the DataBase IOexception is required
+     */
     public void PrintAllGuestDetails() throws IOException{
         // print out guestDetails
         ArrayList allGuests = getAllGuests();
@@ -204,6 +238,8 @@ public class GuestController {
 
     }
 
+    
+
     // public Guest RetrieveGuest(Guest g) throws IOException{
     //     // retrieve guest by guestID
     //     ArrayList allData = getAllGuests();
@@ -218,6 +254,12 @@ public class GuestController {
     //     return null;
 
     // }
+
+    /**
+     * @param GuestID String input of GuestID is entered so that the corresponding guest object is retrieved
+     * @return Returns the corresponding Guest object from the database
+     * @throws IOException @throws IOException ue to communication with the DataBase IOexception is required
+     */
 
     public static Guest RetrieveGuest(String GuestID) throws IOException{
         ArrayList allData = getAllGuests();
