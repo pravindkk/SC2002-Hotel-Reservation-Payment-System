@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.hotel.UI.MainDisplayUI;
 import com.hotel.UI.MenuUI;
 import com.hotel.UI.OrderUI;
 import com.hotel.UI.ReservationUI;
@@ -18,6 +19,7 @@ import com.hotel.system.enums.RoomStatus;
 public class HRPS {
     static Scanner sc = new Scanner(System.in);
     static ReservationUI res = new ReservationUI();
+    static RoomUI room = new RoomUI();
     public static void main(String[] args) throws IOException {
         // ReservationController test = new ReservationController();
 
@@ -58,16 +60,16 @@ public class HRPS {
 
 
 
-        int choice = mainDisplayOptions();
+        
         do {
+            int choice = mainDisplayOptions();
             switch (choice) {
                 case 1:
                     chooseReservation();
-
                     break;
     
                 case 2:
-                    RoomUI roomUI = new RoomUI();
+                    chooseRoom();
                     break;
                 
                 case 3:
@@ -79,6 +81,7 @@ public class HRPS {
                 default:
                     break;
             }
+            // choice
         } while (true);
         
 
@@ -112,39 +115,12 @@ public class HRPS {
         return choice;
     }
 
-    public static int displayReservationOptions() {
-        int choice;
-        do {
-            System.out.println("========================\n" + 
-                               "Reservations Order\n"+
-                               "========================\n"+
-                               "(1) Create Reservation\n"+
-                               "(2) Update Reservation\n"+
-                               "(3) Remove Reservation\n"+
-                               "(4) Print Reservation\n"+
-                               "(5) View All Reservations\n"+
-                               "(6) Back\n"+
-                               "========================\n"
-            );
-
-            System.out.print("What is your choice (1-6)?: ");
-            try {
-                choice = sc.nextInt();
-                if (choice >0 && choice <7) break;
-                else System.out.println("Enter a number between (1-6)!!");
-            } catch (Exception e) {
-                //TODO: handle exception
-                
-            }
-        } while (true);
-
-        return choice;
-    }
+    
 
     public static void chooseReservation () {
         int choice =0;
         do {
-            choice  = displayReservationOptions();
+            choice  = MainDisplayUI.displayReservationOptions();
             switch (choice) {
                 case 1:
                     res.createRes();
@@ -167,7 +143,49 @@ public class HRPS {
                 
                 case 6:
                     return;
-                    // System.exit(1);
+            
+                default:
+                    System.out.println("Invalid input");
+                    return;
+            }
+        } while (true);
+        
+
+        
+
+    }
+
+
+    public static void chooseRoom() {
+        int choice =0;
+        do {
+            choice  = MainDisplayUI.displayRoomOptions();
+            switch (choice) {
+                case 1:
+                    // createRes();
+                    room.createRoom();
+                    break;
+                case 2:
+                    room.updateRoom();
+                    break;
+                
+                case 3:
+                    room.deleteRoom();
+                    break;
+                case 4:
+                    room.printRoom();
+                    break;
+
+                case 5:
+                    room.viewOccupancyRate();
+                    break;
+                
+                case 6:
+                    room.printAllRooms();
+                    break;
+                
+                case 7:
+                    return;
             
                 default:
                     System.out.println("Invalid input");
