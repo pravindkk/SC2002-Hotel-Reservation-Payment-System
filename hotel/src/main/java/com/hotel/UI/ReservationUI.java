@@ -12,6 +12,13 @@ import com.hotel.controller.UpdateRoomMenuDisplayUI;
 import com.hotel.system.Reservation;
 import com.hotel.system.enums.ReservationStatus;
 
+/**
+ * Represents the class of Payment, which holds the information at the instance the payment is made
+ * @author Melissa Ng Li Yun
+ * @version 1.0
+ * @since 1.0
+ */
+
 public class ReservationUI {
     static Scanner sc = new Scanner(System.in);
     ReservationController reservationController = new ReservationController();
@@ -55,6 +62,10 @@ public class ReservationUI {
 
     }
 
+    
+    /** 
+     * @return int
+     */
     public int displayOptions() {
         int choice;
         do {

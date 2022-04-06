@@ -8,6 +8,13 @@ import com.hotel.system.enums.*;
 import com.hotel.controller.RoomController;
 import com.hotel.controller.UpdateRoomMenuDisplayUI;
 
+/**
+ * Represents the class of Payment, which holds the information at the instance the payment is made
+ * @author Vignesh Ezhil
+ * @version 1.0
+ * @since 1.0
+ */
+
 public class RoomUI {
     static Scanner sc = new Scanner(System.in);
     RoomController roomController = new RoomController();
@@ -55,6 +62,10 @@ public class RoomUI {
 
     }
 
+    
+    /** 
+     * @return int
+     */
     public int displayOptions() {
         int choice;
         do {
