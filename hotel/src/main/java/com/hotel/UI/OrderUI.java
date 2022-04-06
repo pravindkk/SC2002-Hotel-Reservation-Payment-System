@@ -18,6 +18,13 @@ import com.hotel.system.Order;
 import com.hotel.system.Reservation;
 import com.hotel.system.enums.OrderStatus;
 
+/**
+ * Represents the class of Payment, which holds the information at the instance the payment is made
+ * @author Melissa Ng Li Yun
+ * @version 1.0
+ * @since 1.0
+ */
+
 public class OrderUI {
     static Scanner sc = new Scanner(System.in);
     OrderController orderController = new OrderController();
@@ -62,6 +69,10 @@ public class OrderUI {
     }
 
 
+    
+    /** 
+     * @return int
+     */
     public int displayOptions() {
         int choice;
         do {
@@ -305,6 +316,10 @@ public class OrderUI {
     }
 
 
+    
+    /** 
+     * @throws IOException
+     */
     public static void deleteOrder() throws IOException {
         // ArrayList<Order> allOrders = OrderController.getAllOrders();
         

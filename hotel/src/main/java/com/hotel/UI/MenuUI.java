@@ -10,10 +10,23 @@ import com.hotel.controller.MenuController;
 import com.hotel.system.Item;
 import com.hotel.system.enums.FoodType;
 
+/**
+ * Represents the class of CreditCard, which allows a user to input a guest's credit card details
+ * @author Quek Kar Min
+ * @version 1.0
+ * @since 1.0
+ */
+
 public class MenuUI {
     MenuController menu = new MenuController();
     static Scanner sc = new Scanner(System.in);
 
+    
+    /** 
+     * This method prints the UI for display options
+     * It gets the choice of the user then calls the relevant methods
+     * @throws IOException
+     */
     public void displayOptions() throws IOException {
     	int choice;
     	do {
@@ -44,6 +57,10 @@ public class MenuUI {
             }
         } while (choice < 4);
     }
+
+    /** 
+     * This method prints the UI to create a new Item by calling the relevant methods
+    */
     public static void createNewItem() {
         String itemName=getItemName();
         double price=getItemPrice();
@@ -61,6 +78,11 @@ public class MenuUI {
         }
     }
 
+    
+    /** 
+     * This method prints the commandline UI foor updating a menu item
+     * @throws IOException
+     */
     public static void updateMenuItem() throws IOException {
         Integer itemdId=null;
         do {
@@ -117,6 +139,11 @@ public class MenuUI {
         
     }
 
+    
+    /** 
+     * This method prints the UI to delete an item from the menu
+     * @throws IOException
+     */
     public static void deleteMenuItem() throws IOException {
         Integer itemdId=null;
         do {
@@ -145,6 +172,11 @@ public class MenuUI {
 
 
 
+    
+    /** 
+     * This method prints the UI to get the name of an item
+     * @return String
+     */
     public static String getItemName() {
         String itemName=null;
         do {
@@ -161,6 +193,12 @@ public class MenuUI {
     }
 
 
+    
+    /** 
+     * This method prints the UI to get the description of an item
+     * After the description is obtained, it will be returned as a String
+     * @return String
+     */
     public static String getItemDesc(){
         String itemDesc=null;
         do {
@@ -176,6 +214,12 @@ public class MenuUI {
         return itemDesc;
     }
 
+    
+    /** 
+     * This method prints the UI to get the price of an item
+     * After the price is obtained, it will be returned as a double
+     * @return double
+     */
     public static double getItemPrice() {
         double price=0.0;
         do {
@@ -191,6 +235,12 @@ public class MenuUI {
         return price;
     }
 
+    
+    /** 
+     * This method prints the UI to get the FoodType of an item
+     * After the FoodType is obtained, it will be returned as a FoodType (STARTER, MAIN_COURSE MAIN_COURSE, DRINKS)
+     * @return FoodType
+     */
     public static FoodType getItemFoodType() {
         FoodType foodType=null;
         do {

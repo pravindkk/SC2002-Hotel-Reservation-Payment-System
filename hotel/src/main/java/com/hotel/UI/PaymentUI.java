@@ -17,6 +17,12 @@ import com.hotel.system.Reservation;
 import com.hotel.system.Room;
 import com.hotel.system.enums.OrderStatus;
 
+/**
+ * Represents the class of Payment, which holds the information at the instance the payment is made
+ * @author Melissa Ng Li Yun
+ * @version 1.0
+ * @since 1.0
+ */
 
 public class PaymentUI {
     Scanner sc = new Scanner(System.in);

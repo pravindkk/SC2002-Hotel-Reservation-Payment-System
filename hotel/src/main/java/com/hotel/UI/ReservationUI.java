@@ -6,6 +6,13 @@ import java.util.Scanner;
 import com.hotel.controller.ReservationController;
 import com.hotel.controller.UpdateReservationDetailsDisplayUI;
 
+/**
+ * Represents the class of Payment, which holds the information at the instance the payment is made
+ * @author Melissa Ng Li Yun
+ * @version 1.0
+ * @since 1.0
+ */
+
 public class ReservationUI {
     static Scanner sc = new Scanner(System.in);
     ReservationController reservationController = new ReservationController();
@@ -48,6 +55,10 @@ public class ReservationUI {
 
     }
 
+    
+    /** 
+     * @return int
+     */
     public int displayOptions() {
         int choice;
         do {
