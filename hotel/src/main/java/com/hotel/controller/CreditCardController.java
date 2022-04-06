@@ -11,7 +11,7 @@ import com.hotel.controller.UpdateCreditCardDetails;
 import com.hotel.system.enums.*;
 
 /**
- * Represents the abstract class of DB , which is used to read and write all data to the text file.
+ * Represents the controller function of CredtCard
  * @author Vignesh Ezhil
  * @version 1.0
  * @since 1.0
