@@ -18,7 +18,7 @@ import com.hotel.system.Room;
 import com.hotel.system.enums.OrderStatus;
 
 /**
- * Represents the class of Payment, which holds the information at the instance the payment is made
+ * Represents the class of PaymentUI, which prints the UI for Payment-related operations
  * @author Melissa Ng Li Yun
  * @version 1.0
  * @since 1.0
@@ -28,6 +28,10 @@ public class PaymentUI {
     Scanner sc = new Scanner(System.in);
     PaymentController paymentController = new PaymentController();
 
+    /**
+     * This method prints the UI for Payment related operations
+     * and runs the user through the relevant operations
+     */
     public void printPayment() {
         int method = 2;
         try {

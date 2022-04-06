@@ -11,7 +11,7 @@ import com.hotel.system.Item;
 import com.hotel.system.enums.FoodType;
 
 /**
- * Represents the class of CreditCard, which allows a user to input a guest's credit card details
+ * Represents the class of MenuUI, which prints the UI for Menu-related operations
  * @author Quek Kar Min
  * @version 1.0
  * @since 1.0
@@ -23,7 +23,7 @@ public class MenuUI {
 
     
     /** 
-     * This method prints the UI for display options
+     * This method prints the UI for display options.
      * It gets the choice of the user then calls the relevant methods
      * @throws IOException
      */

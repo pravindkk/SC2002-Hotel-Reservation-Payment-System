@@ -9,7 +9,7 @@ import com.hotel.controller.RoomController;
 import com.hotel.controller.UpdateRoomMenuDisplayUI;
 
 /**
- * Represents the class of Payment, which holds the information at the instance the payment is made
+ * Represents the class of RoomUI, which prints the UI for Room-related operations
  * @author Vignesh Ezhil
  * @version 1.0
  * @since 1.0
@@ -19,7 +19,9 @@ public class RoomUI {
     static Scanner sc = new Scanner(System.in);
     RoomController roomController = new RoomController();
 
-
+    /**
+     * This constructor runs the relevant operations based on the user's input
+     */
     public RoomUI () {
         int choice =0;
         do {
@@ -56,14 +58,13 @@ public class RoomUI {
                     break;
             }
         } while (true);
-        
-
-        
 
     }
 
     
     /** 
+     * This method prints the options available for the user to choose, 
+     * and gets the input to return to the constructor
      * @return int
      */
     public int displayOptions() {
@@ -96,6 +97,9 @@ public class RoomUI {
         return choice;
     }
 
+    /**
+     * This method calls another method to create a room
+     */
     public void createRoom() {
         try {
             roomController.createRoom();
@@ -105,6 +109,9 @@ public class RoomUI {
         }
     }
 
+    /**
+     * This method calls another method to update a room
+     */
     public void updateRoom() {
         try {
             String roomId = UpdateRoomMenuDisplayUI.updateRoomId();
@@ -115,6 +122,9 @@ public class RoomUI {
         
     }
 
+    /**
+     * This method calls another method to update a room's ID
+     */
     public void deleteRoom() {
         try {
             String roomId = UpdateRoomMenuDisplayUI.updateRoomId();
@@ -124,6 +134,9 @@ public class RoomUI {
         }
     }
 
+    /**
+     * This method calls another method to print all details of a specified room
+     */
     public void printRoom() {
         try {
             String roomId = UpdateRoomMenuDisplayUI.updateRoomId();
@@ -132,6 +145,10 @@ public class RoomUI {
             //TODO: handle exception
         }
     }
+
+    /** 
+     * This method calls another method to print all details of all rooms
+     */
     public void printAllRooms() {
         try {
             roomController.printAllRooms();
@@ -140,6 +157,9 @@ public class RoomUI {
         }
     }
 
+    /** 
+     * This method calls another method to print all vacant rooms
+     */
     public void viewOccupancyRate() {
         try {
             roomController.printVacantRoom();
@@ -147,9 +167,4 @@ public class RoomUI {
             //TODO: handle exception
         }
     }
-
-
-
-
-
 }
