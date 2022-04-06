@@ -17,6 +17,7 @@ import com.hotel.system.enums.RoomStatus;
 
 public class HRPS {
     static Scanner sc = new Scanner(System.in);
+    static ReservationUI res = new ReservationUI();
     public static void main(String[] args) throws IOException {
         // ReservationController test = new ReservationController();
 
@@ -48,7 +49,7 @@ public class HRPS {
         // menu.displayOptions();
         // test.displayOptions();
 
-        ReservationUI res = new ReservationUI();
+        
         // ReservationController resControl = new ReservationController();
         // resControl.createReservation();
         // RoomController roomCon = new RoomController();
@@ -61,7 +62,8 @@ public class HRPS {
         do {
             switch (choice) {
                 case 1:
-                    res.ReservationUI();
+                    chooseReservation();
+
                     break;
     
                 case 2:
@@ -108,5 +110,73 @@ public class HRPS {
         } while (choice<1 || choice >6);
 
         return choice;
+    }
+
+    public static int displayReservationOptions() {
+        int choice;
+        do {
+            System.out.println("========================\n" + 
+                               "Reservations Order\n"+
+                               "========================\n"+
+                               "(1) Create Reservation\n"+
+                               "(2) Update Reservation\n"+
+                               "(3) Remove Reservation\n"+
+                               "(4) Print Reservation\n"+
+                               "(5) View All Reservations\n"+
+                               "(6) Back\n"+
+                               "========================\n"
+            );
+
+            System.out.print("What is your choice (1-6)?: ");
+            try {
+                choice = sc.nextInt();
+                if (choice >0 && choice <7) break;
+                else System.out.println("Enter a number between (1-6)!!");
+            } catch (Exception e) {
+                //TODO: handle exception
+                
+            }
+        } while (true);
+
+        return choice;
+    }
+
+    public static void chooseReservation () {
+        int choice =0;
+        do {
+            choice  = displayReservationOptions();
+            switch (choice) {
+                case 1:
+                    res.createRes();
+                    break;
+                case 2:
+                    res.updateRes();
+                    break;
+                
+                case 3:
+                    res.removeRes();
+                    break;
+                case 4:
+                    // displayOrder();
+                    res.printRese();
+                    break;
+
+                case 5:
+                    res.printAllRes();
+                    break;
+                
+                case 6:
+                    return;
+                    // System.exit(1);
+            
+                default:
+                    System.out.println("Invalid input");
+                    break;
+            }
+        } while (true);
+        
+
+        
+
     }
 }
