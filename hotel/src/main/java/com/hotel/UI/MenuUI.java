@@ -11,7 +11,7 @@ import com.hotel.system.Item;
 import com.hotel.system.enums.FoodType;
 
 /**
- * Represents the class of CreditCard, which allows a user to input a guest's credit card details
+ * Represents the class of MenuUI, which prints the UI for Menu-related operations
  * @author Quek Kar Min
  * @version 1.0
  * @since 1.0
@@ -23,40 +23,40 @@ public class MenuUI {
 
     
     /** 
-     * This method prints the UI for display options
+     * This method prints the UI for display options.
      * It gets the choice of the user then calls the relevant methods
      * @throws IOException
      */
-    public void displayOptions() throws IOException {
-    	int choice;
-    	do {
-            MenuController.printAllItems();
-            System.out.println("\n==================================================");
-			System.out.println(" Menu item Management: ");
-			System.out.println("==================================================");
-			System.out.println("(1) Create Menu item\t(2) Update Menu item");
-			System.out.println("(3) Remove Menu item\t(4) Back");
-            choice = sc.nextInt();
-            switch (choice) {
-                case 1:
-                	createNewItem();
-                    break;
-                case 2:
-                	// updateIn();
-                    updateMenuItem();
-                    break;
-                case 3:
-                	// removeIn();
-                    deleteMenuItem();
-                    break;
-                case 4:
-                    return;
-                default:
-                	System.out.println("Please enter a valid option!");
-					choice = 0;
-            }
-        } while (choice < 4);
-    }
+    // public void displayOptions() throws IOException {
+    // 	int choice;
+    // 	do {
+    //         MenuController.printAllItems();
+    //         System.out.println("\n==================================================");
+	// 		System.out.println(" Menu item Management: ");
+	// 		System.out.println("==================================================");
+	// 		System.out.println("(1) Create Menu item\t(2) Update Menu item");
+	// 		System.out.println("(3) Remove Menu item\t(4) Back");
+    //         choice = sc.nextInt();
+    //         switch (choice) {
+    //             case 1:
+    //             	createNewItem();
+    //                 break;
+    //             case 2:
+    //             	// updateIn();
+    //                 updateMenuItem();
+    //                 break;
+    //             case 3:
+    //             	// removeIn();
+    //                 deleteMenuItem();
+    //                 break;
+    //             case 4:
+    //                 return;
+    //             default:
+    //             	System.out.println("Please enter a valid option!");
+	// 				choice = 0;
+    //         }
+    //     } while (choice < 4);
+    // }
 
     /** 
      * This method prints the UI to create a new Item by calling the relevant methods

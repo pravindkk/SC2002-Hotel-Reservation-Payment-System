@@ -13,7 +13,7 @@ import com.hotel.system.Reservation;
 import com.hotel.system.enums.ReservationStatus;
 
 /**
- * Represents the class of Payment, which holds the information at the instance the payment is made
+ * Represents the class of ReservationUI, which prints the UI for Reservation-related operations
  * @author Melissa Ng Li Yun
  * @version 1.0
  * @since 1.0
@@ -96,6 +96,10 @@ public class ReservationUI {
     //     return choice;
     // }
 
+    /**
+     * This method prints the UI for the creation of a reservation
+     * then obtains the relevant inputs and creates the reservation
+     */
     public void createRes() {
         try {
             // reservationController.createReservation();
@@ -138,6 +142,10 @@ public class ReservationUI {
         }
     }
 
+    /**
+     * This method prints the UI for the updating of a reservation
+     * then obtains the relevant inputs and updates the reservation
+     */
     public void updateRes() {
         try {
 
@@ -198,6 +206,10 @@ public class ReservationUI {
         }
     }
 
+    /**
+     * This method prints the UI for the removal of a reservation
+     * then obtains the relevant inputs and removes the reservation
+     */
     public void removeRes() {
         sc.nextLine();
         try {
@@ -209,6 +221,10 @@ public class ReservationUI {
         
     }
 
+    /**
+     * This method prints the UI for the printing of a reservation's details
+     * then obtains the relevant inputs and prints the details
+     */
     public void printRese() {
         sc.nextLine();
         try {
@@ -221,6 +237,9 @@ public class ReservationUI {
         
     }
 
+    /**
+     * This method prints the all details of all reservations
+     */
     public void printAllRes() {
         try {
             reservationController.printAllReservations();

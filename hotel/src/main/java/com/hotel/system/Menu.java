@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Represents the class of Menu, which represents the menu for Room Service
  * The menu is a list of Items
- * @author Vignesh Ezhil
+ * @author Quek Kar Min
  * @version 1.0
  * @since 1.0
  */
