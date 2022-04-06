@@ -11,6 +11,14 @@ import java.util.ArrayList;
 import com.hotel.controller.UpdateGuestMenu;
 import org.apache.commons.lang3.StringUtils;
 
+/**
+ * Represents the abstract class of DB , which is used to read and write all data to the text file.
+ * @author Pravind
+ * @version 1.0
+ * @since 1.0
+ */
+
+
 public class GuestController {
 
     Scanner sc = new Scanner(System.in);

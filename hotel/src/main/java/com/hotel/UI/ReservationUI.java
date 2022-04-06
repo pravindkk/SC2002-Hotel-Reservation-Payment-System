@@ -49,7 +49,8 @@ public class ReservationUI {
                     break;
                 
                 case 6:
-                    return;
+                    // return;
+                    System.exit(1);
             
                 default:
                     System.out.println("Invalid input");

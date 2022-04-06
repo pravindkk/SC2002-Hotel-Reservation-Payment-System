@@ -2,6 +2,7 @@ package com.hotel;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import com.hotel.UI.MenuUI;
 import com.hotel.UI.OrderUI;
@@ -15,6 +16,7 @@ import com.hotel.system.enums.RoomStatus;
 
 
 public class HRPS {
+    static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) throws IOException {
         // ReservationController test = new ReservationController();
 
@@ -46,13 +48,64 @@ public class HRPS {
         // menu.displayOptions();
         // test.displayOptions();
 
-        ReservationUI res = new ReservationUI();
+        // ReservationUI res = new ReservationUI();
         // ReservationController resControl = new ReservationController();
         // resControl.createReservation();
         // RoomController roomCon = new RoomController();
 
         // RoomUI room = new RoomUI();
+
+
+        int choice = mainDisplayOptions();
+        do {
+            switch (choice) {
+                case 1:
+                    new ReservationUI();
+                    break;
+    
+                case 2:
+                    RoomUI roomUI = new RoomUI();
+                    break;
+                
+                case 3:
+                    MenuUI menuUI = new MenuUI();
+                    break;
+                
+                case 6:
+                    return;
+                default:
+                    break;
+            }
+        } while (true);
+        
+
+
         
         
+    }
+
+    public static int mainDisplayOptions() {
+
+        int choice=0;
+
+        do {
+            System.out.println("======================\n"+
+                               "        HRPS          \n"+
+                               "======================\n"+
+                               "(1) Reservation\n"+
+                               "(2) Rooms\n"+
+                               "(3) Menu\n"+
+                               "(4) Payment\n"+
+                               "(5) Guest\n"+
+                               "(6) Back");
+            try {
+                choice = sc.nextInt();
+            } catch (Exception e) {
+                //TODO: handle exception
+            }
+
+        } while (choice<1 || choice >6);
+
+        return choice;
     }
 }
