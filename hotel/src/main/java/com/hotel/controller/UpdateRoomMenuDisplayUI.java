@@ -8,6 +8,11 @@ import com.hotel.system.enums.*;
 
 public class UpdateRoomMenuDisplayUI {
     static Scanner sc = new Scanner(System.in);
+    
+    /** 
+     * @return String
+     * @throws IOException
+     */
     public static String updateRoomId() throws IOException {
         String roomId;
         String roomRegExp = "[0][2-7][-][0][1-8]";
@@ -37,6 +42,11 @@ public class UpdateRoomMenuDisplayUI {
         return roomId;
     }
 
+    
+    /** 
+     * @return String
+     * @throws IOException
+     */
     public static String createRoomId() throws IOException {
         String roomId;
         String roomRegExp = "[0][2-7][-][0][1-8]";
@@ -66,6 +76,10 @@ public class UpdateRoomMenuDisplayUI {
         return roomId;
     }
 
+    
+    /** 
+     * @return RoomType
+     */
     public static RoomType updateRoomType() {
         RoomType roomType = RoomType.SINGLE;
         do {
@@ -106,6 +120,10 @@ public class UpdateRoomMenuDisplayUI {
     }
 
 
+    
+    /** 
+     * @return BedType
+     */
     public static BedType updateBedType() {
         BedType bedType = BedType.SINGLE;
         do {
@@ -150,6 +168,10 @@ public class UpdateRoomMenuDisplayUI {
     }
 
 
+    
+    /** 
+     * @return boolean
+     */
     public static boolean updateWithView() {
         boolean withView=false;
         do {
@@ -183,6 +205,10 @@ public class UpdateRoomMenuDisplayUI {
     }
 
 
+    
+    /** 
+     * @return RoomStatus
+     */
     public static RoomStatus updateRoomStatus() {
         RoomStatus roomStatus = RoomStatus.VACANT;
 
@@ -223,6 +249,10 @@ public class UpdateRoomMenuDisplayUI {
         return roomStatus;
     }
 
+    
+    /** 
+     * @return Float
+     */
     public static Float updateRoomRate() {
         Float roomRate = 0.0f;
 
@@ -243,6 +273,10 @@ public class UpdateRoomMenuDisplayUI {
         return roomRate;
     }
 
+    
+    /** 
+     * @return boolean
+     */
     public static boolean updateWifiEnabled() {
         boolean wifiEnabled=false;
         do {
@@ -275,6 +309,10 @@ public class UpdateRoomMenuDisplayUI {
         return wifiEnabled;
     }
 
+    
+    /** 
+     * @return boolean
+     */
     public static boolean updateSmokingStatus() {
         boolean smokingStatus=false;
         do {

@@ -14,6 +14,11 @@ public class UpdateCreditCardDetails {
 
     static Scanner sc = new Scanner(System.in);
 
+    
+    /** 
+     * @return String
+     * @throws IOException
+     */
     public static String UpdateGuestId() throws IOException{
         String guestId = null;
         do{
@@ -55,6 +60,11 @@ public class UpdateCreditCardDetails {
         return guestId;
     }
 
+    
+    /** 
+     * @return String
+     * @throws IOException
+     */
     public static String UpdateName() throws IOException{
         String name = null;
         do{
@@ -65,6 +75,11 @@ public class UpdateCreditCardDetails {
         return name;
     }
 
+    
+    /** 
+     * @return String
+     * @throws IOException
+     */
     public static String UpdateCardNo() throws IOException{
         String cardFormat = "\\d{16}";
         String card = null;
@@ -75,6 +90,11 @@ public class UpdateCreditCardDetails {
         return card;
     }
 
+    
+    /** 
+     * @return String
+     * @throws IOException
+     */
     public static String UpdateCVV() throws IOException{
         String cvvFormat = "\\d{3}";
         String cvv = null;
@@ -85,6 +105,11 @@ public class UpdateCreditCardDetails {
         return cvv;
     }
 
+    
+    /** 
+     * @return String
+     * @throws IOException
+     */
     public static String UpdateExpiry() throws IOException{
 		boolean checker = false;
         String expiry  = null;
@@ -126,6 +151,11 @@ public class UpdateCreditCardDetails {
 
 
 
+    
+    /** 
+     * @return CreditCardType
+     * @throws IOException
+     */
     public static CreditCardType updateCreditCardType() throws IOException{
         CreditCardType type = CreditCardType.AMEX;
         do{

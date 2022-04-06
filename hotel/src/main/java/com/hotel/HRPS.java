@@ -18,6 +18,11 @@ import com.hotel.system.enums.RoomStatus;
 public class HRPS {
     static Scanner sc = new Scanner(System.in);
     static ReservationUI res = new ReservationUI();
+    
+    /** 
+     * @param args
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
         // ReservationController test = new ReservationController();
 
@@ -87,6 +92,10 @@ public class HRPS {
         
     }
 
+    
+    /** 
+     * @return int
+     */
     public static int mainDisplayOptions() {
 
         int choice=0;
@@ -112,6 +121,10 @@ public class HRPS {
         return choice;
     }
 
+    
+    /** 
+     * @return int
+     */
     public static int displayReservationOptions() {
         int choice;
         do {

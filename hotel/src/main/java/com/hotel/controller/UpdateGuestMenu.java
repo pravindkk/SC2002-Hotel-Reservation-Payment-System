@@ -9,6 +9,11 @@ public class UpdateGuestMenu {
 
     static Scanner sc = new Scanner(System.in);
 
+    
+    /** 
+     * @return String
+     * @throws IOException
+     */
     public static String UpdateGuestId() throws IOException{
         String guestId = null;
         do{
@@ -53,6 +58,11 @@ public class UpdateGuestMenu {
 
     }
 
+    
+    /** 
+     * @return String
+     * @throws IOException
+     */
     public static String UpdateName() throws IOException{
         String name = null;
         do{
@@ -63,6 +73,11 @@ public class UpdateGuestMenu {
         return name;
     }
 
+    
+    /** 
+     * @return Gender
+     * @throws IOException
+     */
     public static Gender UpdateGender() throws IOException{
         Gender gender = Gender.OTHERS;
         do{
@@ -100,6 +115,11 @@ public class UpdateGuestMenu {
         
     }
 
+    
+    /** 
+     * @return String
+     * @throws IOException
+     */
     public static String UpdateNationality() throws IOException{
         String nationality = null;
         do{
@@ -110,6 +130,11 @@ public class UpdateGuestMenu {
         return nationality;
     }
 
+    
+    /** 
+     * @return String
+     * @throws IOException
+     */
     public static String UpdateCountry() throws IOException{
         String country = null;
         do{
@@ -120,6 +145,11 @@ public class UpdateGuestMenu {
         return country;
     }
 
+    
+    /** 
+     * @return Integer
+     * @throws IOException
+     */
     public static Integer UpdatePhoneNumber() throws IOException{
         Integer phoneNumber = null;
         do{
@@ -135,6 +165,11 @@ public class UpdateGuestMenu {
         return phoneNumber;
     }
 
+    
+    /** 
+     * @return String
+     * @throws IOException
+     */
     public static String UpdateCrediCardNo() throws IOException{
         String creditcard = null;
         do{

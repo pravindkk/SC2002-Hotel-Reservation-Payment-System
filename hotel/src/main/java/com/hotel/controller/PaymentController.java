@@ -32,13 +32,23 @@ public class PaymentController {
 
    
 
-    public static ArrayList getAllPayments() throws IOException {
+    
+	/** 
+	 * @return ArrayList
+	 * @throws IOException
+	 */
+	public static ArrayList getAllPayments() throws IOException {
         ArrayList allData = allPayments.read(allPayments.getPath());
         return allData;
     }
 
 
-    public static void saveAllPayments(ArrayList toWrite) throws IOException {
+    
+	/** 
+	 * @param toWrite
+	 * @throws IOException
+	 */
+	public static void saveAllPayments(ArrayList toWrite) throws IOException {
         try {
             allPayments.save(allPayments.getPath(), toWrite);
         } catch (Exception e) {
@@ -48,14 +58,24 @@ public class PaymentController {
         }
     }
 
-    public static void createPayment(Payment payment) throws IOException {
+    
+	/** 
+	 * @param payment
+	 * @throws IOException
+	 */
+	public static void createPayment(Payment payment) throws IOException {
         ArrayList paymentList = getAllPayments();
         paymentList.add(payment);
 
         saveAllPayments(paymentList);
     }
 
-    public static double getRoomTotal(String roomId) {
+    
+	/** 
+	 * @param roomId
+	 * @return double
+	 */
+	public static double getRoomTotal(String roomId) {
     	Reservation r;
 		try {
 			r = ReservationController.getReservationByRoomId(roomId);
@@ -71,7 +91,14 @@ public class PaymentController {
     	return -1;
     }
 
-    public static double getTotalWithOrders(Payment payment, String roomId) throws IOException {
+    
+	/** 
+	 * @param payment
+	 * @param roomId
+	 * @return double
+	 * @throws IOException
+	 */
+	public static double getTotalWithOrders(Payment payment, String roomId) throws IOException {
     	double subTotal = getRoomTotal(roomId);
     	ArrayList<String> orders = payment.getOrders();
     	if(orders != null) {
@@ -86,7 +113,14 @@ public class PaymentController {
         return subTotal;
     }
 
-    public static double getSubTotal(Payment payment, String roomId) throws IOException {
+    
+	/** 
+	 * @param payment
+	 * @param roomId
+	 * @return double
+	 * @throws IOException
+	 */
+	public static double getSubTotal(Payment payment, String roomId) throws IOException {
     	double subTotal = getTotalWithOrders(payment, roomId);
         double total = subTotal * (1 + gst) * (1 + serviceCharge);
     	payment.setTotal(total);
@@ -94,7 +128,15 @@ public class PaymentController {
     }
 
 
-    public static void getPayment(Payment payment, String roomId, int method, double cash) throws IOException {
+    
+	/** 
+	 * @param payment
+	 * @param roomId
+	 * @param method
+	 * @param cash
+	 * @throws IOException
+	 */
+	public static void getPayment(Payment payment, String roomId, int method, double cash) throws IOException {
     	Double totalWithOrders = getTotalWithOrders(payment, roomId);
     	Double total = getSubTotal(payment, roomId);
     	Double currServiceCharge = totalWithOrders * serviceCharge;

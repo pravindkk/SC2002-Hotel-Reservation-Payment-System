@@ -21,6 +21,10 @@ public class ReservationController {
     static SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
     static ReservationDB allReservations = new ReservationDB();
 
+    
+    /** 
+     * @return ArrayList
+     */
     // public static void main(String[] args) throws IOException {
     //     ReservationController test = new ReservationController();
     //     // test.createReservation();
@@ -34,6 +38,10 @@ public class ReservationController {
         return allData;
     }
 
+    
+    /** 
+     * @param toWrite
+     */
     public static void saveReservationData(ArrayList toWrite) {
         
         try {
@@ -48,6 +56,11 @@ public class ReservationController {
         }
     }
 
+    
+    /** 
+     * @param toChange
+     * @throws IOException
+     */
     public static void saveSpecificReservationByGuestId(Reservation toChange) throws IOException {
         ArrayList allData = getAllReservations();
 
@@ -64,6 +77,11 @@ public class ReservationController {
 
     }
 
+    
+    /** 
+     * @param toAdd
+     * @throws IOException
+     */
     public void createReservation(Reservation toAdd) throws IOException {
         changeRoomStatus(toAdd.getRoomId(), RoomStatus.RESERVED);
         ArrayList allReserve = getAllReservations();
@@ -73,12 +91,23 @@ public class ReservationController {
     }
 
 
+    
+    /** 
+     * @param reservation
+     * @throws IOException
+     */
     public static void updateReservation(Reservation reservation) throws IOException {
 
         saveSpecificReservationByGuestId(reservation);
         
     }
 
+    
+    /** 
+     * @param reservationId
+     * @return Reservation
+     * @throws IOException
+     */
     public static Reservation getReservationByNum(String reservationId) throws IOException {
 
         ArrayList allData = getAllReservations();
@@ -96,6 +125,10 @@ public class ReservationController {
     }
 
 
+    
+    /** 
+     * @throws IOException
+     */
     public static void printAllReservations() throws IOException {
         ArrayList allData = getAllReservations();
         System.out.println("\n====================================");
@@ -115,6 +148,13 @@ public class ReservationController {
     }
 
 
+    
+    /** 
+     * @param reservationId
+     * @param reservationStatus
+     * @return Reservation
+     * @throws IOException
+     */
     public static Reservation getReservationByNum(String reservationId, ReservationStatus reservationStatus) throws IOException {
         // ArrayList allReservations = getAllReservations();
 
@@ -134,6 +174,12 @@ public class ReservationController {
 
         return null;
     }
+    
+    /** 
+     * @param roomId
+     * @return Reservation
+     * @throws IOException
+     */
     public static Reservation getReservationByRoomId(String roomId) throws IOException {
         // ArrayList allReservations = getAllReservations();
 
@@ -154,6 +200,13 @@ public class ReservationController {
         return null;
     }
 
+    
+    /** 
+     * @param guestId
+     * @param reservationStatus
+     * @return Reservation
+     * @throws IOException
+     */
     public static Reservation getReservationByGuest(String guestId, ReservationStatus reservationStatus) throws IOException {
         ArrayList allReservations = getAllReservations();
 
@@ -174,6 +227,12 @@ public class ReservationController {
     }
 
 
+    
+    /** 
+     * @param id
+     * @param whatNum
+     * @throws IOException
+     */
     public static void checkInGuest(String id, String whatNum) throws IOException {
         Reservation r = null;
         if (whatNum.equalsIgnoreCase("R")) {
@@ -231,6 +290,11 @@ public class ReservationController {
     }
 
 
+    
+    /** 
+     * @param checkOutRoomId
+     * @throws IOException
+     */
     public static void checkOutGuest(String checkOutRoomId) throws IOException {
 
         Reservation r = getReservationByNum(checkOutRoomId, ReservationStatus.CHECKED_IN);
@@ -247,6 +311,10 @@ public class ReservationController {
     }
 
 
+    
+    /** 
+     * @throws IOException
+     */
     public static void walkIn() throws IOException {
         Date checkInDate = new Date();
         Date checkOutDate = UpdateReservationDetailsDisplayUI.updateCheckOutDate();
@@ -289,6 +357,12 @@ public class ReservationController {
     }
 
 
+    
+    /** 
+     * @param newRoomId
+     * @param roomStatus
+     * @throws IOException
+     */
     public static void changeRoomStatus(String newRoomId, RoomStatus roomStatus) throws IOException {
         Room r = RoomController.getSpecificRoom(newRoomId);
         r.setRoomStatus(roomStatus);
@@ -296,6 +370,12 @@ public class ReservationController {
         RoomController.saveSpecificRoomByRoomId(r);
     }
 
+    
+    /** 
+     * @param oldRoomId
+     * @param newRoomId
+     * @throws IOException
+     */
     public static void switchRoomStatus(String oldRoomId, String newRoomId) throws IOException {
         // ArrayList allRoom = RoomController.getAllRooms();
         Room oldRoom = RoomController.getSpecificRoom(oldRoomId);
@@ -309,6 +389,11 @@ public class ReservationController {
     }
 
 
+    
+    /** 
+     * @param reservationId
+     * @throws IOException
+     */
     public static void printReservation(String reservationId) throws IOException {
         Reservation r = getReservationByNum(reservationId);
 
@@ -333,6 +418,11 @@ public class ReservationController {
     }
 
 
+    
+    /** 
+     * @param reservationId
+     * @throws IOException
+     */
     public static void cancelReservation(String reservationId) throws IOException {
 
         Reservation r = getReservationByNum(reservationId);

@@ -17,6 +17,13 @@ import java.util.List;
  */
 
 abstract class DB {
+    
+    /** 
+     * @param fileName
+     * @param file
+     * @return ArrayList
+     * @throws IOException ;public static List readAllData(String file)
+     */
     /**
      * 
      * @param fileName The name of the file is passed as the parameter so that data could be read from the text file
@@ -25,6 +32,12 @@ abstract class DB {
      */
     public abstract ArrayList read(String fileName) throws IOException ;
 
+    
+    /** 
+     * @param fileName
+     * @param file
+     * @throws IOException ;public static List readAllData(String file)
+     */
     /**
      * 
      * @param fileName The name of the file that is the data is going to be written to 

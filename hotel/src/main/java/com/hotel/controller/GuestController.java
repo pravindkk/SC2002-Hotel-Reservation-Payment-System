@@ -240,6 +240,10 @@ public class GuestController {
 
     
 
+    
+    /** 
+     * @return Guest
+     */
     // public Guest RetrieveGuest(Guest g) throws IOException{
     //     // retrieve guest by guestID
     //     ArrayList allData = getAllGuests();

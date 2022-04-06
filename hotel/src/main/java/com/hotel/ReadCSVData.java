@@ -18,6 +18,10 @@ public class ReadCSVData {
     private static final String CSV_FILE_CUSTOM_SEPARATOR
         = "test.csv";
  
+    
+    /** 
+     * @param args
+     */
     public static void main(String[] args){
         File file = new File("hotel/data.csv");
         try {
@@ -41,6 +45,10 @@ public class ReadCSVData {
         // System.out.println("_______________________________________________");
     }
  
+    
+    /** 
+     * @param file
+     */
     public static void readDataLineByLine(String file)
     {
  
@@ -69,6 +77,10 @@ public class ReadCSVData {
         }
     }
  
+    
+    /** 
+     * @param file
+     */
     public static void readAllDataAtOnce(String file)
     {
         try {
@@ -97,6 +109,10 @@ public class ReadCSVData {
         }
     }
  
+    
+    /** 
+     * @param file
+     */
     public static void readDataFromCustomSeparator(String file)
     {
         try {

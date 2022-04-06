@@ -51,6 +51,10 @@ public class ReservationDB extends DB {
 
     
 
+    
+    /** 
+     * @return ArrayList
+     */
     // public static void main(String[] args) throws ParseException, IOException{
     //     File file = new File("hotel/reservation.csv");
 

@@ -15,6 +15,10 @@ import com.hotel.system.enums.*;
 public class UpdateReservationDetailsDisplayUI {
     static Scanner sc = new Scanner(System.in);
 
+    
+    /** 
+     * @return Date
+     */
     public static Date updateCheckInDate() {
         Date todaysdate = new Date();
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
@@ -37,6 +41,10 @@ public class UpdateReservationDetailsDisplayUI {
         return checkInDate;
     }
     
+    
+    /** 
+     * @return Date
+     */
     public static Date updateCheckOutDate() {
         Date todaysdate = new Date();
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
@@ -60,6 +68,11 @@ public class UpdateReservationDetailsDisplayUI {
     }
 
 
+    
+    /** 
+     * @return String
+     * @throws IOException
+     */
     public static String updateRoomId() throws IOException {
         
         ArrayList vacantRooms = RoomController.getVacantRooms();
@@ -75,6 +88,11 @@ public class UpdateReservationDetailsDisplayUI {
         return roomId;
     }
 
+    
+    /** 
+     * @return String
+     * @throws IOException
+     */
     public static String updateGuestId() throws IOException {
         // for now i just return normal string
         do {
@@ -93,6 +111,10 @@ public class UpdateReservationDetailsDisplayUI {
         // return "Jane Watson";
     }
 
+    
+    /** 
+     * @return Integer
+     */
     public static Integer updateNumberOfAdults() {
         Integer numOfAdults;
         do {
@@ -111,6 +133,10 @@ public class UpdateReservationDetailsDisplayUI {
         return numOfAdults;
     }
 
+    
+    /** 
+     * @return Integer
+     */
     public static Integer updateNumberOfChildren() {
         Integer numOfChildren;
         do {

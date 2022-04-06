@@ -64,6 +64,10 @@ public class RoomController {
 
     }
 
+    
+    /** 
+     * @param toWrite
+     */
     public static void saveData(ArrayList toWrite) {
         
         try {
@@ -76,6 +80,11 @@ public class RoomController {
         }
     }
 
+    
+    /** 
+     * @param roomId
+     * @throws IOException
+     */
     public void updateRoomStatus(String roomId) throws IOException {
         ArrayList allData = getAllRooms();
         Room room = getSpecificRoom(roomId);
@@ -91,6 +100,11 @@ public class RoomController {
         // return room;
     }
 
+    
+    /** 
+     * @param toChange
+     * @throws IOException
+     */
     public static void saveSpecificRoomByRoomId(Room toChange) throws IOException {
         ArrayList allData = getAllRooms();
 
@@ -107,6 +121,11 @@ public class RoomController {
 
 
 
+    
+    /** 
+     * @param roomId
+     * @throws IOException
+     */
     public void updateRoom(String roomId) throws IOException {
         ArrayList allData = getAllRooms();
         Room room = getSpecificRoom(roomId);
@@ -180,6 +199,11 @@ public class RoomController {
 
     }
 
+    
+    /** 
+     * @param roomId
+     * @throws IOException
+     */
     public static void deleteRoom(String roomId) throws IOException {
         ArrayList allData = getAllRooms();
         for (int i=0; i<allData.size(); i++) {
@@ -192,6 +216,12 @@ public class RoomController {
         
     }
 
+    
+    /** 
+     * @param roomId
+     * @return boolean
+     * @throws IOException
+     */
     public static boolean checkRoomIDExists(String roomId) throws IOException {
         ArrayList allData = getAllRooms();
         for (int i=0; i<allData.size(); i++) {
@@ -203,12 +233,23 @@ public class RoomController {
 
     }
 
+    
+    /** 
+     * @return ArrayList
+     * @throws IOException
+     */
     public static ArrayList getAllRooms() throws IOException {
         ArrayList allData = allRooms.read(allRooms.getPath());
         return allData;
     }
 
 
+    
+    /** 
+     * @param roomId
+     * @return Room
+     * @throws IOException
+     */
     public static Room getSpecificRoom(String roomId) throws IOException {
 
         ArrayList allData = getAllRooms();
@@ -225,6 +266,11 @@ public class RoomController {
         return null;
     }
 
+    
+    /** 
+     * @param roomId
+     * @throws IOException
+     */
     public static void printOneRoom(String roomId) throws IOException {
         Room r = (Room) getSpecificRoom(roomId);
 
@@ -249,6 +295,11 @@ public class RoomController {
     }
 
 
+    
+    /** 
+     * @return ArrayList
+     * @throws IOException
+     */
     public static ArrayList getVacantRooms() throws IOException {
         ArrayList allData = getAllRooms();
         
@@ -258,6 +309,12 @@ public class RoomController {
         return allData;
     }
 
+    
+    /** 
+     * @param roomId
+     * @return boolean
+     * @throws IOException
+     */
     public static boolean checkIfRoomOccupied(String roomId) throws IOException {
         ArrayList<Room> allData = getVacantRooms();
 
@@ -267,6 +324,13 @@ public class RoomController {
         return true;
     }
 
+    
+    /** 
+     * @param allData
+     * @param roomType
+     * @return ArrayList
+     * @throws IOException
+     */
     public static ArrayList getRoomsByRoomType(ArrayList allData, RoomType roomType) throws IOException {
         
         allData.removeIf(r -> ((Room) r).getRoomType() != roomType);
@@ -274,6 +338,13 @@ public class RoomController {
         return allData;
     }
 
+    
+    /** 
+     * @param allData
+     * @param bedType
+     * @return ArrayList
+     * @throws IOException
+     */
     public static ArrayList getRoomsByBedType(ArrayList allData, BedType bedType) throws IOException {
         
         allData.removeIf(r -> ((Room)r).getBedType() != bedType);
@@ -284,6 +355,10 @@ public class RoomController {
 
 
 
+    
+    /** 
+     * @throws IOException
+     */
     public static void printVacantRoom() throws IOException {
 
         
@@ -328,6 +403,10 @@ public class RoomController {
     }
 
 
+    
+    /** 
+     * @throws IOException
+     */
     public static void printAllRooms() throws IOException {
         ArrayList allData = getAllRooms();
         System.out.println("\n====================================");
@@ -354,6 +433,11 @@ public class RoomController {
         }
     }
 
+    
+    /** 
+     * @param allData
+     * @throws IOException
+     */
     public static void printRooms(ArrayList allData) throws IOException {
         // ArrayList allData = getAllRooms();
         System.out.printf("%-8s %-13s %-18s %-11s %-19s %-15s %-12s %-13s %-13s %-10s", "RoomID", "Room Type", "Bed Type", "With View", 
