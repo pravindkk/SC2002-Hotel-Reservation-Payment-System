@@ -20,6 +20,14 @@ import java.time.Period;
 import java.util.Arrays ;
 import org.apache.commons.lang3.ArrayUtils;
 
+/**
+ * Represents the controller function of Payment
+ * @author Pravind
+ * @version 1.0
+ * @since 1.0
+ */
+
+
 public class PaymentController {
 
     static PaymentDB allPayments = new PaymentDB();
@@ -32,13 +40,23 @@ public class PaymentController {
 
    
 
-    public static ArrayList getAllPayments() throws IOException {
+    
+	/** 
+	 * @return Returns an ArrayList of all the Payments stored in the database
+	 * @throws IOException Due to communication with the DataBase IOexception is required
+	 */
+	public static ArrayList getAllPayments() throws IOException {
         ArrayList allData = allPayments.read(allPayments.getPath());
         return allData;
     }
 
 
-    public static void saveAllPayments(ArrayList toWrite) throws IOException {
+    
+	/** 
+	 * @param toWrite Contains an ArrayList of all the Payments that is going to be stored in the database
+	 * @throws IOException Due to communication with the DataBase IOexception is required
+	 */
+	public static void saveAllPayments(ArrayList toWrite) throws IOException {
         try {
             allPayments.save(allPayments.getPath(), toWrite);
         } catch (Exception e) {
@@ -48,14 +66,24 @@ public class PaymentController {
         }
     }
 
-    public static void createPayment(Payment payment) throws IOException {
+    
+	/** 
+	 * @param payment Payment object is passed in as parameter so that the payment could be added to the database
+	 * @throws IOException Due to communication with the DataBase IOexception is required
+	 */
+	public static void createPayment(Payment payment) throws IOException {
         ArrayList paymentList = getAllPayments();
         paymentList.add(payment);
 
         saveAllPayments(paymentList);
     }
 
-    public static double getRoomTotal(String roomId) {
+    
+	/** 
+	 * @param roomId String input of GuestID is entered so that the room total could be calculated
+	 * @return returns the room total for the corresponding roomId
+	 */
+	public static double getRoomTotal(String roomId) {
     	Reservation r;
 		try {
 			r = ReservationController.getReservationByRoomId(roomId);
@@ -71,7 +99,14 @@ public class PaymentController {
     	return -1;
     }
 
-    public static double getTotalWithOrders(Payment payment, String roomId) throws IOException {
+    
+	/** 
+	 * @param payment Payment object is passed as parameter so that the subtotal field could be updated
+	 * @param roomId String input of roomID is entered so that the room total could be calculated
+	 * @return the total cost of the orders
+	 * @throws IOException Due to communication with the DataBase IOexception is required
+	 */
+	public static double getTotalWithOrders(Payment payment, String roomId) throws IOException {
     	double subTotal = getRoomTotal(roomId);
     	ArrayList<String> orders = payment.getOrders();
     	if(orders != null) {
@@ -86,7 +121,14 @@ public class PaymentController {
         return subTotal;
     }
 
-    public static double getSubTotal(Payment payment, String roomId) throws IOException {
+    
+	/** 
+	 * @param payment Payment object is passed as parameter so that the total field could be updated
+	 * @param roomId String input of roomID is entered so that the totalcost could be calculated
+	 * @return total cost of the room is returned
+	 * @throws IOException Due to communication with the DataBase IOexception is required
+	 */
+	public static double getSubTotal(Payment payment, String roomId) throws IOException {
     	double subTotal = getTotalWithOrders(payment, roomId);
         double total = subTotal * (1 + gst) * (1 + serviceCharge);
     	payment.setTotal(total);
@@ -94,7 +136,15 @@ public class PaymentController {
     }
 
 
-    public static void getPayment(Payment payment, String roomId, int method, double cash) throws IOException {
+    
+	/** 
+	 * @param payment Payment object is passed as parameter so that the total field could be used to display the total
+	 * @param roomId String input of roomID is entered so that the correct Payment record is retireved from the database
+	 * @param method Integer input is passed to detemine if the payment is made using cash or card
+	 * @param cash Amount of money that the Guest pays
+	 * @throws IOException Due to communication with the DataBase IOexception is required
+	 */
+	public static void getPayment(Payment payment, String roomId, int method, double cash) throws IOException {
     	Double totalWithOrders = getTotalWithOrders(payment, roomId);
     	Double total = getSubTotal(payment, roomId);
     	Double currServiceCharge = totalWithOrders * serviceCharge;

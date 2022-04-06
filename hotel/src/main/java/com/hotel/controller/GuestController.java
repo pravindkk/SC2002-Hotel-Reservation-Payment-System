@@ -12,7 +12,7 @@ import com.hotel.controller.UpdateGuestMenu;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * Represents the abstract class of DB , which is used to read and write all data to the text file.
+ * Represents the controller function of Guest
  * @author Pravind
  * @version 1.0
  * @since 1.0
@@ -91,7 +91,7 @@ public class GuestController {
     
     /** 
      * @param guestId String input of GuestID is entered so that the corresponding Guest object is returned
-     * @throws IOException ue to communication with the DataBase IOexception is required
+     * @throws IOException due to communication with the DataBase IOexception is required
      */
     public void UpdateGuest(String guestId) throws IOException{
 
@@ -206,7 +206,7 @@ public class GuestController {
 
     
     /** 
-     * @return ArrayList returns an ArrayList of all the Guests stored in the database
+     * @return Returns an ArrayList of all the Guests stored in the database
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
     public static ArrayList getAllGuests() throws IOException {
@@ -217,7 +217,7 @@ public class GuestController {
     
     /** 
      * Prints out all the guest details in the database
-     * @throws IOException ue to communication with the DataBase IOexception is required
+     * @throws IOException due to communication with the DataBase IOexception is required
      */
     public void PrintAllGuestDetails() throws IOException{
         // print out guestDetails

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.hotel.system.CreditCard;
-import com.hotel.system.enums.CreditCardType;
+import com.hotel.system.enums.*;
 
 /**
  * Represents the derived class of DB , which is used to read and write all data to the text file that contains Creditcard.

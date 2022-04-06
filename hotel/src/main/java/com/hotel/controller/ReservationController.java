@@ -15,25 +15,33 @@ import com.hotel.system.Reservation;
 import com.hotel.system.Room;
 import com.hotel.system.enums.*;
 
+/**
+ * Represents the controller function of Guest
+ * @author Vignesh Ezhil
+ * @version 1.0
+ * @since 1.0
+ */
+
 
 public class ReservationController {
     static Scanner sc = new Scanner(System.in);
     static SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
     static ReservationDB allReservations = new ReservationDB();
 
-    // public static void main(String[] args) throws IOException {
-    //     ReservationController test = new ReservationController();
-    //     // test.createReservation();
-    //     test.printReservation("J-28032022-0304");
-
-
-    // }
-
+    
+    /** 
+     * @return returns an ArrayList of all the Guests stored in the database
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
     public static ArrayList getAllReservations() throws IOException {
         ArrayList allData = allReservations.read(allReservations.getPath());
         return allData;
     }
 
+    
+    /** 
+     * @param toWrite Contains an ArrayList of all the Reservation that is going to be stored in the database
+     */
     public static void saveReservationData(ArrayList toWrite) {
         
         try {
@@ -48,6 +56,11 @@ public class ReservationController {
         }
     }
 
+    
+    /** 
+     * @param toChange Contains an object of the class Reservation that is going to be stored in the database
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
     public static void saveSpecificReservationByGuestId(Reservation toChange) throws IOException {
         ArrayList allData = getAllReservations();
 
@@ -64,6 +77,11 @@ public class ReservationController {
 
     }
 
+    
+    /** 
+     * @param toAdd Contains an object of the class Reservation that is going to be added into the database
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
     public void createReservation(Reservation toAdd) throws IOException {
         changeRoomStatus(toAdd.getRoomId(), RoomStatus.RESERVED);
         ArrayList allReserve = getAllReservations();
@@ -73,12 +91,24 @@ public class ReservationController {
     }
 
 
+    
+    /** 
+     * @param reservation Contains an object of the class Reservation that is needed to be updated
+     * Once the object is updated , it is stored in the database
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
     public static void updateReservation(Reservation reservation) throws IOException {
 
         saveSpecificReservationByGuestId(reservation);
         
     }
 
+    
+    /** 
+     * @param reservationId
+     * @return Reservation
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
     public static Reservation getReservationByNum(String reservationId) throws IOException {
 
         ArrayList allData = getAllReservations();
@@ -96,6 +126,11 @@ public class ReservationController {
     }
 
 
+    
+    /** 
+     * Method prints out all the reservations in the database
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
     public static void printAllReservations() throws IOException {
         ArrayList allData = getAllReservations();
         System.out.println("\n====================================");
@@ -115,6 +150,13 @@ public class ReservationController {
     }
 
 
+    
+    /** 
+     * @param reservationId
+     * @param reservationStatus
+     * @return Reservation
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
     public static Reservation getReservationByNum(String reservationId, ReservationStatus reservationStatus) throws IOException {
         // ArrayList allReservations = getAllReservations();
 
@@ -134,6 +176,12 @@ public class ReservationController {
 
         return null;
     }
+    
+    /** 
+     * @param roomId
+     * @return Reservation
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
     public static Reservation getReservationByRoomId(String roomId) throws IOException {
         // ArrayList allReservations = getAllReservations();
 
@@ -154,6 +202,13 @@ public class ReservationController {
         return null;
     }
 
+    
+    /** 
+     * @param guestId String input of GuestID is entered so that the corresponding reservation object is retrieved fron the database
+     * @param reservationStatus
+     * @return Reservation
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
     public static Reservation getReservationByGuest(String guestId, ReservationStatus reservationStatus) throws IOException {
         ArrayList allReservations = getAllReservations();
 
@@ -174,6 +229,12 @@ public class ReservationController {
     }
 
 
+    
+    /** 
+     * @param id String input of either GuestID or reservationID
+     * @param whatNum String input to identify what ID is used
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
     public static void checkInGuest(String id, String whatNum) throws IOException {
         Reservation r = null;
         if (whatNum.equalsIgnoreCase("R")) {
@@ -231,6 +292,11 @@ public class ReservationController {
     }
 
 
+    
+    /** 
+     * @param checkOutRoomId
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
     public static void checkOutGuest(String checkOutRoomId) throws IOException {
 
         Reservation r = getReservationByNum(checkOutRoomId, ReservationStatus.CHECKED_IN);
@@ -247,6 +313,11 @@ public class ReservationController {
     }
 
 
+    
+    /** 
+     * This method takes into account walkIn as mentioned in the assignment brief
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
     public static void walkIn() throws IOException {
         Date checkInDate = new Date();
         Date checkOutDate = UpdateReservationDetailsDisplayUI.updateCheckOutDate();
@@ -289,6 +360,13 @@ public class ReservationController {
     }
 
 
+    
+    /** 
+     * This method changes the room status of a particular room
+     * @param newRoomId String input of roomID in which the room status needs to be changed
+     * @param roomStatus Corresponding status of room input
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
     public static void changeRoomStatus(String newRoomId, RoomStatus roomStatus) throws IOException {
         Room r = RoomController.getSpecificRoom(newRoomId);
         r.setRoomStatus(roomStatus);
@@ -296,6 +374,13 @@ public class ReservationController {
         RoomController.saveSpecificRoomByRoomId(r);
     }
 
+    
+    /** 
+     * This method switched the roomID in the reservation in the event of a room swap
+     * @param oldRoomId String input of old room ID is entered
+     * @param newRoomId String input of new room ID is entered
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
     public static void switchRoomStatus(String oldRoomId, String newRoomId) throws IOException {
         // ArrayList allRoom = RoomController.getAllRooms();
         Room oldRoom = RoomController.getSpecificRoom(oldRoomId);
@@ -309,6 +394,11 @@ public class ReservationController {
     }
 
 
+    
+    /** 
+     * @param reservationId String input of reservationID is entered so that the corresponding reservation object could be obtained from the database
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
     public static void printReservation(String reservationId) throws IOException {
         Reservation r = getReservationByNum(reservationId);
 
@@ -333,6 +423,11 @@ public class ReservationController {
     }
 
 
+    
+    /** 
+     * @param reservationId String input of reservationID is entered so that the corresponding reservation object could be deleted from the database
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
     public static void cancelReservation(String reservationId) throws IOException {
 
         Reservation r = getReservationByNum(reservationId);
