@@ -1,7 +1,6 @@
 package com.hotel;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.hotel.UI.MainDisplayUI;
@@ -13,9 +12,6 @@ import com.hotel.UI.RoomUI;
 import com.hotel.controller.*;
 import com.hotel.system.CreditCard;
 import com.hotel.system.Guest;
-import com.hotel.system.Order;
-import com.hotel.system.Room;
-import com.hotel.system.enums.RoomStatus;
 
 
 public class HRPS {
@@ -189,11 +185,6 @@ public class HRPS {
     }
 
 
-
-
-    
-
-
     public static void chooseRoom() {
         int choice =0;
         do {
@@ -229,10 +220,8 @@ public class HRPS {
             }
         } while (true);
         
-
-        
-
     }
+
     public static void chooseMenu() {
         int choice =0;
         do {
@@ -306,10 +295,8 @@ public class HRPS {
             }
         } while (true);
         
-
-        
-
     }
+    
     public static void chooseGuest() {
         int choice =0;
         do {
