@@ -139,16 +139,11 @@ public class PaymentDB extends DB {
                 payment.getReservationNum(),
                 String.valueOf(payment.getDate()),
             };
-
-        
             ArrayList<String> orders = payment.getOrders();
+            toAddPayment = (String[]) ArrayUtils.addAll(toAddPayment, orders);
+            
 
-            for (int j=0; j<orders.size(); j++) {
-                String[] toadd = new String[] {
-                    orders.get(j)
-                };
-                toAddPayment = ArrayUtils.addAll(toAddPayment, toadd);
-            }
+
 
             toWrite.add(toAddPayment);
             

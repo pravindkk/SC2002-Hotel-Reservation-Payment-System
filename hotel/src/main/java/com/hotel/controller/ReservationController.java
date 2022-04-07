@@ -83,7 +83,6 @@ public class ReservationController {
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
     public void createReservation(Reservation toAdd) throws IOException {
-        changeRoomStatus(toAdd.getRoomId(), RoomStatus.RESERVED);
         ArrayList allReserve = getAllReservations();
         allReserve.add(toAdd);
         saveReservationData(allReserve);
@@ -312,52 +311,6 @@ public class ReservationController {
 
     }
 
-
-    
-    /** 
-     * This method takes into account walkIn as mentioned in the assignment brief
-     * @throws IOException Due to communication with the DataBase IOexception is required
-     */
-    public static void walkIn() throws IOException {
-        Date checkInDate = new Date();
-        Date checkOutDate = UpdateReservationDetailsDisplayUI.updateCheckOutDate();
-        String roomId = UpdateReservationDetailsDisplayUI.updateRoomId();
-        String guestId = UpdateReservationDetailsDisplayUI.updateGuestId();
-        Integer numOfAdults = UpdateReservationDetailsDisplayUI.updateNumberOfAdults();
-        Integer numOfChildren = UpdateReservationDetailsDisplayUI.updateNumberOfChildren();
-
-        System.out.println("");
-		System.out.println("Check-in Date: " + df.format(checkInDate));
-		System.out.println("Check-out Date: " + df.format(checkOutDate));
-		System.out.println("--------------------------------------------");
-		RoomController.printOneRoom(roomId);
-        System.out.println("");
-		System.out.println("Guest Id: " + guestId);
-		System.out.println("Number of adults: " + numOfAdults);
-		System.out.println("Number of children: " + numOfChildren);
-		System.out.println("Confirm Reservation? (y/n)");
-        System.out.println("");
-        String confirmation = sc.next();
-
-        if (confirmation.equalsIgnoreCase("y")) {
-            changeRoomStatus(roomId, RoomStatus.OCCUPIED);
-			String reservationDate = df.format(checkInDate).replaceAll("\\D", "");
-			String reservationRoomId = roomId.replaceAll("\\D", "");
-
-			String reservationNum = guestId.charAt(0) + "-" + reservationDate + "-" + reservationRoomId;
-
-			Reservation reservation = new Reservation(ReservationStatus.CHECKED_IN,reservationNum, guestId, roomId, checkInDate, checkOutDate,
-					numOfAdults, numOfChildren);
-
-			ArrayList allReserve = getAllReservations();
-            allReserve.add(reservation);
-            saveReservationData(allReserve);
-
-		} else {
-			System.out.println("Reservation not confirmed!");
-		}
-
-    }
 
 
     

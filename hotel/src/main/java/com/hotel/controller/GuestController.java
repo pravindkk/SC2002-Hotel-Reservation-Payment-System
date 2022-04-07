@@ -5,6 +5,7 @@ import java.text.ParseException;
 import com.hotel.system.enums.*;
 import java.util.Scanner;
 import com.hotel.db.GuestDB;
+import com.hotel.system.CreditCard;
 import com.hotel.system.Guest;
 import com.hotel.db.ReadInFile;
 import java.util.ArrayList;
@@ -37,9 +38,10 @@ public class GuestController {
         String nationality = UpdateGuestMenu.UpdateNationality();
         String country = UpdateGuestMenu.UpdateCountry();
         Integer phoneNumber=UpdateGuestMenu.UpdatePhoneNumber();
-        String creditCardNumber = UpdateGuestMenu.UpdateCrediCardNo();
+        CreditCard c = CreditCardController.createCreditCard(guestId, name);
 
-        Guest guest = new Guest(guestId, name, gender, nationality, country, phoneNumber, creditCardNumber);
+        Guest guest = new Guest(guestId, name, gender, nationality, country, phoneNumber, c.getCardNo());
+        
         // System.out.println(guest.getGuestId());
         // System.out.println(guest.getName());
         // System.out.println(guest.getNationality());
@@ -112,7 +114,7 @@ public class GuestController {
         "(3) Nationality \n"+
         "(4) Country \n"+
         "(5) Phone Number \n"+
-        "(6) Credit Card Number \n"+
+        "(6) Credit Card \n"+
         "(7) All details");
 
         int choice =0;
@@ -127,6 +129,7 @@ public class GuestController {
             System.out.println("Invalid input");
             return;
         }
+        CreditCard c=null;
 
         switch(choice){
 
@@ -151,7 +154,12 @@ public class GuestController {
                 break;
 
             case 6:
-                guest.setCreditCardNumber(UpdateGuestMenu.UpdateCrediCardNo());
+                c = CreditCardController.updateCreditCard(guestId);
+                if (c == null) {
+                    System.out.println("Cannot find credit card!!");
+                    return;
+                }
+                guest.setCreditCardNumber(c.getCardNo());
                 break;
             case 7:
                 guest.setName(UpdateGuestMenu.UpdateName());
@@ -159,7 +167,12 @@ public class GuestController {
                 guest.setNationality(UpdateGuestMenu.UpdateNationality());
                 guest.setCountry(UpdateGuestMenu.UpdateCountry());
                 guest.setPhoneNumber(UpdateGuestMenu.UpdatePhoneNumber());
-                guest.setCreditCardNumber(UpdateGuestMenu.UpdateCrediCardNo());
+                c = CreditCardController.updateCreditCard(guestId);
+                if (c == null) {
+                    System.out.println("Cannot find credit card!!");
+                    return;
+                }
+                guest.setCreditCardNumber(c.getCardNo());
                 break;
         }
 
@@ -187,6 +200,7 @@ public class GuestController {
             if (test.getGuestId().equals(guestId)) {
                 // System.out.println("hello");
                 allData.remove(i);
+                CreditCardController.deleteCreditCard(guestId);
                 saveGuests(allData);
                 return;
             }
@@ -231,7 +245,7 @@ public class GuestController {
 
         for(int i=0;i<allGuests.size();i++){
             Guest g = (Guest) allGuests.get(i);
-            System.out.printf("%-8s %-9s %-10s %-12s %-10s %-13s %-15s", g.getGuestId(), g.getName(), g.getGender(), g.getNationality(), 
+            System.out.printf("%-8s %-9s %-10s %-12s %-10s %-13s %-15s\n", g.getGuestId(), g.getName(), g.getGender(), g.getNationality(), 
             g.getCountry(), g.getPhoneNumber(), g.getCreditCardNumber());
         }
         System.out.println("");

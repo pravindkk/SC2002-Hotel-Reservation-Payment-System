@@ -32,13 +32,14 @@ public class PaymentUI {
      * This method prints the UI for Payment related operations
      * and runs the user through the relevant operations
      */
-    public void printPayment() {
+    public String printPayment() {
         int method = 2;
+        String roomId=null;
         try {
-            String roomId = UpdateRoomMenuDisplayUI.updateRoomId();
+            roomId = UpdateRoomMenuDisplayUI.updateRoomId();
             if (ReservationController.getReservationByRoomId(roomId) == null) {
                 System.out.println("Room not Occupied");
-                return;
+                return null;
             }
             Reservation r = ReservationController.getReservationByRoomId(roomId);
             do {
@@ -73,7 +74,7 @@ public class PaymentUI {
             } catch (ParseException e1) {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();
-                return;
+                return null;
             }
             if(method == 0) {
                 do {
@@ -113,9 +114,10 @@ public class PaymentUI {
                 // OrderController.savetoDB();
                 
             }
-            ArrayList payList = PaymentController.getAllPayments();
-            payList.add(payment);
-            PaymentController.saveAllPayments(payList);
+            return roomId;
+            // ArrayList payList = PaymentController.getAllPayments();
+            // payList.add(payment);
+            // PaymentController.saveAllPayments(payList);
             // PaymentController.getInstance().savetoDB();
 
 
@@ -123,6 +125,7 @@ public class PaymentUI {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        return null;
 
         
     }

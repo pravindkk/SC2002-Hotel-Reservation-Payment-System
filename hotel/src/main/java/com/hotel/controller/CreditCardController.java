@@ -29,9 +29,8 @@ public class CreditCardController {
      * @return returns an Object of the class CreditCard
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
-    public static CreditCard createCreditCard() throws IOException{
-        String guestId = UpdateCreditCardDetails.UpdateGuestId();
-        String name = UpdateCreditCardDetails.UpdateName();
+    public static CreditCard createCreditCard(String guestId, String name) throws IOException{
+
         String cardno = UpdateCreditCardDetails.UpdateCardNo();
         String cvv = UpdateCreditCardDetails.UpdateCVV();
         String expiry = UpdateCreditCardDetails.UpdateExpiry();
@@ -43,6 +42,47 @@ public class CreditCardController {
         allData.add(card);
         saveCards(allData);
         return card;
+    }
+    public static CreditCard updateCreditCard(String guestId) throws IOException{
+        // String guestId = UpdateCreditCardDetails.UpdateGuestId();
+        // String name = UpdateCreditCardDetails.UpdateName();
+
+        CreditCard card = RetrieveCreditCard(guestId);
+        card.setCardNo(UpdateCreditCardDetails.UpdateCardNo());
+        card.setCVV(UpdateCreditCardDetails.UpdateCVV());
+        card.setExpiry(UpdateCreditCardDetails.UpdateExpiry());
+        card.setCardType(UpdateCreditCardDetails.updateCreditCardType());
+
+
+        ArrayList allData = getAllCreditCards();
+
+        for (int i=0; i<allData.size(); i++) {
+            CreditCard c = (CreditCard) allData.get(i);
+            if (c.getGuestID().equals(card.getGuestID())) {
+                allData.set(i, card);
+                saveCards(allData);
+                return card;
+            }
+        }
+
+        // CreditCard card = new CreditCard(guestId , name , cardno , expiry, cvv , type);
+        return null; 
+    }
+
+    public static void deleteCreditCard(String guestId) throws IOException {
+        CreditCard card = RetrieveCreditCard(guestId);
+
+        ArrayList allData = getAllCreditCards();
+
+        for (int i=0; i<allData.size(); i++) {
+            CreditCard c = (CreditCard) allData.get(i);
+            if (c.getGuestID().equals(guestId)) {
+                allData.remove(i);
+                saveCards(allData);
+            }
+        }
+
+
     }
 
 
@@ -203,11 +243,11 @@ public class CreditCardController {
 
     
 
-    public static void main(String[] args) throws IOException {
-        CreditCardController c = new CreditCardController();
-        c.createCreditCard();
+    // public static void main(String[] args) throws IOException {
+    //     CreditCardController c = new CreditCardController();
+    //     c.createCreditCard();
  
-    }
+    // }
 
     
 }

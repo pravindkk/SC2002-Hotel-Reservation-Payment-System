@@ -143,5 +143,58 @@ public class MainDisplayUI {
         return choice;
     }
 
+    public static int displayGuestOptions() {
+        int choice;
+        do {
+            System.out.println("========================\n" + 
+                               "Guest Menu\n"+
+                               "========================\n"+
+                               "(1) Create Guest\n"+
+                               "(2) Update Guest\n"+
+                               "(3) Remove Guest\n"+
+                               "(4) View Guests\n"+
+                               "(5) Search Guest\n"+
+                               "(6) Back\n"+
+                               "========================\n"
+            );
+
+            System.out.print("What is your choice (1-5)?: ");
+            try {
+                choice = sc.nextInt();
+                if (choice >0 && choice <7) break;
+            } catch (Exception e) {
+                //TODO: handle exception
+                System.out.println("Enter a number between (1-6)!!");
+            }
+        } while (true);
+
+        return choice;
+    }
+    public static int displayCheckInOptions() {
+        int choice;
+        do {
+            System.out.println("========================\n" + 
+                               "Check In Menu\n"+
+                               "========================\n"+
+                               "(1) Check In with Guest Id\n"+
+                               "(2) Check In with Reservation Id\n"+
+                               "(3) Walk In\n"+
+                               "(4) Back\n"+
+                               "========================\n"
+            );
+
+            System.out.print("What is your choice (1-4)?: ");
+            try {
+                choice = sc.nextInt();
+                if (choice >0 && choice <5) break;
+            } catch (Exception e) {
+                //TODO: handle exception
+                System.out.println("Enter a number between (1-4)!!");
+            }
+        } while (true);
+
+        return choice;
+    }
+
     
 }

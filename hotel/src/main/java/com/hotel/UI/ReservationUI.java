@@ -11,6 +11,7 @@ import com.hotel.controller.UpdateReservationDetailsDisplayUI;
 import com.hotel.controller.UpdateRoomMenuDisplayUI;
 import com.hotel.system.Reservation;
 import com.hotel.system.enums.ReservationStatus;
+import com.hotel.system.enums.RoomStatus;
 
 /**
  * Represents the class of ReservationUI, which prints the UI for Reservation-related operations
@@ -124,6 +125,7 @@ public class ReservationUI {
             String confirmation = sc.next();
 
             if (confirmation.equalsIgnoreCase("y")) {
+                reservationController.changeRoomStatus(roomId, RoomStatus.RESERVED);
                 String reservationDate = df.format(checkInDate).replaceAll("\\D", "");
                 String reservationRoomId = roomId.replaceAll("\\D", "");
                 String reservationNum = guestId.charAt(0) + "-" + reservationDate + "-" + reservationRoomId;
@@ -141,6 +143,54 @@ public class ReservationUI {
             e.printStackTrace();
         }
     }
+
+    
+    public void walkIn() {
+        try {
+            Date checkInDate = new Date();
+            Date checkOutDate = UpdateReservationDetailsDisplayUI.updateCheckOutDate();
+            String roomId = UpdateReservationDetailsDisplayUI.updateRoomId();
+            String guestId = UpdateReservationDetailsDisplayUI.updateGuestId();
+            Integer numOfAdults = UpdateReservationDetailsDisplayUI.updateNumberOfAdults();
+            Integer numOfChildren = UpdateReservationDetailsDisplayUI.updateNumberOfChildren();
+
+            System.out.println("");
+            System.out.println("Check-in Date: " + df.format(checkInDate));
+            System.out.println("Check-out Date: " + df.format(checkOutDate));
+            System.out.println("--------------------------------------------");
+            RoomController.printOneRoom(roomId);
+            System.out.println("");
+            System.out.println("Guest Id: " + guestId);
+            System.out.println("Number of adults: " + numOfAdults);
+            System.out.println("Number of children: " + numOfChildren);
+            System.out.println("Confirm Reservation? (y/n)");
+            System.out.println("");
+            String confirmation = sc.next();
+
+            if (confirmation.equalsIgnoreCase("y")) {
+                reservationController.changeRoomStatus(roomId, RoomStatus.OCCUPIED);
+                String reservationDate = df.format(checkInDate).replaceAll("\\D", "");
+                String reservationRoomId = roomId.replaceAll("\\D", "");
+                String reservationNum = guestId.charAt(0) + "-" + reservationDate + "-" + reservationRoomId;
+                Reservation reservation = new Reservation(ReservationStatus.CHECKED_IN,reservationNum, guestId, roomId, checkInDate, checkOutDate,
+                        numOfAdults, numOfChildren);
+                reservationController.createReservation(reservation);   
+
+            } else {
+                System.out.println("Reservation not confirmed!");
+            }
+
+
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    
+
+
+
 
     /**
      * This method prints the UI for the updating of a reservation
