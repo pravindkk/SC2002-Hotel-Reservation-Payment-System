@@ -197,6 +197,13 @@ public class ReservationController {
         return null;
     }
 
+    /** 
+     * @param roomId
+     * @param reservationStatus
+     * @return Reservation
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
+
     public static Reservation getReservationByRoom(String roomId, ReservationStatus reservationStatus) throws IOException {
         // ArrayList allReservations = getAllReservations();
 
