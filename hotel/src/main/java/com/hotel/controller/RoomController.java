@@ -37,7 +37,9 @@ public class RoomController {
 
         String roomId = UpdateRoomMenuDisplayUI.createRoomId();
         String[] parts = roomId.split("-");
-        String roomFloor = parts[0];
+        Integer roomFloorString = Integer.valueOf(parts[0]);
+        String roomFloor = String.valueOf(roomFloorString);
+
         Integer roomNumber = Integer.valueOf(parts[1]);
 
         RoomType roomType = UpdateRoomMenuDisplayUI.updateRoomType();
