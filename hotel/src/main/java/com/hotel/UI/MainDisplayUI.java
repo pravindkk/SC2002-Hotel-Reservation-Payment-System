@@ -3,9 +3,20 @@ package com.hotel.UI;
 import java.util.Scanner;
 
 import com.hotel.controller.MenuController;
+/**
+ * Represents the class of MainDisplayUI, which prints the UI for HRPS
+ * @version 1.0
+ * @since 1.0
+ */
 
 public class MainDisplayUI {
     static Scanner sc = new Scanner(System.in);
+
+    
+    /** 
+     * This method prints out the reservation options for HRPS. It then asks the user to select an option
+     * @return Choice is returned as a int output
+     */
     public static int displayReservationOptions() {
         int choice;
         do {
@@ -35,6 +46,11 @@ public class MainDisplayUI {
         return choice;
     }
 
+    
+    /** 
+     * This method prints out the room options for HRPS. It then asks the user to select an option
+     * @return Choice is returned as a int output
+     */
     public static int displayRoomOptions() {
         int choice;
         do {
@@ -65,6 +81,11 @@ public class MainDisplayUI {
         return choice;
     }
 
+    
+    /** 
+     * This method prints out the menu options for HRPS. It then asks the user to select an option
+     * @return Choice is returned as a int output
+     */
     public static int displayMenuOptions() {
         int choice=0;
         do {
@@ -90,6 +111,11 @@ public class MainDisplayUI {
     }
 
 
+    
+    /** 
+     * This method prints out the order options for HRPS. It then asks the user to select an option
+     * @return Choice is returned as a int output
+     */
     public static int displayOrderOptions() {
         int choice;
         do {
