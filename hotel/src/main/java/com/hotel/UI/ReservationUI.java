@@ -128,7 +128,8 @@ public class ReservationUI {
                 reservationController.changeRoomStatus(roomId, RoomStatus.RESERVED);
                 String reservationDate = df.format(checkInDate).replaceAll("\\D", "");
                 String reservationRoomId = roomId.replaceAll("\\D", "");
-                String reservationNum = guestId.charAt(0) + "-" + reservationDate + "-" + reservationRoomId;
+                int a = (int) (Math.random()*(200-1)+1);
+                String reservationNum = guestId.charAt(0) + "-" + reservationDate + "-" + reservationRoomId + String.valueOf(a);
                 Reservation reservation = new Reservation(ReservationStatus.CONFIRMED,reservationNum, guestId, roomId, checkInDate, checkOutDate,
                         numOfAdults, numOfChildren);
                 reservationController.createReservation(reservation);   
@@ -171,7 +172,8 @@ public class ReservationUI {
                 reservationController.changeRoomStatus(roomId, RoomStatus.OCCUPIED);
                 String reservationDate = df.format(checkInDate).replaceAll("\\D", "");
                 String reservationRoomId = roomId.replaceAll("\\D", "");
-                String reservationNum = guestId.charAt(0) + "-" + reservationDate + "-" + reservationRoomId;
+                int a = (int) (Math.random()*(200-1)+1);
+                String reservationNum = guestId.charAt(0) + "-" + reservationDate + "-" + reservationRoomId + String.valueOf(a);
                 Reservation reservation = new Reservation(ReservationStatus.CHECKED_IN,reservationNum, guestId, roomId, checkInDate, checkOutDate,
                         numOfAdults, numOfChildren);
                 reservationController.createReservation(reservation);   

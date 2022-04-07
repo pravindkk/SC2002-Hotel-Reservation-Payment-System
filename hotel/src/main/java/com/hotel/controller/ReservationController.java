@@ -143,7 +143,7 @@ public class ReservationController {
 
             System.out.printf("%-16s %-10s %-7s %-14s %-13s %-19s %-14s %-10s", 
                         r.getReservationNum(), r.getGuestId(), r.getRoomId(),
-						String.valueOf(r.getReservationStatus()), r.getCheckInDate(), r.getCheckOutDate(), r.getNumOfAdults(), r.getNumOfChildren());
+						String.valueOf(r.getReservationStatus()), df.format(r.getCheckInDate()), df.format(r.getCheckOutDate()), r.getNumOfAdults(), r.getNumOfChildren());
             System.out.println("");
         }
     }
