@@ -1,3 +1,6 @@
 com.hotel
 com.hotel.controller
 com.hotel.db
+com.hotel.system
+com.hotel.system.enums
+com.hotel.UI
