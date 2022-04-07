@@ -16,7 +16,7 @@ import com.hotel.system.enums.FoodType;
  */
 
 public class MenuDB extends DB {
-    private File database = new File("hotel/menu.csv");
+    private File database = new File("hotel/menu.txt");
     private String path;
 
     public MenuDB(){

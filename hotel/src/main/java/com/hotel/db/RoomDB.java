@@ -19,7 +19,7 @@ import com.hotel.system.enums.RoomType;
  */
 
 public class RoomDB extends DB{
-    private File database = new File("hotel/room.csv");
+    private File database = new File("hotel/room.txt");
     private String path;
 
     public RoomDB(){

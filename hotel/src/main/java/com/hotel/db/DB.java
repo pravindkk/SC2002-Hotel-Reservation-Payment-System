@@ -1,9 +1,15 @@
 package com.hotel.db;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
+import java.util.Scanner;
+
 import com.opencsv.*;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -40,28 +46,32 @@ abstract class DB {
      * 
      * @param file The name of the file is passed as the parameter so that data could be read from the text file
      * @return An arraylist of the data is returned
+     * @throws FileNotFoundException
      */
 
-    public static List readAllData(String file)
-    {
-        try {
- 
-            // Create an object of filereader class
-            // with CSV file as a parameter.
-            FileReader filereader = new FileReader(file);
- 
-            // create csvReader object
-            // and skip first Line
-            CSVReader csvReader = new CSVReaderBuilder(filereader)
-                                    //   .withSkipLines(1)
-                                      .build();
-            List<String[]> allData = csvReader.readAll();
-			return allData;
+    public static List readAllData(String file) throws FileNotFoundException {
+        List data = new ArrayList();
+	
+		Scanner scanner = new Scanner(new FileInputStream(file));
+		try {
+            while (scanner.hasNextLine()){
+                String[] add = scanner.nextLine().split(",");
+                
+                data.add(add);
+                // data.add(scanner.nextLine());
+            }
         }
-        catch (Exception e) {
-            e.printStackTrace();
+        finally{
+            scanner.close();
         }
-		return null;
+		return data;
+       
+        // storing the data in arraylist to array
+        
+       
+        // printing each line of file
+        // which is stored in array
+        // return listOfStrings;
     }
 
     /**
@@ -72,11 +82,26 @@ abstract class DB {
      */
 
     public static void writeAllData(String fileName, List<String[]> stringArray) throws IOException {
-        CSVWriter writer = new CSVWriter(new FileWriter(fileName));
-        for (String[] array : stringArray) {
-            writer.writeNext(array);
+        PrintWriter out = new PrintWriter(new FileWriter(fileName));
+
+        try{
+            for (String[] line: stringArray) {
+                StringBuilder builder = new StringBuilder();
+                // for(String s : line) {
+                //     builder.append(s);
+                // }
+                for (int i=0; i<line.length; i++) {
+                    builder.append(line[i]);
+                    builder.append(",");
+                }
+                builder.append(line[line.length-1]);
+                String str = builder.toString();
+                out.println(str);
+            }
         }
-        
-        writer.close();
+        finally {
+            out.close();
+        }
+
     }
 }

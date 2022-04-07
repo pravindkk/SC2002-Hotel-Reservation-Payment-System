@@ -24,7 +24,7 @@ import com.hotel.system.enums.*;
 public class ReservationDB extends DB {
 	
 	// public static final String SEPARATOR = "|";
-    private File database = new File("hotel/reservation.csv");
+    private File database = new File("hotel/reservation.txt");
     private String path;
 
     public ReservationDB(){

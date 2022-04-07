@@ -28,7 +28,7 @@ import java.text.SimpleDateFormat;
 
 
 public class PaymentDB extends DB {
-    private File database = new File("hotel/payments.csv");
+    private File database = new File("hotel/payments.txt");
     private String path;
     SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
     

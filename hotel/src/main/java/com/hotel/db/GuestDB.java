@@ -16,7 +16,7 @@ import com.hotel.system.enums.Gender;
  */
 
 public class GuestDB extends DB {
-    private File database = new File("hotel/guest.csv");
+    private File database = new File("hotel/guest.txt");
     private String path;
 
     public GuestDB(){

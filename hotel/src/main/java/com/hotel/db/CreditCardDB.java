@@ -17,7 +17,7 @@ import com.hotel.system.enums.*;
 
 public class CreditCardDB extends DB {
 
-    private File database = new File("hotel/creditCard.csv");
+    private File database = new File("hotel/creditCard.txt");
     private String path;
 
     public CreditCardDB(){

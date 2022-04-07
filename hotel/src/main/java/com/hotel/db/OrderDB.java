@@ -28,7 +28,7 @@ import org.apache.commons.lang3.ArrayUtils;
 
 public class OrderDB extends DB{
 
-    private File database = new File("hotel/orders.csv");
+    private File database = new File("hotel/orders.txt");
     SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
     private String path;
 
