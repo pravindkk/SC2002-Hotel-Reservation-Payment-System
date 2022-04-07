@@ -125,8 +125,9 @@ public class ReservationController {
 
     
     /** 
-     * @param reservationId
-     * @return Reservation
+     * @param reservationId String input of reservation ID is entered
+     * The database is queried and if the corrrsponding reservation object is found, the corresponding reservation object is returned
+     * @return If the resevration object that corresponds to the reservationID is found in the database it is returned. Else , null is returned
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
     public static Reservation getReservationByNum(String reservationId) throws IOException {
