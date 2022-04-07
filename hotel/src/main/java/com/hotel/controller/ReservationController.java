@@ -166,7 +166,27 @@ public class ReservationController {
             Reservation r = (Reservation) allData.get(i);
             // System.out.print(r.getRoomId());
             // if (reservationId.equals(r.getReservationNum())) {
-            if (reservationId.equals(r.getReservationNum()) && reservationStatus == r.getReservationStatus()) {
+            if (reservationId.equals(r.getReservationNum()) && reservationStatus.equals(r.getReservationStatus())) {
+                // System.out.print(r.getReservationStatus());
+                return r;
+            }
+        }
+
+
+        return null;
+    }
+
+    public static Reservation getReservationByRoom(String roomId, ReservationStatus reservationStatus) throws IOException {
+        // ArrayList allReservations = getAllReservations();
+
+        // check the search term "R" for search by ReservationNum while "G" is 
+        ArrayList allData = getAllReservations();
+
+        for (int i=0; i<allData.size(); i++) {
+            Reservation r = (Reservation) allData.get(i);
+            // System.out.print(r.getRoomId());
+            // if (reservationId.equals(r.getReservationNum())) {
+            if (roomId.equals(r.getRoomId()) && reservationStatus.equals(r.getReservationStatus())) {
                 // System.out.print(r.getReservationStatus());
                 return r;
             }
@@ -298,7 +318,7 @@ public class ReservationController {
      */
     public static void checkOutGuest(String checkOutRoomId) throws IOException {
 
-        Reservation r = getReservationByNum(checkOutRoomId, ReservationStatus.CHECKED_IN);
+        Reservation r = getReservationByRoom(checkOutRoomId, ReservationStatus.CHECKED_IN);
 
         if (r == null) {
             System.out.println("Reservation is not checked in");

@@ -178,11 +178,11 @@ public class HRPS {
     public static void chooseCheckOut() {
         sc.nextLine();
         try {
-            // String roomId = UpdateRoomMenuDisplayUI.updateRoomId();
+            String roomId = UpdateRoomMenuDisplayUI.updateRoomId();
 
-            String roomId = pay.printPayment();
+            pay.printPayment(roomId);
             resController.checkOutGuest(roomId);
-            pay.printPayment();
+            // pay.printPayment();
         } catch (Exception e) {
             //TODO: handle exception
         }
