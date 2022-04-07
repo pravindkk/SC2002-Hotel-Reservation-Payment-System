@@ -3,6 +3,8 @@ package com.hotel.controller;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -11,6 +13,8 @@ import java.util.regex.Pattern;
 import com.hotel.system.Guest;
 import com.hotel.system.Room;
 import com.hotel.system.enums.*;
+
+import org.apache.commons.lang3.time.DateUtils;
 
 /**
  * Represents the class which enables Reservation Details to be updated through user input
@@ -28,14 +32,19 @@ public class UpdateReservationDetailsDisplayUI {
      * @return Updated check in date is returned as a Date output
      */
     public static Date updateCheckInDate() {
-        Date todaysdate = new Date();
+        Date todaysdate = DateUtils.addDays(new Date(),-1);
+
+        // LocalDateTime ldt = LocalDateTime.ofInstant(todaysdate.toInstant(), ZoneId.systemDefault());
+        // Date todaysDate2 = Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant());
+
+
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         String dateValidation = "^([0-2][0-9]||3[0-1])/(0[0-9]||1[0-2])/([0-9][0-9])?[0-9][0-9]$";
         String checkInDateString = null;
         Date checkInDate = null;
         
         do {                                                                                                // for check-in date input
-            System.out.println("Enter Check-In Date");
+            System.out.print("Enter Check-In Date:  ");
 
             try {
                 checkInDateString = sc.nextLine();
@@ -43,8 +52,11 @@ public class UpdateReservationDetailsDisplayUI {
             } catch(ParseException e) {
                 System.out.println(e);
             }
+            if (checkInDate.before(todaysdate)) {
+                System.out.println("Pick a date before the today's date");
+            }
 
-        } while(!checkInDate.before(todaysdate) && !checkInDateString.matches(dateValidation));
+        } while(checkInDate.before(todaysdate) || !checkInDateString.matches(dateValidation));
 
         return checkInDate;
     }
@@ -54,15 +66,15 @@ public class UpdateReservationDetailsDisplayUI {
      * This method updates the check out date tagged to the reservation detail
      * @return Updated check out date is returned as a Date output
      */
-    public static Date updateCheckOutDate() {
-        Date todaysdate = new Date();
+    public static Date updateCheckOutDate(Date checkInDate) {
+        // Date todaysdate = new Date();
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         String dateValidation = "^([0-2][0-9]||3[0-1])/(0[0-9]||1[0-2])/([0-9][0-9])?[0-9][0-9]$";
         String checkInDateString = null;
         Date checkOutDate = null;
         
         do {                                                                                                // for check-in date input
-            System.out.println("Enter Check-Out Date");
+            System.out.print("Enter Check-Out Date:  ");
 
             try {
                 checkInDateString = sc.nextLine();
@@ -71,7 +83,11 @@ public class UpdateReservationDetailsDisplayUI {
                 System.out.println(e);
             }
 
-        } while(!checkOutDate.before(todaysdate) && !checkInDateString.matches(dateValidation));
+            if (checkOutDate.before(checkInDate)) {
+                System.out.println("Please a date after check-in date");
+            }
+
+        } while(checkOutDate.before(checkInDate) || !checkInDateString.matches(dateValidation));
 
         return checkOutDate;
     }
@@ -129,7 +145,7 @@ public class UpdateReservationDetailsDisplayUI {
     public static Integer updateNumberOfAdults() {
         Integer numOfAdults;
         do {
-			System.out.println("Enter total Number of Adults: ");
+			System.out.print("Enter total Number of Adults: ");
 			while (!sc.hasNextInt()) {
 		        System.out.println("Please enter numbers only.");
 		        sc.next(); // this is important!
@@ -152,7 +168,7 @@ public class UpdateReservationDetailsDisplayUI {
     public static Integer updateNumberOfChildren() {
         Integer numOfChildren;
         do {
-			System.out.println("Enter total Number of Children: ");
+			System.out.print("Enter total Number of Children: ");
 			while (!sc.hasNextInt()) {
 		        System.out.println("Please enter numbers only.");
 		        sc.next(); // this is important!

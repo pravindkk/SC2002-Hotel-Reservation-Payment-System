@@ -25,78 +25,6 @@ public class ReservationUI {
     ReservationController reservationController = new ReservationController();
     static SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
-    // public void ReservationUI () {
-    //     int choice =0;
-    //     do {
-    //         choice  = displayOptions();
-    //         switch (choice) {
-    //             case 1:
-    //                 createRes();
-    //                 break;
-    //             case 2:
-    //                 updateRes();
-    //                 break;
-                
-    //             case 3:
-    //                 removeRes();
-    //                 break;
-    //             case 4:
-    //                 // displayOrder();
-    //                 printRese();
-    //                 break;
-
-    //             case 5:
-    //                 printAllRes();
-    //                 break;
-                
-    //             case 6:
-    //                 return;
-    //                 // System.exit(1);
-            
-    //             default:
-    //                 System.out.println("Invalid input");
-    //                 break;
-    //         }
-    //     } while (true);
-        
-
-        
-
-    // }
-
-    
-    // /** 
-    //  * @return int
-    //  */
-    // public int displayOptions() {
-    //     int choice;
-    //     do {
-    //         System.out.println("========================\n" + 
-    //                            "Reservations Order\n"+
-    //                            "========================\n"+
-    //                            "(1) Create Reservation\n"+
-    //                            "(2) Update Reservation\n"+
-    //                            "(3) Remove Reservation\n"+
-    //                            "(4) Print Reservation\n"+
-    //                            "(5) View All Reservations\n"+
-    //                            "(6) Back\n"+
-    //                            "========================\n"
-    //         );
-
-    //         System.out.print("What is your choice (1-6)?: ");
-    //         try {
-    //             choice = sc.nextInt();
-    //             if (choice >0 && choice <7) break;
-    //             else System.out.println("Enter a number between (1-6)!!");
-    //         } catch (Exception e) {
-    //             //TODO: handle exception
-                
-    //         }
-    //     } while (true);
-
-    //     return choice;
-    // }
-
     /**
      * This method prints the UI for the creation of a reservation
      * then obtains the relevant inputs and creates the reservation
@@ -105,7 +33,7 @@ public class ReservationUI {
         try {
             // reservationController.createReservation();
             Date checkInDate = UpdateReservationDetailsDisplayUI.updateCheckInDate();
-            Date checkOutDate = UpdateReservationDetailsDisplayUI.updateCheckOutDate();
+            Date checkOutDate = UpdateReservationDetailsDisplayUI.updateCheckOutDate(checkInDate);
             String roomId = UpdateReservationDetailsDisplayUI.updateRoomId();
             String guestId = UpdateReservationDetailsDisplayUI.updateGuestId();
             Integer numOfAdults = UpdateReservationDetailsDisplayUI.updateNumberOfAdults();
@@ -149,7 +77,7 @@ public class ReservationUI {
     public void walkIn() {
         try {
             Date checkInDate = new Date();
-            Date checkOutDate = UpdateReservationDetailsDisplayUI.updateCheckOutDate();
+            Date checkOutDate = UpdateReservationDetailsDisplayUI.updateCheckOutDate(checkInDate);
             String roomId = UpdateReservationDetailsDisplayUI.updateRoomId();
             String guestId = UpdateReservationDetailsDisplayUI.updateGuestId();
             Integer numOfAdults = UpdateReservationDetailsDisplayUI.updateNumberOfAdults();
@@ -236,7 +164,7 @@ public class ReservationUI {
                     reservation.setCheckInDate(checkIn);
                     break;
                 case 3:
-                    Date checkOut = UpdateReservationDetailsDisplayUI.updateCheckOutDate();
+                    Date checkOut = UpdateReservationDetailsDisplayUI.updateCheckOutDate(reservation.getCheckInDate());
                     reservation.setCheckOutDate(checkOut);
                     break;
                 case 4:
