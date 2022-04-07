@@ -77,6 +77,27 @@ public class ReservationController {
 
     }
 
+    /** 
+     * @param toChange Contains an object of the class Reservation that is going to be stored in the database
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
+
+    public static void saveSpecificReservationByResNum(Reservation toChange) throws IOException {
+        ArrayList allData = getAllReservations();
+
+        for (int i=0; i<allData.size(); i++) {
+            Reservation r = (Reservation) allData.get(i);
+            if (toChange.getReservationNum().equals(r.getReservationNum())) {
+                allData.set(i, toChange);
+                saveReservationData(allData);
+                return;
+            }
+        }
+        System.out.println("couldnt save reservation");
+
+
+    }
+
     
     /** 
      * @param toAdd Contains an object of the class Reservation that is going to be added into the database
@@ -327,7 +348,9 @@ public class ReservationController {
 
         r.setReservationStatus(ReservationStatus.CHECKED_OUT);
         changeRoomStatus(r.getRoomId(), RoomStatus.VACANT);
-        saveSpecificReservationByGuestId(r);
+        // saveSpecificReservationByGuestId(r);
+        saveSpecificReservationByResNum(r);
+        // save
 
     }
 

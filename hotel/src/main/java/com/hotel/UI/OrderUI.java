@@ -94,7 +94,8 @@ public class OrderUI {
             e1.printStackTrace();
         }
         // Integer orderId = ThreadLocalRandom.current().nextInt(1, 100 + 1);
-        String orderId = roomId.charAt(1) + "-" + reservationNum;
+        int a = (int) (Math.random()*(200-1)+1);
+        String orderId = roomId.charAt(1) + "-" + reservationNum + "-" + String.valueOf(a);
         Order toAdd = new Order(orderId, roomId, reservationNum, itemArray, date, OrderStatus.PREPARING, remarks);
 
         try {
