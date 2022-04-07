@@ -6,8 +6,21 @@ import java.util.regex.Pattern;
 
 import com.hotel.system.enums.*;
 
+/**
+ * Represents the class which enables Room to be updated through user input
+ * @author Pravind
+ * @version 1.0
+ * @since 1.0
+ */
+
 public class UpdateRoomMenuDisplayUI {
     static Scanner sc = new Scanner(System.in);
+    
+    /** 
+     * This method updates the roomID tagged to the Room
+     * @return Updated roomID is returned as a String output
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
     public static String updateRoomId() throws IOException {
         String roomId;
         String roomRegExp = "[0][2-7][-][0][1-8]";
@@ -37,6 +50,12 @@ public class UpdateRoomMenuDisplayUI {
         return roomId;
     }
 
+    
+    /** 
+     * This method creates a roomID tagged to the room
+     * @return Updated roomID is returned as a String output
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
     public static String createRoomId() throws IOException {
         String roomId;
         String roomRegExp = "[0][2-7][-][0][1-8]";
@@ -66,6 +85,11 @@ public class UpdateRoomMenuDisplayUI {
         return roomId;
     }
 
+    
+     /** 
+     * This method updates the Room Type tagged to the Room
+     * @return Updated RoomType is returned as a RoomType output
+     */
     public static RoomType updateRoomType() {
         RoomType roomType = RoomType.SINGLE;
         do {
@@ -106,6 +130,11 @@ public class UpdateRoomMenuDisplayUI {
     }
 
 
+    
+     /** 
+     * This method updates the bed Type tagged to the Room
+     * @return Updated bedType is returned as a bedType output
+     */
     public static BedType updateBedType() {
         BedType bedType = BedType.SINGLE;
         do {
@@ -150,6 +179,11 @@ public class UpdateRoomMenuDisplayUI {
     }
 
 
+    
+    /** 
+     * This method updates the withView status tagged to the Room
+     * @return True is returned if the room has a view
+     */
     public static boolean updateWithView() {
         boolean withView=false;
         do {
@@ -183,6 +217,11 @@ public class UpdateRoomMenuDisplayUI {
     }
 
 
+    
+     /** 
+     * This method updates the Room status tagged to the Room
+     * @return Updated Room Status is returned as a roomStatus output
+     */
     public static RoomStatus updateRoomStatus() {
         RoomStatus roomStatus = RoomStatus.VACANT;
 
@@ -223,6 +262,11 @@ public class UpdateRoomMenuDisplayUI {
         return roomStatus;
     }
 
+    
+    /** 
+     * This method updates the room rate tagged to the room
+     * @return Updated room rate is returned as a float output
+     */
     public static Float updateRoomRate() {
         Float roomRate = 0.0f;
 
@@ -243,6 +287,11 @@ public class UpdateRoomMenuDisplayUI {
         return roomRate;
     }
 
+    
+    /** 
+     * This method updates the wifiEnabled status tagged to the Room
+     * @return True is returned if the room has wifi enabled
+     */
     public static boolean updateWifiEnabled() {
         boolean wifiEnabled=false;
         do {
@@ -275,6 +324,11 @@ public class UpdateRoomMenuDisplayUI {
         return wifiEnabled;
     }
 
+    
+   /** 
+     * This method updates the smoking status tagged to the Room
+     * @return True is returned if the room allows smoking
+     */
     public static boolean updateSmokingStatus() {
         boolean smokingStatus=false;
         do {

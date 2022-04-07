@@ -16,8 +16,8 @@ import com.hotel.system.Room;
 import com.hotel.system.enums.*;
 
 /**
- * Represents the controller function of Guest
- * @author Vignesh Ezhil
+ * Represents the controller function of Reservation
+ * @author Pravind
  * @version 1.0
  * @since 1.0
  */

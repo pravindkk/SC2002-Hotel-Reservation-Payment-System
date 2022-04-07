@@ -10,10 +10,24 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.apache.commons.lang3.StringUtils;
 
+/**
+ * Represents the class which enables Creditcard to be updated through user input
+ * @author Vignesh Ezhil
+ * @version 1.0
+ * @since 1.0
+ */
+
+
 public class UpdateCreditCardDetails {
 
     static Scanner sc = new Scanner(System.in);
 
+    
+    /** 
+     * This method updates the guestID tagged to the Credit card
+     * @return Updated GuestID is returned as a String output
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
     public static String UpdateGuestId() throws IOException{
         String guestId = null;
         do{
@@ -55,6 +69,12 @@ public class UpdateCreditCardDetails {
         return guestId;
     }
 
+    
+    /** 
+     * This method updates the Name tagged to the Credit card
+     * @return Updated Name is returned as a String output
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
     public static String UpdateName() throws IOException{
         String name = null;
         do{
@@ -65,6 +85,12 @@ public class UpdateCreditCardDetails {
         return name;
     }
 
+    
+    /** 
+     * This method updates the cardNo tagged to the Credit card
+     * @return Updated CardNo is returned as a String output
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
     public static String UpdateCardNo() throws IOException{
         String cardFormat = "\\d{16}";
         String card = null;
@@ -75,6 +101,12 @@ public class UpdateCreditCardDetails {
         return card;
     }
 
+    
+    /** 
+     * This method updates the CVV tagged to the Credit card
+     * @return Updated CVV is returned as a String output
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
     public static String UpdateCVV() throws IOException{
         String cvvFormat = "\\d{3}";
         String cvv = null;
@@ -85,6 +117,12 @@ public class UpdateCreditCardDetails {
         return cvv;
     }
 
+    
+    /** 
+     * This method updates the expiry date tagged to the Credit card
+     * @return Updated expiry date is returned as a String output
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
     public static String UpdateExpiry() throws IOException{
 		boolean checker = false;
         String expiry  = null;
@@ -126,6 +164,12 @@ public class UpdateCreditCardDetails {
 
 
 
+    
+    /** 
+     * This method updates the Credit Card tagged to the Credit card
+     * @return Updated CreditCard Type is returned as a String output
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
     public static CreditCardType updateCreditCardType() throws IOException{
         CreditCardType type = CreditCardType.AMEX;
         do{

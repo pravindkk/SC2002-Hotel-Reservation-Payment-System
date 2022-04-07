@@ -12,9 +12,21 @@ import com.hotel.system.Guest;
 import com.hotel.system.Room;
 import com.hotel.system.enums.*;
 
+/**
+ * Represents the class which enables Reservation Details to be updated through user input
+ * @author Vignesh Ezhil
+ * @version 1.0
+ * @since 1.0
+ */
+
 public class UpdateReservationDetailsDisplayUI {
     static Scanner sc = new Scanner(System.in);
 
+    
+    /** 
+     * This method updates the checkin date tagged to the reservation detail
+     * @return Updated check in date is returned as a Date output
+     */
     public static Date updateCheckInDate() {
         Date todaysdate = new Date();
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
@@ -37,6 +49,11 @@ public class UpdateReservationDetailsDisplayUI {
         return checkInDate;
     }
     
+    
+    /** 
+     * This method updates the check out date tagged to the reservation detail
+     * @return Updated check out date is returned as a Date output
+     */
     public static Date updateCheckOutDate() {
         Date todaysdate = new Date();
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
@@ -60,6 +77,11 @@ public class UpdateReservationDetailsDisplayUI {
     }
 
 
+    /** 
+     * This method updates the roomID tagged to the Reservation Detail
+     * @return Updated roomID is returned as a String output
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
     public static String updateRoomId() throws IOException {
         
         ArrayList vacantRooms = RoomController.getVacantRooms();
@@ -75,6 +97,12 @@ public class UpdateReservationDetailsDisplayUI {
         return roomId;
     }
 
+    
+    /** 
+     * This method updates the guestID tagged to the Reservation detail
+     * @return Updated GuestID is returned as a String output
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
     public static String updateGuestId() throws IOException {
         // for now i just return normal string
         do {
@@ -93,6 +121,11 @@ public class UpdateReservationDetailsDisplayUI {
         // return "Jane Watson";
     }
 
+    
+    /** 
+     * This method updates the number of adults tagged to the reservation detail
+     * @return Updated number of adults is returned as a Integer output
+     */
     public static Integer updateNumberOfAdults() {
         Integer numOfAdults;
         do {
@@ -111,6 +144,11 @@ public class UpdateReservationDetailsDisplayUI {
         return numOfAdults;
     }
 
+    
+    /** 
+     * This method updates the number of children tagged to the reservation detail
+     * @return Updated number of chilren is returned as a Integer output
+     */
     public static Integer updateNumberOfChildren() {
         Integer numOfChildren;
         do {

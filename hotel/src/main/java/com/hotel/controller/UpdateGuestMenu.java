@@ -5,10 +5,23 @@ import java.util.Scanner;
 import org.apache.commons.lang3.StringUtils;
 import com.hotel.system.enums.*;
 
+/**
+ * Represents the class which enables Guest to be updated through user input
+ * @author Vignesh Ezhil
+ * @version 1.0
+ * @since 1.0
+ */
+
 public class UpdateGuestMenu {
 
     static Scanner sc = new Scanner(System.in);
 
+    
+     /** 
+     * This method updates the guestID tagged to the Guest
+     * @return Updated GuestID is returned as a String output
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
     public static String UpdateGuestId() throws IOException{
         String guestId = null;
         do{
@@ -53,6 +66,12 @@ public class UpdateGuestMenu {
 
     }
 
+    
+     /** 
+     * This method updates the Name tagged to the Guest
+     * @return Updated Name is returned as a String output
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
     public static String UpdateName() throws IOException{
         String name = null;
         do{
@@ -63,6 +82,12 @@ public class UpdateGuestMenu {
         return name;
     }
 
+    
+ /** 
+     * This method updates the Gender tagged to the Guest
+     * @return Updated Gender is returned as a Gender output
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
     public static Gender UpdateGender() throws IOException{
         Gender gender = Gender.OTHERS;
         do{
@@ -100,6 +125,12 @@ public class UpdateGuestMenu {
         
     }
 
+    
+    /** 
+     * This method updates the Nationality tagged to the Guest
+     * @return Updated Nationality is returned as a String output
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
     public static String UpdateNationality() throws IOException{
         String nationality = null;
         do{
@@ -110,6 +141,12 @@ public class UpdateGuestMenu {
         return nationality;
     }
 
+    
+    /** 
+     * This method updates the Country tagged to the Guest
+     * @return Updated Country is returned as a String output
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
     public static String UpdateCountry() throws IOException{
         String country = null;
         do{
@@ -120,6 +157,12 @@ public class UpdateGuestMenu {
         return country;
     }
 
+    
+    /** 
+     * This method updates the phone number tagged to the Guest
+     * @return Updated phone number is returned as a Integer output
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
     public static Integer UpdatePhoneNumber() throws IOException{
         Integer phoneNumber = null;
         do{
@@ -135,6 +178,11 @@ public class UpdateGuestMenu {
         return phoneNumber;
     }
 
+    
+    /** 
+     * @return String
+     * @throws IOException
+     */
     public static String UpdateCrediCardNo() throws IOException{
         String creditcard = null;
         do{

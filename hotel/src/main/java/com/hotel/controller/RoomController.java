@@ -13,22 +13,25 @@ import com.hotel.system.Room;
 import com.hotel.system.enums.*;
 import com.hotel.controller.UpdateRoomMenuDisplayUI;
 
+/**
+ * Represents the controller function of Room
+ * @author Vignesh
+ * @version 1.0
+ * @since 1.0
+ */
+
 public class RoomController {
     // private RoomDB allRooms;
     static RoomDB allRooms = new RoomDB();
     Scanner sc = new Scanner(System.in);
 
 
-    
-    // public static void main(String[] args) throws IOException {
-    //     RoomController test = new RoomController();
-    //     ArrayList hello = test.getAllRooms();
-    //     // test.updateRoom("02-04");
-    //     // test.getVacantRooms();
-    //     test.printAllRooms();
-        
-        
-    // }
+
+    /**
+     * This method is used to create a instance of the Room Class.
+     * Once a instance of the class Room is created , it adds this to the database
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
 
     public static void createRoom() throws IOException {
 
@@ -64,6 +67,10 @@ public class RoomController {
 
     }
 
+    
+    /** 
+     * @param toWrite Contains an ArrayList of all the Rooms that is going to be stored in the database
+     */
     public static void saveData(ArrayList toWrite) {
         
         try {
@@ -76,6 +83,12 @@ public class RoomController {
         }
     }
 
+    
+    /** 
+     * @param roomId String input of roomID is entered so that the corresponding Room object is returned
+     * Then the roomstatus is updated for that particular room object
+     * @throws IOException due to communication with the DataBase IOexception is required
+     */
     public void updateRoomStatus(String roomId) throws IOException {
         ArrayList allData = getAllRooms();
         Room room = getSpecificRoom(roomId);
@@ -91,6 +104,11 @@ public class RoomController {
         // return room;
     }
 
+    
+    /** 
+     * @param toChange Contains an object of the class Room that is going to be stored in the database
+     * @throws IOException due to communication with the DataBase IOexception is required
+     */
     public static void saveSpecificRoomByRoomId(Room toChange) throws IOException {
         ArrayList allData = getAllRooms();
 
@@ -107,6 +125,12 @@ public class RoomController {
 
 
 
+    
+    /** 
+     * @param roomId String input of roomID is entered so that the corresponding Room object is returned
+     * Then the the room is updated based on the requirements from the user
+     * @throws IOException due to communication with the DataBase IOexception is required
+     */
     public void updateRoom(String roomId) throws IOException {
         ArrayList allData = getAllRooms();
         Room room = getSpecificRoom(roomId);
@@ -180,6 +204,11 @@ public class RoomController {
 
     }
 
+    
+    /** 
+     * @param roomId String input of roomID is entered so that the corresponding Room object is deleted
+     * @throws IOException due to communication with the DataBase IOexception is required
+     */
     public static void deleteRoom(String roomId) throws IOException {
         ArrayList allData = getAllRooms();
         for (int i=0; i<allData.size(); i++) {
@@ -192,6 +221,12 @@ public class RoomController {
         
     }
 
+    
+    /** 
+     * @param roomId String input of roomID is entered to query the database
+     * @return boolean flag to inidcate a room exist
+     * @throws IOException due to communication with the DataBase IOexception is required
+     */
     public static boolean checkRoomIDExists(String roomId) throws IOException {
         ArrayList allData = getAllRooms();
         for (int i=0; i<allData.size(); i++) {
@@ -203,12 +238,23 @@ public class RoomController {
 
     }
 
+    
+    /** 
+     * @return Returns an ArrayList of all the Rooms stored in the database
+     * @throws IOException due to communication with the DataBase IOexception is required
+     */
     public static ArrayList getAllRooms() throws IOException {
         ArrayList allData = allRooms.read(allRooms.getPath());
         return allData;
     }
 
 
+    
+    /** 
+     * @param roomId String input of roomID to query the database
+     * @return IF the roomID is found , the correspindiing record is returned
+     * @throws IOException due to communication with the DataBase IOexception is required
+     */
     public static Room getSpecificRoom(String roomId) throws IOException {
 
         ArrayList allData = getAllRooms();
@@ -225,6 +271,12 @@ public class RoomController {
         return null;
     }
 
+    
+    /** 
+     * This method queries the database for one roomID. IF the roomID is found, all the details of the corresponding record is printed
+     * @param roomId String input of roomID to query the database
+     * @throws IOException due to communication with the DataBase IOexception is required
+     */
     public static void printOneRoom(String roomId) throws IOException {
         Room r = (Room) getSpecificRoom(roomId);
 
@@ -249,6 +301,11 @@ public class RoomController {
     }
 
 
+    
+    /** 
+     * @return Returns an ArrayList<rooms> of vacant rooms
+     * @throws IOException due to communication with the DataBase IOexception is required
+     */
     public static ArrayList getVacantRooms() throws IOException {
         ArrayList allData = getAllRooms();
         
@@ -258,6 +315,14 @@ public class RoomController {
         return allData;
     }
 
+    
+    /** 
+     * This method checks if a particular room is occupied
+     * @param roomId String input of roomID to query the database.
+     * Then the correspoding room object is checked to see if the room is occupied
+     * @return if room is occupied, true is returned. 
+     * @throws IOException due to communication with the DataBase IOexception is required
+     */
     public static boolean checkIfRoomOccupied(String roomId) throws IOException {
         ArrayList<Room> allData = getVacantRooms();
 
@@ -267,6 +332,14 @@ public class RoomController {
         return true;
     }
 
+    
+    /** 
+     * This method returns an ArrayList<room> of the same room type
+     * @param allData An ArrayList<rooms> of all the rooms in the database is passed as input
+     * @param roomType The specific roomtype that we would need is passed as another input
+     * @return An ArrayList<room> of the roomType that one would require is returned 
+     * @throws IOException due to communication with the DataBase IOexception is required
+     */
     public static ArrayList getRoomsByRoomType(ArrayList allData, RoomType roomType) throws IOException {
         
         allData.removeIf(r -> ((Room) r).getRoomType() != roomType);
@@ -274,6 +347,14 @@ public class RoomController {
         return allData;
     }
 
+    
+    /** 
+     * This method returns an ArrayList<room> of the same bed type
+     * @param allData An ArrayList<rooms> of all the rooms in the database is passed as input
+     * @param bedType he specific bedtype that we would need is passed as another input
+     * @return An ArrayList<room> of the bedType that one would require is returned 
+     * @throws IOException due to communication with the DataBase IOexception is required
+     */
     public static ArrayList getRoomsByBedType(ArrayList allData, BedType bedType) throws IOException {
         
         allData.removeIf(r -> ((Room)r).getBedType() != bedType);
@@ -284,6 +365,11 @@ public class RoomController {
 
 
 
+    
+    /** 
+     * This method prints out all the vacant rooms in the hotel
+     * @throws IOException due to communication with the DataBase IOexception is required
+     */
     public static void printVacantRoom() throws IOException {
 
         
@@ -328,6 +414,11 @@ public class RoomController {
     }
 
 
+    
+    /** 
+     * This method prints out all the rooms in the hotel regardless of room status
+     * @throws IOException due to communication with the DataBase IOexception is required
+     */
     public static void printAllRooms() throws IOException {
         ArrayList allData = getAllRooms();
         System.out.println("\n====================================");
@@ -354,6 +445,11 @@ public class RoomController {
         }
     }
 
+    
+    /** 
+     * @param allData
+     * @throws IOException
+     */
     public static void printRooms(ArrayList allData) throws IOException {
         // ArrayList allData = getAllRooms();
         System.out.printf("%-8s %-13s %-18s %-11s %-19s %-15s %-12s %-13s %-13s %-10s", "RoomID", "Room Type", "Bed Type", "With View", 
