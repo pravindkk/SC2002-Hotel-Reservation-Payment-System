@@ -77,6 +77,27 @@ public class ReservationController {
 
     }
 
+    /** 
+     * @param toChange Contains an object of the class Reservation that is going to be stored in the database
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
+
+    public static void saveSpecificReservationByResNum(Reservation toChange) throws IOException {
+        ArrayList allData = getAllReservations();
+
+        for (int i=0; i<allData.size(); i++) {
+            Reservation r = (Reservation) allData.get(i);
+            if (toChange.getReservationNum().equals(r.getReservationNum())) {
+                allData.set(i, toChange);
+                saveReservationData(allData);
+                return;
+            }
+        }
+        System.out.println("couldnt save reservation");
+
+
+    }
+
     
     /** 
      * @param toAdd Contains an object of the class Reservation that is going to be added into the database
@@ -104,8 +125,9 @@ public class ReservationController {
 
     
     /** 
-     * @param reservationId
-     * @return Reservation
+     * @param reservationId String input of reservation ID is entered
+     * The database is queried and if the corrrsponding reservation object is found, the corresponding reservation object is returned
+     * @return If the resevration object that corresponds to the reservationID is found in the database it is returned. Else , null is returned
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
     public static Reservation getReservationByNum(String reservationId) throws IOException {
@@ -143,7 +165,7 @@ public class ReservationController {
 
             System.out.printf("%-16s %-10s %-7s %-14s %-13s %-19s %-14s %-10s", 
                         r.getReservationNum(), r.getGuestId(), r.getRoomId(),
-						String.valueOf(r.getReservationStatus()), r.getCheckInDate(), r.getCheckOutDate(), r.getNumOfAdults(), r.getNumOfChildren());
+						String.valueOf(r.getReservationStatus()), df.format(r.getCheckInDate()), df.format(r.getCheckOutDate()), r.getNumOfAdults(), r.getNumOfChildren());
             System.out.println("");
         }
     }
@@ -175,6 +197,13 @@ public class ReservationController {
 
         return null;
     }
+
+    /** 
+     * @param roomId
+     * @param reservationStatus
+     * @return Reservation
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
 
     public static Reservation getReservationByRoom(String roomId, ReservationStatus reservationStatus) throws IOException {
         // ArrayList allReservations = getAllReservations();
@@ -327,7 +356,9 @@ public class ReservationController {
 
         r.setReservationStatus(ReservationStatus.CHECKED_OUT);
         changeRoomStatus(r.getRoomId(), RoomStatus.VACANT);
-        saveSpecificReservationByGuestId(r);
+        // saveSpecificReservationByGuestId(r);
+        saveSpecificReservationByResNum(r);
+        // save
 
     }
 

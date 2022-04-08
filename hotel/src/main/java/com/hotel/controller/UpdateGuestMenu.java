@@ -43,14 +43,14 @@ public class UpdateGuestMenu {
                 switch(choice){
                     case 1:
                     do{
-                        System.out.println("Enter Driving License Number:");
+                        System.out.print("Enter Driving License Number:");
                         guestId = sc.next();
                     }while(guestId==null);
                     break;
                     
                     case 2:
                     do{
-                        System.out.println("Enter passport Number:");
+                        System.out.print("Enter passport Number:");
                         guestId = sc.next();
                     }while(guestId==null);
 

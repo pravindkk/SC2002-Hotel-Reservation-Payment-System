@@ -39,7 +39,7 @@ public class OrderUI {
         // gesc = new Scanner(System.in);
     	String roomId;
         String reservationNum=null;
-        sc.nextLine();
+        // sc.nextLine();
         System.out.println("Enter room number:");
         roomId = sc.nextLine();
         System.out.println("");
@@ -94,7 +94,8 @@ public class OrderUI {
             e1.printStackTrace();
         }
         // Integer orderId = ThreadLocalRandom.current().nextInt(1, 100 + 1);
-        String orderId = roomId.charAt(0) + "-" + reservationNum.charAt(0) + "-" + df.format(date).replaceAll("\\D", "");;
+        int a = (int) (Math.random()*(200-1)+1);
+        String orderId = roomId.charAt(1) + "-" + reservationNum + "-" + String.valueOf(a);
         Order toAdd = new Order(orderId, roomId, reservationNum, itemArray, date, OrderStatus.PREPARING, remarks);
 
         try {
@@ -112,7 +113,7 @@ public class OrderUI {
     public static void updateOrder() {
         // String orderId=null;
         Order order=null;
-        sc.nextLine();
+        // sc.nextLine();
         try {
             System.out.print("Enter the orderId to be updated?:  ");
             String orderId = sc.nextLine();
@@ -209,6 +210,7 @@ public class OrderUI {
                 case 4:
                     String remark =null;
                     try {
+                        System.out.print("What is the remarks?:  ");
                         sc.nextLine();
                         remark = sc.nextLine();
                         if (remark != null || remark != "") order.setRemarks(remark);
@@ -244,7 +246,7 @@ public class OrderUI {
         
         String orderId=null;
         Order order=null;
-        sc.nextLine();
+        // sc.nextLine();
         do {
             try {
                 System.out.println("Enter order ID to be deleted: ");
@@ -267,7 +269,7 @@ public class OrderUI {
      */
     public static void displayOrder() {
         Order order=null;
-        sc.nextLine();
+        // sc.nextLine();
         try {
             System.out.print("What is the orderId?: ");
             String orderId = sc.nextLine();

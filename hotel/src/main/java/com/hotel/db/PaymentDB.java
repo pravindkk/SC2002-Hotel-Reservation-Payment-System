@@ -30,6 +30,7 @@ import java.text.SimpleDateFormat;
 public class PaymentDB extends DB {
     private File database = new File("hotel/payments.csv");
     private String path;
+    SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
     
 
 
@@ -137,15 +138,30 @@ public class PaymentDB extends DB {
                 String.valueOf(payment.getSubTotal()),
                 String.valueOf(payment.getTotal()),
                 payment.getReservationNum(),
-                String.valueOf(payment.getDate()),
+                df.format(payment.getDate()),
             };
             ArrayList<String> orders = payment.getOrders();
-            toAddPayment = (String[]) ArrayUtils.addAll(toAddPayment, orders);
+            // toAddPayment = (String[]) ArrayUtils.addAll(toAddPayment, orders);
+
+            int length = toAddPayment.length + orders.size();
+
+            String[] result = new String[length];
+            int pos = 0;
+            for (String element : toAddPayment) {
+                result[pos] = element;
+                pos++;
+            }
+
+            for (String element : orders) {
+                result[pos] = element;
+                pos++;
+            }
+  
             
 
 
 
-            toWrite.add(toAddPayment);
+            toWrite.add(result);
             
             
 
