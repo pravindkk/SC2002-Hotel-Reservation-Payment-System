@@ -36,7 +36,7 @@ public class MenuController {
 
     
     /** 
-     * Prints out all the guest details in the database
+     * Prints out all the Food's details in the database
      * @throws IOException IOException due to communication with the DataBase IOexception is required
      */
     public static void printAllItems() throws IOException {
