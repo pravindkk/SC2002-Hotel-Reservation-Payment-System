@@ -274,7 +274,10 @@ public class OrderUI {
             System.out.print("What is the orderId?: ");
             String orderId = sc.nextLine();
             order = OrderController.getOrderById(orderId);
-            if (order == null) System.out.println("order doesnt exit");
+            if (order == null) {
+                System.out.println("ERROR!! order doesnt exist!!");
+                return;
+            }
         } catch (IOException e1) {
             // TODO Auto-generated catch block
             e1.printStackTrace();

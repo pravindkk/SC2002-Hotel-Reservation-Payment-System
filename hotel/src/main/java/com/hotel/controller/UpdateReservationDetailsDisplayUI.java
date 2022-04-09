@@ -30,6 +30,7 @@ public class UpdateReservationDetailsDisplayUI {
     /** 
      * This method updates the checkin date tagged to the reservation detail
      * @return Updated check in date is returned as a Date output
+     * @throws ParseException
      */
     public static Date updateCheckInDate() {
         Date todaysdate = DateUtils.addDays(new Date(),-1);
@@ -44,16 +45,23 @@ public class UpdateReservationDetailsDisplayUI {
         Date checkInDate = null;
         
         do {                                                                                                // for check-in date input
-            System.out.print("Enter Check-In Date:  ");
+            System.out.print("Enter Check-In Date (DD/MM/YYYY):  ");
 
             try {
                 checkInDateString = sc.nextLine();
-                checkInDate = df.parse(checkInDateString);
-            } catch(ParseException e) {
-                System.out.println(e);
+                // checkInDate = df.parse(checkInDateString);
+            } catch(Exception e) {
+                // System.out.println(e);
             }
+            try {
+                checkInDate = df.parse(checkInDateString);
+            } catch (ParseException e) {
+                //TODO: handle exception
+                System.out.println("Invalid Date!! ABORT!!!");
+            }
+            
             if (checkInDate.before(todaysdate)) {
-                System.out.println("Pick a date before the today's date");
+                System.out.println("Pick a date before the today's date (DD/MM/YYYY)");
             }
 
         } while(checkInDate.before(todaysdate) || !checkInDateString.matches(dateValidation));
@@ -74,13 +82,18 @@ public class UpdateReservationDetailsDisplayUI {
         Date checkOutDate = null;
         
         do {                                                                                                // for check-in date input
-            System.out.print("Enter Check-Out Date:  ");
-
+            System.out.print("Enter Check-Out Date (DD/MM/YYYY):  ");
             try {
                 checkInDateString = sc.nextLine();
+                // checkInDate = df.parse(checkInDateString);
+            } catch(Exception e) {
+                // System.out.println(e);
+            }
+            try {
                 checkOutDate = df.parse(checkInDateString);
-            } catch(ParseException e) {
-                System.out.println(e);
+            } catch (ParseException e) {
+                //TODO: handle exception
+                System.out.println("Invalid Date!! ABORT!!!");
             }
 
             if (checkOutDate.before(checkInDate)) {
@@ -151,11 +164,11 @@ public class UpdateReservationDetailsDisplayUI {
 		        sc.next(); // this is important!
 		    }
 			numOfAdults = sc.nextInt();
-			if(numOfAdults < 0) {
-				System.out.println("Please enter a valid number.");
+			if(numOfAdults <= 0) {
+				System.out.println("Numer of Adults cannot be less than 0.");
 			}
 			
-		}while(numOfAdults <= -1);
+		}while(numOfAdults <= 0);
 
         return numOfAdults;
     }
@@ -177,7 +190,7 @@ public class UpdateReservationDetailsDisplayUI {
 			if(numOfChildren < 0) {
 				System.out.println("Please enter a valid number.");
 			}
-		}while(numOfChildren <= -1);
+		}while(numOfChildren < 0);
 
         return numOfChildren;
     }

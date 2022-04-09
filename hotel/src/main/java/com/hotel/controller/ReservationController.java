@@ -446,7 +446,7 @@ public class ReservationController {
 
 
         try {
-            saveSpecificReservationByGuestId(r);
+            saveSpecificReservationByResNum(r);
             System.out.println("Cancellation successful");
         } catch (Exception e) {
             //TODO: handle exception

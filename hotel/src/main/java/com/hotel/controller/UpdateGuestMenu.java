@@ -40,18 +40,19 @@ public class UpdateGuestMenu {
                 System.out.println("Enter a valid option!!");
             }
             else{
+                sc.nextLine();
                 switch(choice){
                     case 1:
                     do{
                         System.out.print("Enter Driving License Number:");
-                        guestId = sc.next();
+                        guestId = sc.nextLine();
                     }while(guestId==null);
                     break;
                     
                     case 2:
                     do{
                         System.out.print("Enter passport Number:");
-                        guestId = sc.next();
+                        guestId = sc.nextLine();
                     }while(guestId==null);
 
                         
@@ -76,7 +77,7 @@ public class UpdateGuestMenu {
         String name = null;
         do{
             System.out.println("Enter Name");
-            name = sc.next();
+            name = sc.nextLine();
         }while (name == null);
 
         return name;

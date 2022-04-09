@@ -48,7 +48,7 @@ public class ReservationUI {
             System.out.println("Guest Id: " + guestId);
             System.out.println("Number of adults: " + numOfAdults);
             System.out.println("Number of children: " + numOfChildren);
-            System.out.println("Confirm Reservation? (y/n)");
+            System.out.println("Confirm Reservation? (Y/N)");
             System.out.println("");
             String confirmation = sc.next();
 
@@ -67,9 +67,10 @@ public class ReservationUI {
             }
 
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            // e.printStackTrace();
+
         }
     }
 
@@ -180,9 +181,9 @@ public class ReservationUI {
             reservationController.updateReservation(reservation);
 
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            // e.printStackTrace();
         }
     }
 
@@ -191,8 +192,9 @@ public class ReservationUI {
      * then obtains the relevant inputs and removes the reservation
      */
     public void removeRes() {
-        sc.nextLine();
+        // sc.nextLine();
         try {
+            System.out.print("Enter the Reservation Id:  ");
             String reservationId = sc.nextLine();
             reservationController.cancelReservation(reservationId);
         } catch (Exception e) {
@@ -206,7 +208,7 @@ public class ReservationUI {
      * then obtains the relevant inputs and prints the details
      */
     public void printRese() {
-        sc.nextLine();
+        // sc.nextLine();
         try {
             System.out.print("What is your reservation number: ");
             String reservationId = sc.nextLine();
