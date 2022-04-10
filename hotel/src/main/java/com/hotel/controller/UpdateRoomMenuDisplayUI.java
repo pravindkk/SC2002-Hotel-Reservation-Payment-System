@@ -1,6 +1,7 @@
 package com.hotel.controller;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -32,7 +33,7 @@ public class UpdateRoomMenuDisplayUI {
 			System.out.println("*Room number from 01 - 08");
             System.out.print("Please enter Room ID(E.g 02-04):  ");
 
-            roomId = sc.nextLine();
+            roomId = String.valueOf(sc.nextLine());
             System.out.println();
 			// Matcher matcher = roomIdPattern.matcher(roomId);
             if(roomId.length() != 5 || !roomIdPattern.matcher(roomId).matches()) {
@@ -42,7 +43,7 @@ public class UpdateRoomMenuDisplayUI {
 
                 if (RoomController.checkRoomIDExists(roomId) == true) break;
                 else {
-                    System.out.println("The Room Id you have entered does not exist. Please enter another Room Id.");
+                    System.out.println("The Room Id you have entered already exists. Please enter another Room Id.");
                 }
             }
 
@@ -135,47 +136,101 @@ public class UpdateRoomMenuDisplayUI {
      * This method updates the bed Type tagged to the Room
      * @return Updated bedType is returned as a bedType output
      */
-    public static BedType updateBedType() {
-        BedType bedType = BedType.SINGLE;
-        do {
-            System.out.println("Please enter Bed Type: ");
-			System.out.println("(1) Single");
-			System.out.println("(2) Double");
-			System.out.println("(3) Super Single");
-			System.out.println("(4) Queen");
-			System.out.println("(5) King");
-
-            int choice = 0;
-            try {
-                choice = sc.nextInt();
-            } catch (Exception e) {
-                //TODO: handle exception
-            }
-
-            if (choice < 1 || choice > 5) {
-                System.out.println("Enter a valid option");
-            } else {
-                switch (choice) {
-                    case 1:
-                        bedType = BedType.SINGLE;
-                        break;
-                    case 2:
-                        bedType = BedType.DOUBLE;
-                        break;
-                    case 3:
-                        bedType = BedType.SUPER_SINGLE;
-                        break;
-                    case 4:
-                        bedType = BedType.QUEEN;
-                        break;
-                    case 5:
-                        bedType = BedType.KING;
-                        break;
+    public static BedType updateBedType(RoomType roomType) {
+        
+        if (roomType == RoomType.SINGLE) {
+            do {
+                System.out.println("Please enter Bed Type: ");
+                System.out.println("(1) Single");
+                System.out.println("(2) Super Single");
+            
+            int choice=0;
+                try {
+                    choice = sc.nextInt();
+                } catch (Exception e) {
+                    //TODO: handle exception
                 }
-                break;
-            }
-        } while (true);
-        return bedType;
+
+                if (choice < 1 || choice > 2) {
+                    System.out.println("Enter a valid option");
+                } else {
+                    switch(choice){
+                        case 1:
+                            return BedType.SINGLE;
+                        case 2:
+                            return BedType.SUPER_SINGLE;
+                    }
+                }
+            } while (true);
+        }
+        if (roomType == RoomType.DOUBLE) {
+            do {
+                System.out.println("Please enter Bed Type: ");
+                System.out.println("(1) Single");
+                System.out.println("(2) Double");
+                System.out.println("(3) Queen");
+            
+            int choice=0;
+                try {
+                    choice = sc.nextInt();
+                } catch (Exception e) {
+                    //TODO: handle exception
+                }
+
+                if (choice < 1 || choice > 3) {
+                    System.out.println("Enter a valid option");
+                } else {
+                    switch(choice){
+                        case 1:
+                            return BedType.SINGLE;
+                        case 2:
+                            return BedType.DOUBLE;
+                        case 3:
+                            return BedType.QUEEN;
+                    }
+                }
+            } while (true);
+        }
+        if (roomType == RoomType.DELUXE || roomType == RoomType.VIP_SUITE) {
+            do {
+                System.out.println("Please enter Bed Type: ");
+                System.out.println("(1) Single");
+                System.out.println("(2) Double");
+                System.out.println("(3) Super Single");
+                System.out.println("(4) Queen");
+                System.out.println("(5) King");
+    
+                int choice = 0;
+                try {
+                    choice = sc.nextInt();
+                } catch (Exception e) {
+                    //TODO: handle exception
+                }
+    
+                if (choice < 1 || choice > 5) {
+                    System.out.println("Enter a valid option");
+                } else {
+                    switch (choice) {
+                        case 1:
+                            return BedType.SINGLE;
+
+                        case 2:
+                            return BedType.DOUBLE;
+
+                        case 3:
+                            return BedType.SUPER_SINGLE;
+
+                        case 4:
+                            return BedType.QUEEN;
+
+                        case 5:
+                            return BedType.KING;
+
+                    }
+                }
+            } while (true);
+        }
+        return BedType.SINGLE;
     }
 
 
@@ -269,6 +324,7 @@ public class UpdateRoomMenuDisplayUI {
      */
     public static Float updateRoomRate() {
         Float roomRate = 0.0f;
+        String decimalPattern = "([0-9]*)\\.([0-9]*)";
 
         do {
             System.out.println("Please enter Room Rate(E.g. 154.40):");
@@ -280,9 +336,15 @@ public class UpdateRoomMenuDisplayUI {
                 //TODO: handle exception
                 System.out.println("Enter a valid rate");
             }
-            if (roomRate < 0.0) System.out.println("Enter a positive rate");
+            if (roomRate <= 0.0) System.out.println("Enter a positive rate");
+            else if (new BigDecimal(String.valueOf(roomRate)).scale() > 2){
+                System.out.println("Enter a decimal with 2dp");
+            }
+            else {
+                break;
+            }
 
-        } while (roomRate <= 0.0);
+        } while (true);
 
         return roomRate;
     }

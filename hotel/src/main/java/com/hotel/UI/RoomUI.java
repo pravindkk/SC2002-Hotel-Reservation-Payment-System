@@ -5,6 +5,7 @@ import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 import com.hotel.system.Room;
 import com.hotel.system.enums.*;
+import com.hotel.controller.ReservationController;
 import com.hotel.controller.RoomController;
 import com.hotel.controller.UpdateRoomMenuDisplayUI;
 
@@ -50,6 +51,10 @@ public class RoomUI {
     public void deleteRoom() {
         try {
             String roomId = UpdateRoomMenuDisplayUI.updateRoomId();
+            if (ReservationController.getReservationByRoom(roomId, ReservationStatus.CONFIRMED) != null){
+                System.out.println("CANNOT DELETE!! There is a reservation booked in the room!!!");
+                return;
+            }
             roomController.deleteRoom(roomId);
         } catch (Exception e) {
             //TODO: handle exception

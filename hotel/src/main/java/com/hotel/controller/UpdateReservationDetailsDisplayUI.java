@@ -48,6 +48,7 @@ public class UpdateReservationDetailsDisplayUI {
             System.out.print("Enter Check-In Date (DD/MM/YYYY):  ");
 
             try {
+                // sc.nextLine();
                 checkInDateString = sc.nextLine();
                 // checkInDate = df.parse(checkInDateString);
             } catch(Exception e) {
@@ -112,16 +113,24 @@ public class UpdateReservationDetailsDisplayUI {
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
     public static String updateRoomId() throws IOException {
+        String roomId;
+        do {
+            ArrayList vacantRooms = RoomController.getVacantRooms();
+
+
+            System.out.println("==================================");
+            System.out.println("ALL VACANT ROOMS WITH DETAILS");
+            System.out.println("==================================");
+            RoomController.printRooms(vacantRooms);
+            roomId = UpdateRoomMenuDisplayUI.updateRoomId();
+            if (ReservationController.getReservationByRoom(roomId, ReservationStatus.CONFIRMED) == null) break;
+            else {
+                System.out.println("Choose a empty room!!");
+            }
         
-        ArrayList vacantRooms = RoomController.getVacantRooms();
-
-
-        System.out.println("==================================");
-        System.out.println("ALL VACANT ROOMS WITH DETAILS");
-        System.out.println("==================================");
-        RoomController.printRooms(vacantRooms);
-        String roomId = UpdateRoomMenuDisplayUI.updateRoomId();
-
+        } while (true);
+        
+        
 
         return roomId;
     }
@@ -167,8 +176,14 @@ public class UpdateReservationDetailsDisplayUI {
 			if(numOfAdults <= 0) {
 				System.out.println("Numer of Adults cannot be less than 0.");
 			}
+            else if (numOfAdults > 4) {
+                System.out.println("Too many people");
+            }
+            else {
+                break;
+            }
 			
-		}while(numOfAdults <= 0);
+		}while(true);
 
         return numOfAdults;
     }
@@ -190,7 +205,13 @@ public class UpdateReservationDetailsDisplayUI {
 			if(numOfChildren < 0) {
 				System.out.println("Please enter a valid number.");
 			}
-		}while(numOfChildren < 0);
+            else if (numOfChildren > 5) {
+                System.out.println("Too many people");
+            }
+            else {
+                break;
+            }
+		}while(true);
 
         return numOfChildren;
     }

@@ -195,7 +195,7 @@ public class ReservationUI {
         // sc.nextLine();
         try {
             System.out.print("Enter the Reservation Id:  ");
-            String reservationId = sc.nextLine();
+            String reservationId = String.valueOf(sc.nextLine());
             reservationController.cancelReservation(reservationId);
         } catch (Exception e) {
             //TODO: handle exception
@@ -211,7 +211,7 @@ public class ReservationUI {
         // sc.nextLine();
         try {
             System.out.print("What is your reservation number: ");
-            String reservationId = sc.nextLine();
+            String reservationId = String.valueOf(sc.nextLine());
             reservationController.printReservation(reservationId);
         } catch (Exception e) {
             //TODO: handle exception
