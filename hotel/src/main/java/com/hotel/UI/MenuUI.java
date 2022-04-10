@@ -9,6 +9,7 @@ import javax.swing.plaf.metal.MetalBorders.MenuItemBorder;
 import com.hotel.controller.MenuController;
 import com.hotel.system.Item;
 import com.hotel.system.enums.FoodType;
+import org.apache.commons.lang3.RegExUtils;
 
 /**
  * Represents the class of MenuUI, which prints the UI for Menu-related operations
@@ -147,7 +148,7 @@ public class MenuUI {
     public static void deleteMenuItem() throws IOException {
         Integer itemdId=null;
         do {
-            System.out.println("Enter the id of the item to add:  ");
+            System.out.println("Enter the id of the item:  ");
             try {
                 itemdId = sc.nextInt();
             } catch (Exception e) {
@@ -180,9 +181,8 @@ public class MenuUI {
     public static String getItemName() {
         String itemName=null;
         do {
-            System.out.println("Enter the name of the item to add:  ");
+            System.out.println("Enter the name of the item : ");
             try {
-                sc.nextLine();
                 itemName = sc.nextLine();
             } catch (Exception e) {
                 //TODO: handle exception
@@ -202,9 +202,8 @@ public class MenuUI {
     public static String getItemDesc(){
         String itemDesc=null;
         do {
-            System.out.println("Enter the description of the item to add:  ");
+            System.out.println("Enter the description of the item :  ");
             try {
-                sc.nextLine();
                 itemDesc = sc.nextLine();
             } catch (Exception e) {
                 //TODO: handle exception
@@ -221,18 +220,15 @@ public class MenuUI {
      * @return double
      */
     public static double getItemPrice() {
-        double price=0.0;
+        String price=null;
+        String priceFormat = "(\\d+\\.\\d{1,2})" ;
         do {
-            System.out.println("Enter the price of the item to add (e.g 26.5):  ");
-            try {
-                price = sc.nextDouble();
-                if (price != 0.0) break;
-            } catch (Exception e) {
-                //TODO: handle exception
-                System.out.println("Wrong price input!");
-            }
-        } while (true);
-        return price;
+            System.out.println("Enter the price of the item (e.g 26.50):  ");
+            price = sc.next();
+ 
+        } while (price.equals("")|| !price.matches(priceFormat));
+        sc.nextLine();
+        return Double.valueOf(price);
     }
 
     
@@ -247,7 +243,7 @@ public class MenuUI {
             System.out.println("(1) Starter\n"+
                                 "(2) Main Course\n"+
                                 "(3) Drinks");
-            System.out.println("Enter the FoodType of the item to add:  ");
+            System.out.println("Enter the FoodType of the item:  ");
             int choice=0;
             try {
                     choice = sc.nextInt();

@@ -33,7 +33,12 @@ public class UpdateRoomMenuDisplayUI {
 			System.out.println("*Room number from 01 - 08");
             System.out.print("Please enter Room ID(E.g 02-04):  ");
 
+<<<<<<< HEAD
             roomId = String.valueOf(sc.nextLine());
+=======
+            // the bug is probably here. 
+            roomId = sc.nextLine();
+>>>>>>> 85e92a98530d7e29b77bba835950af7ec99b46ec
             System.out.println();
 			// Matcher matcher = roomIdPattern.matcher(roomId);
             if(roomId.length() != 5 || !roomIdPattern.matcher(roomId).matches()) {
