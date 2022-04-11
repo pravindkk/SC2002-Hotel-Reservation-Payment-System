@@ -114,14 +114,22 @@ public class OrderUI {
         // String orderId=null;
         Order order=null;
         // sc.nextLine();
-        try {
-            System.out.print("Enter the orderId to be updated?:  ");
-            String orderId = sc.nextLine();
-            order = OrderController.getOrderById(orderId);
-            if (order == null) System.out.println("order doesnt exit");
-        } catch (IOException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
+        do {
+            try {
+                System.out.print("Enter the orderId to be updated?:  ");
+                String orderId = sc.nextLine();
+                order = OrderController.getOrderById(orderId);
+                if (order == null) System.out.println("order doesnt exit");
+                else break;
+            } catch (IOException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        } while (true);
+        
+        if(order.getOrderStatus()==OrderStatus.DELIVERED || order.getOrderStatus()==OrderStatus.PAID){
+            System.out.println("Unable to make changes to Order");
+            return;
         }
         order.viewOrder();
         int choice =0;

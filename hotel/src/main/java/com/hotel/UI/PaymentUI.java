@@ -62,7 +62,7 @@ public class PaymentUI {
                         newOrders.add(order.getOrderId());
                     }
                 }
-            } else newOrders = null;
+            };
 
 
             // Payment payment = new Payment(paymentId, guestId, orders, reservationNum, date, total, subTotal)
