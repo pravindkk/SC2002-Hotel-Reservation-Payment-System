@@ -87,7 +87,7 @@ public class MenuUI {
     public static void updateMenuItem() throws IOException {
         Integer itemdId=null;
         do {
-            System.out.println("Enter the id of the item to add:  ");
+            System.out.println("Enter the id of the item:  ");
             try {
                 itemdId = sc.nextInt();
             } catch (Exception e) {
