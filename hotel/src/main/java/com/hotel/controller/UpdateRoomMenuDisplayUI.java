@@ -43,7 +43,7 @@ public class UpdateRoomMenuDisplayUI {
 
                 if (RoomController.checkRoomIDExists(roomId) == true) break;
                 else {
-                    System.out.println("The Room Id you have entered already exists. Please enter another Room Id.");
+                    System.out.println("The Room Id you have entered is invalid. Please enter another Room Id.");
                 }
             }
 
@@ -78,7 +78,7 @@ public class UpdateRoomMenuDisplayUI {
 
                 if (RoomController.checkRoomIDExists(roomId) != true) break;
                 else {
-                    System.out.println("The Room Id you have entered does not exist. Please enter another Room Id.");
+                    System.out.println("The Room Id you have entered is invalid. Please enter another Room Id.");
                 }
             }
 
