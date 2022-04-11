@@ -353,6 +353,11 @@ public class ReservationController {
             System.out.println("Reservation is not checked in");
             return;
         }
+        // pravind to check
+        if(r.getReservationStatus()==ReservationStatus.CHECKED_OUT){
+            System.out.println("Room has been checked out");
+            return;
+        }
 
         r.setReservationStatus(ReservationStatus.CHECKED_OUT);
         changeRoomStatus(r.getRoomId(), RoomStatus.VACANT);
