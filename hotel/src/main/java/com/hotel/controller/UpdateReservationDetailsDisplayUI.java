@@ -153,6 +153,10 @@ public class UpdateReservationDetailsDisplayUI {
             } else if (choice.equalsIgnoreCase("n")) {
                 String guestId = UpdateGuestMenu.UpdateGuestId();
                 Guest guest = GuestController.RetrieveGuest(guestId);
+                if(guest==null){
+                    System.out.println("Unable to find record!. New Record will be created");
+                    guest = GuestController.CreateGuest();
+                }
                 return guest.getGuestId();
 		}
         } while(true);
