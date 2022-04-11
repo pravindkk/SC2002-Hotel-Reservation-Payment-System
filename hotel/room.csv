@@ -16,4 +16,4 @@
 "06-02","DELUXE","KING","true","VACANT","190.0","06","2","true","false"
 "06-03","DOUBLE","DOUBLE","false","VACANT","90.0","06","3","true","false"
 "07-01","VIP_SUITE","QUEEN","true","VACANT","250.0","07","1","true","true"
-"07-02","VIP_SUITE","KING","true","VACANT","280.0","07","2","true","true"
+"07-02","VIP_SUITE","KING","true","RESERVED","280.0","07","2","true","true"

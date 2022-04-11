@@ -49,7 +49,7 @@ public class UpdateReservationDetailsDisplayUI {
 
             try {
                 // sc.nextLine();
-                checkInDateString = sc.nextLine();
+                checkInDateString = String.valueOf(sc.next());
                 // checkInDate = df.parse(checkInDateString);
             } catch(Exception e) {
                 // System.out.println(e);
@@ -85,7 +85,7 @@ public class UpdateReservationDetailsDisplayUI {
         do {                                                                                                // for check-in date input
             System.out.print("Enter Check-Out Date (DD/MM/YYYY):  ");
             try {
-                checkInDateString = sc.nextLine();
+                checkInDateString = String.valueOf(sc.next());
                 // checkInDate = df.parse(checkInDateString);
             } catch(Exception e) {
                 // System.out.println(e);
@@ -145,7 +145,7 @@ public class UpdateReservationDetailsDisplayUI {
         // for now i just return normal string
         do {
             System.out.print("Are you a new Guest (Y/N)?:  ");
-            String choice = sc.nextLine();
+            String choice = sc.next();
             if (choice.equalsIgnoreCase("y")) {
                 Guest newGuest = GuestController.CreateGuest();
                 return newGuest.getGuestId();
