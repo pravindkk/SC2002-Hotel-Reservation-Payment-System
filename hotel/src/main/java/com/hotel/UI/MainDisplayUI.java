@@ -158,7 +158,7 @@ public class MainDisplayUI {
                                "========================\n"
             );
 
-            System.out.print("What is your choice (1-5)?: ");
+            System.out.print("What is your choice (1-6)?: ");
             try {
                 choice = sc.nextInt();
                 if (choice >0 && choice <7) break;

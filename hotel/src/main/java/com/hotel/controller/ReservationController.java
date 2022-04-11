@@ -173,9 +173,9 @@ public class ReservationController {
 
     
     /** 
-     * @param reservationId
-     * @param reservationStatus
-     * @return Reservation
+     * @param reservationId String input of reservationId is required to query the database
+     * @param reservationStatus ReservationStatus is required to see if there is a confirmed reservastion tagged to the room
+     * @return If there is a reservation based on the reservationID and reservationStatus , a reservation record is returned . Else null is returned
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
     public static Reservation getReservationByNum(String reservationId, ReservationStatus reservationStatus) throws IOException {
@@ -199,9 +199,9 @@ public class ReservationController {
     }
 
     /** 
-     * @param roomId
-     * @param reservationStatus
-     * @return Reservation
+     * @param roomId String input of reservationId is required to query the database
+     * @param reservationStatusthe reservationStatus needed to check if there is a checked in reservation under the roomId
+     * @return If there is a reservation based on the reservationID and reservationStatus , a reservation record is returned . Else null is returned
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
 
@@ -226,8 +226,8 @@ public class ReservationController {
     }
     
     /** 
-     * @param roomId
-     * @return Reservation
+     * @param roomId String input of roomID is required to query the database for the reservation record
+     * @return If there is a resrvation , a reservation record is returned . Else null is returned
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
     public static Reservation getReservationByRoomId(String roomId) throws IOException {
@@ -252,9 +252,10 @@ public class ReservationController {
 
     
     /** 
+     * This method uses the guestID to check if there is a confirmed reservation with the guestId
      * @param guestId String input of GuestID is entered so that the corresponding reservation object is retrieved fron the database
-     * @param reservationStatus
-     * @return Reservation
+     * @param reservationStatus Reservation status is required to query the database
+     * @return If there is a confirmed resrvation , a reservation record is returned . Else null is returned
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
     public static Reservation getReservationByGuest(String guestId, ReservationStatus reservationStatus) throws IOException {
@@ -342,7 +343,7 @@ public class ReservationController {
 
     
     /** 
-     * @param checkOutRoomId
+     * @param checkOutRoomId String input of roomID is required so that they can check out out of the rooom
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
     public static void checkOutGuest(String checkOutRoomId) throws IOException {
@@ -353,7 +354,6 @@ public class ReservationController {
             System.out.println("Reservation is not checked in");
             return;
         }
-        // pravind to check
         if(r.getReservationStatus()==ReservationStatus.CHECKED_OUT){
             System.out.println("Room has been checked out");
             return;
