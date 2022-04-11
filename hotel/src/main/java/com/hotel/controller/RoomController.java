@@ -41,9 +41,10 @@ public class RoomController {
         Integer roomNumber = Integer.valueOf(parts[1]);
 
         RoomType roomType = UpdateRoomMenuDisplayUI.updateRoomType();
-        BedType bedType = UpdateRoomMenuDisplayUI.updateBedType();
+        BedType bedType = UpdateRoomMenuDisplayUI.updateBedType(roomType);
         boolean withView = UpdateRoomMenuDisplayUI.updateWithView();
-        RoomStatus roomStatus = UpdateRoomMenuDisplayUI.updateRoomStatus();
+        RoomStatus roomStatus = RoomStatus.VACANT;
+        // RoomStatus roomStatus = UpdateRoomMenuDisplayUI.updateRoomStatus();
         Float roomRate = UpdateRoomMenuDisplayUI.updateRoomRate();
         boolean wifiEnabled = UpdateRoomMenuDisplayUI.updateWifiEnabled();
         boolean smokingStatus = UpdateRoomMenuDisplayUI.updateSmokingStatus();
@@ -168,7 +169,7 @@ public class RoomController {
                 room.setRoomType(UpdateRoomMenuDisplayUI.updateRoomType());
                 break;
             case 2:
-                room.setBedType(UpdateRoomMenuDisplayUI.updateBedType());
+                room.setBedType(UpdateRoomMenuDisplayUI.updateBedType(room.getRoomType()));
                 break;
             case 3:
                 room.setWithView(UpdateRoomMenuDisplayUI.updateWithView());
@@ -187,7 +188,7 @@ public class RoomController {
                 break;
             case 8:
                 room.setRoomType(UpdateRoomMenuDisplayUI.updateRoomType());
-                room.setBedType(UpdateRoomMenuDisplayUI.updateBedType());
+                room.setBedType(UpdateRoomMenuDisplayUI.updateBedType(room.getRoomType()));
                 room.setWithView(UpdateRoomMenuDisplayUI.updateWithView());
                 room.setRoomStatus(UpdateRoomMenuDisplayUI.updateRoomStatus());
                 room.setRoomRate(UpdateRoomMenuDisplayUI.updateRoomRate());

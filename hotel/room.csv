@@ -1,6 +1,6 @@
 "02-04","VIP_SUITE","QUEEN","true","VACANT","84.4","2","4","true","false"
 "03-04","SINGLE","SUPER_SINGLE","false","VACANT","300.0","3","4","true","false"
-"04-04","DELUXE","DOUBLE","false","VACANT","12.4","4","4","false","true"
+"04-04","DELUXE","DOUBLE","false","RESERVED","12.4","4","4","false","true"
 "06-05","DOUBLE","DOUBLE","true","VACANT","12.0","6","5","true","false"
 "07-06","DOUBLE","SUPER_SINGLE","true","VACANT","234.0","7","6","true","true"
 "05-05","VIP_SUITE","KING","true","VACANT","600.0","05","5","true","false"
