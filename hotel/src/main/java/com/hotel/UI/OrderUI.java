@@ -119,7 +119,7 @@ public class OrderUI {
                 System.out.print("Enter the orderId to be updated?:  ");
                 String orderId = sc.nextLine();
                 order = OrderController.getOrderById(orderId);
-                if (order == null) System.out.println("order doesnt exit");
+                if (order == null) System.out.println("order doesnt exist");
                 else break;
             } catch (IOException e1) {
                 // TODO Auto-generated catch block
