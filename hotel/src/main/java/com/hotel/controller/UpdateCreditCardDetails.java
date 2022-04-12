@@ -97,6 +97,9 @@ public class UpdateCreditCardDetails {
 		do {
 			System.out.println("Please Enter Card No: ");
 			card= sc.next();
+            if (!card.matches(cardFormat)) {
+                System.out.println("Card must be at least 16 digits");
+            }
 		} while (card.equals("") || !card.matches(cardFormat));
         return card;
     }
@@ -190,20 +193,22 @@ public class UpdateCreditCardDetails {
             else{
                 switch(choice){
                     case 1:
-                        type = CreditCardType.AMEX;
-                        break;
+                        return CreditCardType.AMEX;
+                        
                     case 2:
-                        type = CreditCardType.VISA;
-                        break;
+                        return CreditCardType.VISA;
+                        
                     case 3:
-                        type = CreditCardType.MASTERCARD;
+                        return CreditCardType.MASTERCARD;
+                    default:
                         break;
+                        // break;
                 }
             }
-            break;
+            sc.nextLine();
         }while (true);
 
-        return type;
+        // return type;
         
     }
 

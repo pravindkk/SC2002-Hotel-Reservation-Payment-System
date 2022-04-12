@@ -59,6 +59,7 @@ public class UpdateGuestMenu {
                 }
                 break;
             }
+            sc.nextLine();
             
         }while(true);
         return guestId;
@@ -109,20 +110,23 @@ public class UpdateGuestMenu {
             else{
                 switch(choice){
                     case 1:
-                        gender = Gender.MALE;
-                        break;
+                        return Gender.MALE;
+                        // break;
                     case 2:
-                        gender = Gender.FEMALE;
-                        break;
+                        return Gender.FEMALE;
+                        
                     case 3:
-                        gender = Gender.OTHERS;
+                        return Gender.OTHERS;
+                    default:
                         break;
+                    
                 }
             }
-            break;
+            // break;
+            sc.nextLine();
         }while (true);
 
-        return gender;
+        
         
     }
 
@@ -168,6 +172,7 @@ public class UpdateGuestMenu {
         Integer phoneNumber = null;
         do{
             System.out.println("Enter a contact number:");
+            
             try {
                 phoneNumber = sc.nextInt();
                 
