@@ -32,7 +32,7 @@ public class UpdateRoomMenuDisplayUI {
 			System.out.println("*Format xx-yy where xx is Floor Number and yy is Room Number.");
 			System.out.println("*Floor number from 02 - 07");
 			System.out.println("*Room number from 01 - 08");
-            System.out.print("Please enter Room ID(E.g 02-04):  ");
+            System.out.print("Please enter Room ID(E.g 0204):  ");
 
             roomId = sc.nextLine();
             System.out.println();
@@ -40,7 +40,7 @@ public class UpdateRoomMenuDisplayUI {
 			// Matcher matcher = roomIdPattern.matcher(roomId);
             if(roomId.length() != 4 || !roomIdPattern.matcher(roomId).matches()) {
 				roomId = "";
-				System.out.println("You have entered a invalid Room Id. Please try again. (E.g. 02-04)");
+				System.out.println("You have entered a invalid Room Id. Please try again. (E.g. 0204)");
             } else {
 
                 if (RoomController.checkRoomIDExists(roomId) == true) break;
@@ -68,14 +68,14 @@ public class UpdateRoomMenuDisplayUI {
 			System.out.println("*Format xx-yy where xx is Floor Number and yy is Room Number.");
 			System.out.println("*Floor number from 02 - 07");
 			System.out.println("*Room number from 01 - 08");
-            System.out.print("Please enter Room ID(E.g 02-04):  ");
+            System.out.print("Please enter Room ID(E.g 0204):  ");
 
             roomId = sc.nextLine();
             System.out.println();
 			// Matcher matcher = roomIdPattern.matcher(roomId);
             if(roomId.length() != 4 || !roomIdPattern.matcher(roomId).matches()) {
 				roomId = "";
-				System.out.println("You have entered a invalid Room Id. Please try again. (E.g. 02-04)");
+				System.out.println("You have entered a invalid Room Id. Please try again. (E.g. 0204)");
             } else {
 
                 if (RoomController.checkRoomIDExists(roomId) != true) break;
