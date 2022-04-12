@@ -304,6 +304,8 @@ public class HRPS {
     
     public static void chooseGuest() {
         int choice =0;
+        String guestId = null;
+        String trash;
         do {
             choice  = MainDisplayUI.displayGuestOptions();
             switch (choice) {
@@ -317,27 +319,29 @@ public class HRPS {
                     }
                     break;
                 case 2:
-                    sc.nextLine();
+                    // sc.nextLine();
                     try {
                         System.out.print("What is the Guest Id?:  ");
-                        String guestId = sc.nextLine();
+                        guestId = sc.next();
                         guestController.UpdateGuest(guestId);
                     } catch (Exception e) {
                         //TODO: handle exception
                     }
-                    
+                    trash = sc.nextLine();
                     break;
                 
                 case 3:
-                    sc.nextLine();
+                    // sc.nextLine();
+                    
                     try {
+                        guestController.PrintAllGuestDetails();
                         System.out.print("What is the Guest Id?:  ");
-                        String guestId = sc.nextLine();
+                        guestId = sc.next();
                         guestController.DeleteGuest(guestId);
-                    } catch (IOException e) {
+                    } catch (Exception e) {
                         // TODO Auto-generated catch block
-                        e.printStackTrace();
                     }
+                    trash = sc.nextLine();
                     break;
                 case 4:
                     try {
@@ -351,7 +355,7 @@ public class HRPS {
                     sc.nextLine();
                     try {
                         System.out.print("What is the Guest Id?:  ");
-                        String guestId = sc.nextLine();
+                        guestId = sc.nextLine();
                         Guest g = guestController.RetrieveGuest(guestId);
                         CreditCard c = CreditCardController.RetrieveCreditCard(guestId);
                         System.out.printf("%-10s %-10s %-8s %-15s %-13s %-10s %-25s %-18s %-15s %-3s\n", "GuestID", "Name",

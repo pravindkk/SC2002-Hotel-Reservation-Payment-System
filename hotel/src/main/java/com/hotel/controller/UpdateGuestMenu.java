@@ -57,9 +57,11 @@ public class UpdateGuestMenu {
 
                         
                 }
-                break;
+                // break;
+                if (GuestController.RetrieveGuest(guestId) == null) break;
+                else System.out.println("ERROR!!User with the same ID exists!!");
             }
-            sc.nextLine();
+            // sc.nextLine();
             
         }while(true);
         return guestId;

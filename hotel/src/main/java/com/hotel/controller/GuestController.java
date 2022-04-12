@@ -195,6 +195,7 @@ public class GuestController {
         //     System.out.println("Invalid guestID");
         //     return;
         // }
+        
         for (int i=0; i<allData.size(); i++) {
             Guest test = (Guest) allData.get(i);
             if (test.getGuestId().equals(guestId)) {
