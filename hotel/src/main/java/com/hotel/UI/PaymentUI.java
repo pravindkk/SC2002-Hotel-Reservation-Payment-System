@@ -79,7 +79,7 @@ public class PaymentUI {
             if(method == 0) {
                 do {
                     try {
-                        System.out.println("Please pay:  "+ PaymentController.getSubTotal(payment, roomId));
+                        System.out.printf("Please pay: %.2f\n", PaymentController.getSubTotal(payment, roomId));
                         System.out.println("Please enter cash amount:");
                         cash = sc.nextDouble();
                         if(cash <= 0.0) System.out.printf("Invalid input! ");
