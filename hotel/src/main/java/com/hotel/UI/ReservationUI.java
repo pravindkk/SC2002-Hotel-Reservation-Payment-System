@@ -30,8 +30,13 @@ public class ReservationUI {
      * then obtains the relevant inputs and creates the reservation
      */
     public void createRes() {
+        
         try {
             // reservationController.createReservation();
+            if (RoomController.getVacantRooms().size() == 0) {
+                System.out.println("NO MORE VACANT ROOMS!!");
+                return;
+            }
             Date checkInDate = UpdateReservationDetailsDisplayUI.updateCheckInDate();
             Date checkOutDate = UpdateReservationDetailsDisplayUI.updateCheckOutDate(checkInDate);
             String roomId = UpdateReservationDetailsDisplayUI.updateRoomId();

@@ -16,7 +16,7 @@
 "0401","DOUBLE","DOUBLE","true","VACANT","95.0","04","1","true","false"
 "0402","DOUBLE","DOUBLE","true","VACANT","95.0","04","2","true","false"
 "0403","DOUBLE","QUEEN","true","VACANT","105.0","04","3","true","true"
-"0404","DOUBLE","QUEEN","true","VACANT","105.0","04","4","true","false"
+"0404","SINGLE","QUEEN","true","VACANT","105.0","04","4","true","false"
 "0405","DOUBLE","DOUBLE","false","VACANT","80.0","04","5","true","false"
 "0406","DOUBLE","QUEEN","false","VACANT","105.0","04","6","true","true"
 "0407","DOUBLE","QUEEN","true","VACANT","100.0","04","7","true","true"
