@@ -40,9 +40,9 @@ public class RoomController {
     public static void createRoom() throws IOException {
 
         String roomId = UpdateRoomMenuDisplayUI.createRoomId();
-        String[] parts = roomId.split("-");
-        String roomFloor = parts[0];
-        Integer roomNumber = Integer.valueOf(parts[1]);
+        // String[] parts = roomId.sub
+        String roomFloor = roomId.substring(0, 2);
+        Integer roomNumber = Integer.valueOf(roomId.substring(2));
 
         RoomType roomType = UpdateRoomMenuDisplayUI.updateRoomType();
         BedType bedType = UpdateRoomMenuDisplayUI.updateBedType(roomType);

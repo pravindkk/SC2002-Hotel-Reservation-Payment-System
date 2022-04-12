@@ -24,7 +24,7 @@ public class UpdateRoomMenuDisplayUI {
      */
     public static String updateRoomId() throws IOException {
         String roomId;
-        String roomRegExp = "[0][2-7][-][0][1-8]";
+        String roomRegExp = "[0][2-7][0][1-8]";
         Pattern roomIdPattern = Pattern.compile(roomRegExp);
         do {
             
@@ -36,7 +36,7 @@ public class UpdateRoomMenuDisplayUI {
             roomId = String.valueOf(sc.nextLine());
             System.out.println();
 			// Matcher matcher = roomIdPattern.matcher(roomId);
-            if(roomId.length() != 5 || !roomIdPattern.matcher(roomId).matches()) {
+            if(roomId.length() != 4 || !roomIdPattern.matcher(roomId).matches()) {
 				roomId = "";
 				System.out.println("You have entered a invalid Room Id. Please try again. (E.g. 02-04)");
             } else {
@@ -59,7 +59,7 @@ public class UpdateRoomMenuDisplayUI {
      */
     public static String createRoomId() throws IOException {
         String roomId;
-        String roomRegExp = "[0][2-7][-][0][1-8]";
+        String roomRegExp = "[0][2-7][0][1-8]";
         Pattern roomIdPattern = Pattern.compile(roomRegExp);
         do {
             
@@ -71,11 +71,11 @@ public class UpdateRoomMenuDisplayUI {
             roomId = sc.nextLine();
             System.out.println();
 			// Matcher matcher = roomIdPattern.matcher(roomId);
-            if(roomId.length() != 5 || !roomIdPattern.matcher(roomId).matches()) {
+            if(roomId.length() != 4 || !roomIdPattern.matcher(roomId).matches()) {
 				roomId = "";
 				System.out.println("You have entered a invalid Room Id. Please try again. (E.g. 02-04)");
             } else {
-
+                // break;
                 if (RoomController.checkRoomIDExists(roomId) != true) break;
                 else {
                     System.out.println("The Room Id you have entered is invalid. Please enter another Room Id.");
