@@ -422,6 +422,49 @@ public class RoomController {
     }
 
 
+     /** 
+     * This method prints out all the rooms by RoomStatus in the hotel
+     * @throws IOException due to communication with the DataBase IOexception is required
+     */
+    public static void printRoomStatus() throws IOException {
+        ArrayList<Room> vacantRooms = getVacantRooms();
+        ArrayList<Room> allRooms = getAllRooms();
+
+        System.out.print("Vacant  :\n" + 
+                         "      Rooms: ");
+        for (Room room : allRooms) {
+            if (room.getRoomStatus().equals(RoomStatus.VACANT)) {
+                System.out.print(room.getRoomId() + ", ");
+            }
+        }
+        System.out.println();
+        System.out.print("Occupied  :\n" + 
+                         "      Rooms: ");
+        for (Room room : allRooms) {
+            if (room.getRoomStatus().equals(RoomStatus.OCCUPIED)) {
+                System.out.print(room.getRoomId() + ", ");
+            }
+        }
+        System.out.println();
+        System.out.print("Reserved  :\n" + 
+                         "      Rooms: ");
+        for (Room room : allRooms) {
+            if (room.getRoomStatus().equals(RoomStatus.RESERVED)) {
+                System.out.print(room.getRoomId() + ", ");
+            }
+        }
+        System.out.println();
+        System.out.print("Under Maintainence  :\n" + 
+                         "      Rooms: ");
+        for (Room room : allRooms) {
+            if (room.getRoomStatus().equals(RoomStatus.UNDER_MAINTAINANCE)) {
+                System.out.print(room.getRoomId() + ", ");
+            }
+        }
+        System.out.println();
+    }
+
+
     
     /** 
      * This method prints out all the rooms in the hotel regardless of room status

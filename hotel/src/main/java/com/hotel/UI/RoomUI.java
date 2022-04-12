@@ -84,6 +84,13 @@ public class RoomUI {
             //TODO: handle exception
         }
     }
+    public void viewRoomStatus() {
+        try {
+            roomController.printRoomStatus();
+        } catch (Exception e) {
+            //TODO: handle exception
+        }
+    }
 
 
 

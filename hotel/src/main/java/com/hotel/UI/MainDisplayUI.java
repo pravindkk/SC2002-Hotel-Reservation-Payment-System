@@ -62,16 +62,17 @@ public class MainDisplayUI {
                                "(3) Remove Rooms\n"+
                                "(4) Print Room\n"+
                                "(5) View Available Rooms\n"+
-                               "(6) View All Rooms\n"+
-                               "(7) Back\n"+
+                               "(6) View Room Status\n"+
+                               "(7) View All Rooms\n"+
+                               "(8) Back\n"+
                                "========================\n"
             );
 
-            System.out.print("What is your choice (1-7)?: ");
+            System.out.print("What is your choice (1-8)?: ");
             try {
                 choice = sc.nextInt();
-                if (choice >0 && choice <8) break;
-                else System.out.println("Enter a number between (1-7)!!");
+                if (choice >0 && choice <9) break;
+                else System.out.println("Enter a number between (1-8)!!");
             } catch (Exception e) {
                 //TODO: handle exception
                 

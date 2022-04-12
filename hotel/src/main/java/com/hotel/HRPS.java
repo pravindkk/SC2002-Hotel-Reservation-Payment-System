@@ -211,10 +211,14 @@ public class HRPS {
                     break;
 
                 case 6:
+                    room.viewRoomStatus();
+                    break;
+
+                case 7:
                     room.printAllRooms();
                     break;
                 
-                case 7:
+                case 8:
                     return;
             
                 default:
