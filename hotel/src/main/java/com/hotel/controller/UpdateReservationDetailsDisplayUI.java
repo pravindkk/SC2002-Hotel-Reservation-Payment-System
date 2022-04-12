@@ -144,7 +144,7 @@ public class UpdateReservationDetailsDisplayUI {
     public static String updateGuestId() throws IOException {
         // for now i just return normal string
         do {
-            System.out.print("Are you a new Guest (Y/N)?:  ");
+            System.out.print("Is this a new Guest(Y/N)?:  ");
             String choice = sc.next();
             if (choice.equalsIgnoreCase("y")) {
                 Guest newGuest = GuestController.CreateGuest();

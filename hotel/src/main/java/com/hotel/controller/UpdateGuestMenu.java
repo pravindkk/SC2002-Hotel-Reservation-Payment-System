@@ -84,7 +84,14 @@ public class UpdateGuestMenu {
         String name = null;
         do{
             System.out.println("Enter Name");
-            name = sc.nextLine();
+            // name = sc.nextLine();
+            try {
+                name = sc.nextLine();
+                if (name.equals("")) throw new Exception();
+            } catch (Exception e) {
+                //TODO: handle exception
+                name = sc.nextLine();
+            }
         }while (name == null);
 
         return name;
