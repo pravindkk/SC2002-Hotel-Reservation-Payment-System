@@ -23,7 +23,7 @@ public class UpdateRoomMenuDisplayUI {
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
     public static String updateRoomId() throws IOException {
-        String roomId;
+        String roomId="";
         String roomRegExp = "[0][2-7][0][1-8]";
         String thrash = null;
         Pattern roomIdPattern = Pattern.compile(roomRegExp);
@@ -34,8 +34,14 @@ public class UpdateRoomMenuDisplayUI {
 			System.out.println("*Room number from 01 - 08");
             System.out.print("Please enter Room ID(E.g 0204):  ");
 
-            roomId = sc.nextLine();
-            System.out.println();
+            
+            try {
+                roomId = sc.nextLine();
+                if (roomId.equals("")) throw new Exception();
+            } catch (Exception e) {
+                //TODO: handle exception
+                roomId = sc.nextLine();
+            }
             System.out.println();
 			// Matcher matcher = roomIdPattern.matcher(roomId);
             if(roomId.length() != 4 || !roomIdPattern.matcher(roomId).matches()) {

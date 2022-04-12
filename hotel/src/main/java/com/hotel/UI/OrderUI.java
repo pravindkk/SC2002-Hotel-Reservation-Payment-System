@@ -262,6 +262,10 @@ public class OrderUI {
                 // if(id <= 0) System.out.printf("Invalid input! ");
                 order = OrderController.getOrderById(orderId);
                 if (order != null) break;
+                else if (order == null) {
+                    System.out.println("Cannot find order");
+                    return;
+                }
             } catch (Exception e) {
                 System.out.printf("Invalid input of orderId! ");
             }

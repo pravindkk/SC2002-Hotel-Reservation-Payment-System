@@ -49,10 +49,12 @@ public class UpdateReservationDetailsDisplayUI {
 
             try {
                 // sc.nextLine();
-                checkInDateString = String.valueOf(sc.next());
+                checkInDateString = sc.next();
+                if (checkInDateString.equals("")) throw new Exception();
                 // checkInDate = df.parse(checkInDateString);
             } catch(Exception e) {
                 // System.out.println(e);
+                checkInDateString = sc.next();
             }
             try {
                 checkInDate = df.parse(checkInDateString);
@@ -85,10 +87,13 @@ public class UpdateReservationDetailsDisplayUI {
         do {                                                                                                // for check-in date input
             System.out.print("Enter Check-Out Date (DD/MM/YYYY):  ");
             try {
-                checkInDateString = String.valueOf(sc.next());
+                // sc.nextLine();
+                checkInDateString = sc.next();
+                if (checkInDateString.equals("")) throw new Exception();
                 // checkInDate = df.parse(checkInDateString);
             } catch(Exception e) {
                 // System.out.println(e);
+                checkInDateString = sc.next();
             }
             try {
                 checkOutDate = df.parse(checkInDateString);

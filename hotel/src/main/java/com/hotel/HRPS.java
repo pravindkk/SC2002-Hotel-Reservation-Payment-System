@@ -289,7 +289,8 @@ public class HRPS {
                     order.displayOrder();
                     break;
                 case 5:
-                    order.displayAllOrders();;
+                    order.displayAllOrders();
+                    break;
 
                 case 6:
                     return;
