@@ -28,9 +28,9 @@ public class MenuUI {
      * This method prints the UI to create a new Item by calling the relevant methods
     */
     public static void createNewItem() {
-        String itemName=getItemName();
+        String itemName=getNewItemName();
         double price=getItemPrice();
-        String itemDesc = getItemDesc();
+        String itemDesc = getNewItemDesc();
         FoodType foodType = getItemFoodType();
         
         
@@ -140,7 +140,7 @@ public class MenuUI {
 
     
     /** 
-     * This method prints the UI to get the name of an item
+     * This method prints the UI to update name of an item
      * @return String
      */
     public static String getItemName() {
@@ -150,6 +150,25 @@ public class MenuUI {
             System.out.println("Enter the name of the item : ");
             try {
                 thrash = sc.nextLine();
+                itemName = sc.nextLine();
+            } catch (Exception e) {
+                //TODO: handle exception
+                System.out.println("Wrong name input!");
+            }
+        } while (itemName==null);
+        return itemName;
+    }
+    
+    /**
+     * This method prints the UI to get the name of an item
+     * @return Name as a string output
+     */
+
+    public static String getNewItemName() {
+        String itemName=null;
+        do {
+            System.out.println("Enter the name of the item : ");
+            try {
                 itemName = sc.nextLine();
             } catch (Exception e) {
                 //TODO: handle exception
@@ -173,6 +192,26 @@ public class MenuUI {
             System.out.println("Enter the description of the item :  ");
             try {
                 thrash = sc.nextLine();
+                itemDesc = sc.nextLine();
+            } catch (Exception e) {
+                //TODO: handle exception
+                System.out.println("Wrong desc input!");
+            }
+        } while (itemDesc == null);
+        return itemDesc;
+    }
+
+    /** 
+     * This method prints the UI to get the description of a new item
+     * After the description is obtained, it will be returned as a String
+     * @return String output is description is returned
+     */
+
+    public static String getNewItemDesc(){
+        String itemDesc=null;
+        do {
+            System.out.println("Enter the description of the item :  ");
+            try {
                 itemDesc = sc.nextLine();
             } catch (Exception e) {
                 //TODO: handle exception
