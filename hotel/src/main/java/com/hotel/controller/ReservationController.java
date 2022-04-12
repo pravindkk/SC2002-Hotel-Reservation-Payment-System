@@ -461,6 +461,26 @@ public class ReservationController {
         }
 
     }
+
+     /** 
+      * This method changes the ReservationStatus to expired if the date of Reservation is todays date
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
+    public static void expireReservation() throws IOException {
+        Date todaysDate = new Date();
+
+        ArrayList<Reservation> resList = getAllReservations();
+        for (Reservation res : resList) {
+            if (res.getCheckInDate().equals(todaysDate)) {
+                // checkOutGuest(res.getRoomId());
+                res.setReservationStatus(ReservationStatus.EXPIRED);
+                changeRoomStatus(res.getRoomId(), RoomStatus.VACANT);
+            }
+        }
+
+        saveReservationData(resList);
+
+    }
 }
 
 

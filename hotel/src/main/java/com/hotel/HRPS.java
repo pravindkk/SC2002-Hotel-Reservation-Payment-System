@@ -1,7 +1,13 @@
 package com.hotel;
 
 import java.io.IOException;
+import java.time.Duration;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Scanner;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import com.hotel.UI.MainDisplayUI;
 import com.hotel.UI.MenuUI;
@@ -24,6 +30,28 @@ public class HRPS {
     static PaymentUI pay = new PaymentUI();
     static ReservationController resController = new ReservationController();
     public static void main(String[] args) throws IOException {
+
+        // Next run 3pm GMT - Singapore Time
+        final ZonedDateTime now = ZonedDateTime.now(ZoneId.of("GMT"));
+        ZonedDateTime nextRun = now.withHour(16).withMinute(0).withSecond(0);
+
+        // If in the past, add one day
+        if (now.compareTo(nextRun) > 0) {
+            nextRun = nextRun.plusDays(1);
+        }
+
+        // Get duration between now and midnight
+        final Duration initialDelay = Duration.between(now, nextRun);
+
+        // Schedule a task to run at midnight and then every day
+        final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+        scheduler.scheduleAtFixedRate(() -> expireRes(),
+                initialDelay.toMillis(),
+                Duration.ofDays(1).toMillis(),
+                TimeUnit.MILLISECONDS);
+
+
+
         
         do {
             int choice = mainDisplayOptions();
@@ -96,9 +124,14 @@ public class HRPS {
         return choice;
     }
 
+    public static void expireRes() {
+        res.toExpireRes();
+    }
+
     
 
     public static void chooseReservation() {
+        
         int choice =0;
         do {
             choice  = MainDisplayUI.displayReservationOptions();

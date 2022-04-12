@@ -235,5 +235,18 @@ public class ReservationUI {
             e.printStackTrace();
         }
     }
+
+    /**
+     * This method expire reservations on todays date
+     */
+    public void toExpireRes() {
+        try {
+            // reservationController.printAllReservations();
+            reservationController.expireReservation();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
     
 }
