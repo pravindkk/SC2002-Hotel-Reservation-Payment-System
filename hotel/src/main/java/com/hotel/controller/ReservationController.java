@@ -381,7 +381,7 @@ public class ReservationController {
     public static void changeRoomStatus(String newRoomId, RoomStatus roomStatus) throws IOException {
         Room r = RoomController.getSpecificRoom(newRoomId);
         r.setRoomStatus(roomStatus);
-        System.out.println(r.getRoomId());
+        // System.out.println(r.getRoomId());
         RoomController.saveSpecificRoomByRoomId(r);
     }
 
