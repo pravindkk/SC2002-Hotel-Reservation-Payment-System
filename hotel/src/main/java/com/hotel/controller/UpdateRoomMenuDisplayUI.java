@@ -25,6 +25,7 @@ public class UpdateRoomMenuDisplayUI {
     public static String updateRoomId() throws IOException {
         String roomId;
         String roomRegExp = "[0][2-7][-][0][1-8]";
+        String thrash = null;
         Pattern roomIdPattern = Pattern.compile(roomRegExp);
         do {
             
@@ -33,6 +34,7 @@ public class UpdateRoomMenuDisplayUI {
 			System.out.println("*Room number from 01 - 08");
             System.out.print("Please enter Room ID(E.g 02-04):  ");
 
+            thrash = sc.next();
             roomId = String.valueOf(sc.nextLine());
             System.out.println();
 			// Matcher matcher = roomIdPattern.matcher(roomId);
