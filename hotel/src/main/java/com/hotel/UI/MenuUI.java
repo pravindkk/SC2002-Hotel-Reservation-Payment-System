@@ -50,14 +50,18 @@ public class MenuUI {
      * @throws IOException
      */
     public static void updateMenuItem() throws IOException {
-        Integer itemdId=null;
+        String inputItemId=null;
+        Integer itemdId=0;
+
+        // String itemIdFormat = "\\d{2}";
         do {
             System.out.println("Enter the id of the item:  ");
+            
             try {
-                itemdId = sc.nextInt();
+                inputItemId = sc.next();
+                itemdId = Integer.valueOf(inputItemId);
             } catch (Exception e) {
                 //TODO: handle exception
-                System.out.println("Wrong id input!");
             }
             try {
                 if (MenuController.getItem(itemdId) != null) break;
@@ -170,13 +174,17 @@ public class MenuUI {
             System.out.println("Enter the name of the item : ");
             try {
                 itemName = sc.nextLine();
+                if (itemName.equals("")) throw new Exception();
+
             } catch (Exception e) {
                 //TODO: handle exception
-                System.out.println("Wrong name input!");
+                // System.out.println("Wrong name input!");
+                itemName = sc.nextLine();
             }
             
         } while (itemName==null);
         // sc.nextLine();
+        // sc.next
         return itemName;
     }
 
