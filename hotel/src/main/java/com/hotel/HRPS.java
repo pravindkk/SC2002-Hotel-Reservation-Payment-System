@@ -321,6 +321,7 @@ public class HRPS {
                 case 2:
                     // sc.nextLine();
                     try {
+                        guestController.PrintAllGuestDetails();
                         System.out.print("What is the Guest Id?:  ");
                         guestId = sc.next();
                         guestController.UpdateGuest(guestId);
@@ -352,10 +353,10 @@ public class HRPS {
                     break;
 
                 case 5:
-                    sc.nextLine();
+                    
                     try {
                         System.out.print("What is the Guest Id?:  ");
-                        guestId = sc.nextLine();
+                        guestId = sc.next();
                         Guest g = guestController.RetrieveGuest(guestId);
                         CreditCard c = CreditCardController.RetrieveCreditCard(guestId);
                         System.out.printf("%-10s %-10s %-8s %-15s %-13s %-10s %-25s %-18s %-15s %-3s\n", "GuestID", "Name",
@@ -374,6 +375,7 @@ public class HRPS {
                         //TODO: handle exception
                         System.out.println("ERROR!! GUEST NOT FOUND!!");
                     }
+                    trash = sc.nextLine();
                     break;
                 case 6:
                     return;

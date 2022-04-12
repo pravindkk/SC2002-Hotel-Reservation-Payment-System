@@ -24,6 +24,7 @@ public class UpdateGuestMenu {
      */
     public static String UpdateGuestId() throws IOException{
         String guestId = null;
+        String licencePattern = "((?i)^[STFG]\\d{7}[A-JZ]$)";
         do{
             System.out.println("Please Choose Identity Type");
             System.out.println("(1) Driving License");
@@ -46,7 +47,10 @@ public class UpdateGuestMenu {
                     do{
                         System.out.print("Enter Driving License Number:");
                         guestId = sc.nextLine();
-                    }while(guestId==null);
+                        if (!guestId.matches(licencePattern)) {
+                            System.out.println("ERROR!! The format for the license is SXXXXXXXA");
+                        }
+                    }while(guestId==null || !guestId.matches(licencePattern));
                     break;
                     
                     case 2:
