@@ -32,7 +32,7 @@ public class HRPS {
     public static void main(String[] args) throws IOException {
 
         // Next run 3pm GMT - Singapore Time
-        final ZonedDateTime now = ZonedDateTime.now(ZoneId.of("GMT"));
+        final ZonedDateTime now = ZonedDateTime.now(ZoneId.systemDefault());
         ZonedDateTime nextRun = now.withHour(16).withMinute(0).withSecond(0);
 
         // If in the past, add one day

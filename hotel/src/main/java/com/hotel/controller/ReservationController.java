@@ -471,7 +471,7 @@ public class ReservationController {
 
         ArrayList<Reservation> resList = getAllReservations();
         for (Reservation res : resList) {
-            if (res.getCheckInDate().equals(todaysDate)) {
+            if (res.getCheckInDate().before(todaysDate) && res.getReservationStatus().equals(ReservationStatus.CONFIRMED)) {
                 // checkOutGuest(res.getRoomId());
                 res.setReservationStatus(ReservationStatus.EXPIRED);
                 changeRoomStatus(res.getRoomId(), RoomStatus.VACANT);
