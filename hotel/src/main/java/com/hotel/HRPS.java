@@ -175,9 +175,12 @@ public class HRPS {
         sc.nextLine();
         try {
             String roomId = UpdateRoomMenuDisplayUI.updateRoomId();
-
-            pay.printPayment(roomId);
-            resController.checkOutGuest(roomId);
+            boolean check = resController.checkOutGuest(roomId);
+            if (check == true) pay.printPayment(roomId);
+            else {
+                System.out.println("ERROR!! The room is not checked in / room has already been checked out");
+            }
+            
             // pay.printPayment();
         } catch (Exception e) {
             //TODO: handle exception

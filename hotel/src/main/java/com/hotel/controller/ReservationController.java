@@ -344,19 +344,20 @@ public class ReservationController {
     
     /** 
      * @param checkOutRoomId String input of roomID is required so that they can check out out of the rooom
+     * @return returns false if the reservation is not checked in or has already been checked out. returns true if completely checked out
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
-    public static void checkOutGuest(String checkOutRoomId) throws IOException {
+    public static boolean checkOutGuest(String checkOutRoomId) throws IOException {
 
         Reservation r = getReservationByRoom(checkOutRoomId, ReservationStatus.CHECKED_IN);
 
         if (r == null) {
             System.out.println("Reservation is not checked in");
-            return;
+            return false;
         }
         if(r.getReservationStatus()==ReservationStatus.CHECKED_OUT){
             System.out.println("Room has been checked out");
-            return;
+            return false;
         }
 
         r.setReservationStatus(ReservationStatus.CHECKED_OUT);
@@ -364,6 +365,7 @@ public class ReservationController {
         // saveSpecificReservationByGuestId(r);
         saveSpecificReservationByResNum(r);
         // save
+        return true;
 
     }
 
