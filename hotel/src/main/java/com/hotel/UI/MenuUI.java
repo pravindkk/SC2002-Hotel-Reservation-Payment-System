@@ -145,9 +145,11 @@ public class MenuUI {
      */
     public static String getItemName() {
         String itemName=null;
+        String thrash = null;
         do {
             System.out.println("Enter the name of the item : ");
             try {
+                thrash = sc.nextLine();
                 itemName = sc.nextLine();
             } catch (Exception e) {
                 //TODO: handle exception
@@ -166,9 +168,11 @@ public class MenuUI {
      */
     public static String getItemDesc(){
         String itemDesc=null;
+        String thrash  = null;
         do {
             System.out.println("Enter the description of the item :  ");
             try {
+                thrash = sc.nextLine();
                 itemDesc = sc.nextLine();
             } catch (Exception e) {
                 //TODO: handle exception
@@ -186,13 +190,14 @@ public class MenuUI {
      */
     public static double getItemPrice() {
         String price=null;
+        String thrash = null;
         String priceFormat = "(\\d+\\.\\d{1,2})" ;
         do {
             System.out.println("Enter the price of the item (e.g 26.50):  ");
             price = sc.next();
  
         } while (price.equals("")|| !price.matches(priceFormat));
-        sc.nextLine();
+        thrash = sc.nextLine();
         return Double.valueOf(price);
     }
 
