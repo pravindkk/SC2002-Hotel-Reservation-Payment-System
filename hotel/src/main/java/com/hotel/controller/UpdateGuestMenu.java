@@ -61,6 +61,63 @@ public class UpdateGuestMenu {
 
                         
                 }
+                break;
+                // if (GuestController.RetrieveGuest(guestId) == null) break;
+                // else System.out.println("ERROR!!User with the same ID exists!!");
+            }
+            // sc.nextLine();
+            
+        }while(true);
+        return guestId;
+
+
+
+    }
+
+     /** 
+     * This method creates the guestID tagged to the Guest
+     * @return Created GuestID is returned as a String output
+     * @throws IOException Due to communication with the DataBase IOexception is required
+     */
+    public static String CreateGuestId() throws IOException{
+        String guestId = null;
+        String licencePattern = "((?i)^[STFG]\\d{7}[A-JZ]$)";
+        do{
+            System.out.println("Please Choose Identity Type");
+            System.out.println("(1) Driving License");
+            System.out.println("(2) Passport ");
+
+            int choice =0;
+            try{
+                choice = sc.nextInt();
+            } catch(Exception e){
+                //TODO: handle exception
+            }
+
+            if(choice<1 || choice>2){
+                System.out.println("Enter a valid option!!");
+            }
+            else{
+                sc.nextLine();
+                switch(choice){
+                    case 1:
+                    do{
+                        System.out.print("Enter Driving License Number:");
+                        guestId = sc.nextLine();
+                        if (!guestId.matches(licencePattern)) {
+                            System.out.println("ERROR!! The format for the license is SXXXXXXXA");
+                        }
+                    }while(guestId==null || !guestId.matches(licencePattern));
+                    break;
+                    
+                    case 2:
+                    do{
+                        System.out.print("Enter passport Number:");
+                        guestId = sc.nextLine();
+                    }while(guestId==null);
+
+                        
+                }
                 // break;
                 if (GuestController.RetrieveGuest(guestId) == null) break;
                 else System.out.println("ERROR!!User with the same ID exists!!");

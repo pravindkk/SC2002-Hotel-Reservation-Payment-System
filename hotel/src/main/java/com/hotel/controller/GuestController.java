@@ -33,7 +33,7 @@ public class GuestController {
     public static Guest CreateGuest() throws IOException{
 
         String name = UpdateGuestMenu.UpdateName();
-        String guestId = UpdateGuestMenu.UpdateGuestId();
+        String guestId = UpdateGuestMenu.CreateGuestId();
         Gender gender = UpdateGuestMenu.UpdateGender();
         String nationality = UpdateGuestMenu.UpdateNationality();
         String country = UpdateGuestMenu.UpdateCountry();
