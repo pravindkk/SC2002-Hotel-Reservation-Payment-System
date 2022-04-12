@@ -17,3 +17,4 @@
 "06-03","DOUBLE","DOUBLE","false","VACANT","90.0","06","3","true","false"
 "07-01","VIP_SUITE","QUEEN","true","VACANT","250.0","07","1","true","true"
 "07-02","VIP_SUITE","KING","true","RESERVED","280.0","07","2","true","true"
+"04-04","SINGLE","SINGLE","true","VACANT","90.0","04","4","true","false"

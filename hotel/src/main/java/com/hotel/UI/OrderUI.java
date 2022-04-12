@@ -300,6 +300,20 @@ public class OrderUI {
     }
 
 
+    public static void displayAllOrders() {
+        try {
+            ArrayList<Order> orders = OrderController.getAllOrders();
+            for (Order order : orders) {
+                if (order.getOrderStatus().equals(OrderStatus.PREPARING) || order.getOrderStatus().equals(OrderStatus.PREPARED))
+                    order.viewOrder();
+            }
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+    }
+
     
 
 

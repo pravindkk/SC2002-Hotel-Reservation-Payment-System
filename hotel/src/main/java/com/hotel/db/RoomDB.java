@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import com.hotel.system.Room;
@@ -84,10 +86,21 @@ public class RoomDB extends DB{
             allData.add(room);
 
         }
+        return sortRoomsByLevel(allData);
 
-        return allData;
+        // return allData;
 		
 	}
+
+    public ArrayList sortRoomsByLevel(ArrayList rooms) {
+        Collections.sort(rooms, new Comparator<Room>() {
+            @Override
+            public int compare(Room o1, Room o2) {
+                return o1.getRoomId().compareTo(o2.getRoomId());
+            }
+        });
+        return rooms;
+    }
 
     
     /** 

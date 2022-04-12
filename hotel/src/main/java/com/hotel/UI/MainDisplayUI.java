@@ -61,7 +61,7 @@ public class MainDisplayUI {
                                "(2) Update Rooms\n"+
                                "(3) Remove Rooms\n"+
                                "(4) Print Room\n"+
-                               "(5) View Occupancy Rate\n"+
+                               "(5) View Available Rooms\n"+
                                "(6) View All Rooms\n"+
                                "(7) Back\n"+
                                "========================\n"
@@ -126,7 +126,8 @@ public class MainDisplayUI {
                                "(2) Update Order\n"+
                                "(3) Remove Order\n"+
                                "(4) View Order\n"+
-                               "(5) Back\n"+
+                               "(5) View All Orders\n"+
+                               "(6) Back\n"+
                                "========================\n"
             );
 

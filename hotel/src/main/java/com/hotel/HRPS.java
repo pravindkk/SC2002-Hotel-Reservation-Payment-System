@@ -285,8 +285,10 @@ public class HRPS {
                 case 4:
                     order.displayOrder();
                     break;
-
                 case 5:
+                    order.displayAllOrders();;
+
+                case 6:
                     return;
             
                 default:
