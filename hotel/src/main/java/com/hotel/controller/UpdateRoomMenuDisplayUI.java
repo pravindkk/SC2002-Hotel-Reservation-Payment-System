@@ -324,13 +324,19 @@ public class UpdateRoomMenuDisplayUI {
      */
     public static Float updateRoomRate() {
         String roomRate = null;
+        String priceFormat = "(\\d+\\.\\d{1,2})" ;
 
         do {
             System.out.println("Please enter Room Rate(E.g. 154.40):");
 			System.out.println("*Enter amount in 2 decimal places.");
             // roomRate = sc.nextFloat();
             roomRate = sc.next();
-            if (new BigDecimal(String.valueOf(roomRate)).scale() != 2) {
+            
+
+            if (roomRate.equals("")|| !roomRate.matches(priceFormat) || Float.valueOf(roomRate)<=0) {
+                System.out.println("ERROR!! Please enter 2 decimal places!!");
+            }
+            else if (new BigDecimal(String.valueOf(roomRate)).scale() != 2) {
                 System.out.println("ERROR!! Please enter 2 decimal places!!");
             }
             else break;
