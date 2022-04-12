@@ -174,7 +174,9 @@ public class MenuUI {
                 //TODO: handle exception
                 System.out.println("Wrong name input!");
             }
+            
         } while (itemName==null);
+        // sc.nextLine();
         return itemName;
     }
 
@@ -261,28 +263,31 @@ public class MenuUI {
                 //TODO: handle exception
                 System.out.println("Wrong input!");
             }
-            if (choice >0 && choice < 4) {
+            if(choice<1 || choice>3){
+                System.out.println("Enter a valid option!!");
+            }
+            else {
                 switch (choice) {
                     case 1:
-                        foodType = FoodType.STARTER;
-                        break;
+                        return FoodType.STARTER;
+                        
                     case 2:
-                        foodType = FoodType.MAIN_COURSE;
-                        break;
+                        return FoodType.MAIN_COURSE;
+                        
                     case 3:
-                        foodType = FoodType.DRINKS;
-                        break;
+                        return FoodType.DRINKS;
+                        
                 
                     default:
                         break;
                 }
             }
-            else System.out.println("wrong choice");
+            sc.nextLine();
 
 
-        } while (foodType == null);
+        } while (true);
 
-        return foodType;
+        
     }
 
 
