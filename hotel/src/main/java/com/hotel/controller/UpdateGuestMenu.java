@@ -82,6 +82,7 @@ public class UpdateGuestMenu {
     public static String CreateGuestId() throws IOException{
         String guestId = null;
         String licencePattern = "((?i)^[STFG]\\d{7}[A-JZ]$)";
+        String passportPattern = "((?i)^[STFG]\\d{8}[A-JZ]$)";
         do{
             System.out.println("Please Choose Identity Type");
             System.out.println("(1) Driving License");
@@ -105,7 +106,7 @@ public class UpdateGuestMenu {
                         System.out.print("Enter Driving License Number:");
                         guestId = sc.nextLine();
                         if (!guestId.matches(licencePattern)) {
-                            System.out.println("ERROR!! The format for the license is SXXXXXXXA");
+                            System.out.println("ERROR!! The format for the license is SXXXXXXXA. (It has 7 digits)");
                         }
                     }while(guestId==null || !guestId.matches(licencePattern));
                     break;
@@ -114,6 +115,9 @@ public class UpdateGuestMenu {
                     do{
                         System.out.print("Enter passport Number:");
                         guestId = sc.nextLine();
+                        if (!guestId.matches(passportPattern)) {
+                            System.out.println("ERROR!! The format for the passport is SXXXXXXXXA. (It has 8 digits)");
+                        }
                     }while(guestId==null);
 
                         
