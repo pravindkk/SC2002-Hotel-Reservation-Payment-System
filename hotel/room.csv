@@ -28,3 +28,5 @@
 "0601","DELUXE","QUEEN","true","VACANT","200.0","06","1","true","true"
 "0602","DELUXE","KING","true","OCCUPIED","250.0","06","2","true","false"
 "0603","DELUXE","KING","true","VACANT","240.0","06","3","true","true"
+"0701","VIP_SUITE","QUEEN","true","VACANT","350.0","07","1","true","false"
+"0702","VIP_SUITE","KING","true","VACANT","400.0","07","2","true","true"
