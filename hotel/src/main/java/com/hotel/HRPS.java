@@ -50,9 +50,21 @@ public class HRPS {
                 Duration.ofDays(1).toMillis(),
                 TimeUnit.MILLISECONDS);
 
+        main();
+
+        
+        
+
+        // PaymentUI pay = new PaymentUI();
+        // pay.printPayment();
+        
 
 
         
+        
+    }
+
+    public static void main() {
         do {
             int choice = mainDisplayOptions();
             switch (choice) {
@@ -84,20 +96,12 @@ public class HRPS {
                     break;
                 
                 case 8:
-                    return;
+                    System.exit(0);;
                 default:
                     break;
             }
             // choice
         } while (true);
-
-        // PaymentUI pay = new PaymentUI();
-        // pay.printPayment();
-        
-
-
-        
-        
     }
 
     public static int mainDisplayOptions() {
@@ -126,6 +130,7 @@ public class HRPS {
 
     public static void expireRes() {
         res.toExpireRes();
+        main();
     }
 
     
