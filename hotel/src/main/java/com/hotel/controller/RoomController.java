@@ -182,7 +182,11 @@ public class RoomController {
                 room.setWithView(UpdateRoomMenuDisplayUI.updateWithView());
                 break;
             case 4:
-                room.setRoomStatus(UpdateRoomMenuDisplayUI.updateRoomStatus());
+                if(room.getRoomStatus()==RoomStatus.OCCUPIED || room.getRoomStatus()==RoomStatus.RESERVED){
+                    System.out.println("Room is reserved/occupied. Unable to change to room status");
+                }else{
+                    room.setRoomStatus(UpdateRoomMenuDisplayUI.updateRoomStatus());
+                } 
                 break;
             case 5:
                 room.setRoomRate(UpdateRoomMenuDisplayUI.updateRoomRate());

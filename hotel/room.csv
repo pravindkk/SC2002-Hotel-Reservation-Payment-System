@@ -38,9 +38,8 @@
 "0606","DOUBLE","DOUBLE","true","VACANT","140.0","06","6","false","true"
 "0607","SINGLE","SINGLE","true","VACANT","140.0","06","7","true","true"
 "0608","SINGLE","SUPER_SINGLE","true","VACANT","140.0","06","8","true","true"
-"0701","VIP_SUITE","QUEEN","true","VACANT","350.0","07","1","true","false"
 "0702","VIP_SUITE","QUEEN","true","VACANT","400.0","07","2","true","true"
-"0703","SINGLE","SUPER_SINGLE","false","VACANT","150.0","07","3","true","true"
+"0703","SINGLE","SINGLE","true","VACANT","100.0","07","3","true","true"
 "0704","SINGLE","SUPER_SINGLE","false","VACANT","150.0","07","4","true","true"
 "0705","DELUXE","QUEEN","false","VACANT","190.0","07","5","false","false"
-
+"0701","SINGLE","SINGLE","true","VACANT","100.0","07","1","true","true"
