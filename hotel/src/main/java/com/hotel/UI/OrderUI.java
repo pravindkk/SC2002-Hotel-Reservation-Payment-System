@@ -111,17 +111,25 @@ public class OrderUI {
      * It obtains all relevant inputs then updates the order
      */
     public static void updateOrder() {
-        // String orderId=null;
+        
         Order order=null;
         // sc.nextLine();
         do {
+            String orderId=null;
+            System.out.println("Enter the orderId to be updated?:  ");
             try {
-                System.out.print("Enter the orderId to be updated?:  ");
-                String orderId = sc.nextLine();
+                orderId = sc.next();
+                if(orderId.equals("")) throw new Exception();
+            } catch (Exception e) {
+                //TODO: handle exception
+                orderId = sc.next();
+            }
+            try {
                 order = OrderController.getOrderById(orderId);
                 if (order == null) System.out.println("order doesnt exist");
                 else break;
             } catch (IOException e1) {
+                orderId = sc.next();
                 // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
@@ -281,10 +289,16 @@ public class OrderUI {
      */
     public static void displayOrder() {
         Order order=null;
-        // sc.nextLine();
+        String orderId = null;
+        System.out.print("What is the orderId?: ");
         try {
-            System.out.print("What is the orderId?: ");
-            String orderId = sc.nextLine();
+            orderId = sc.next();
+            if(orderId.equals("")) throw new Exception();
+        } catch (Exception e) {
+            //TODO: handle exception
+            orderId = sc.next();
+        }
+        try {
             order = OrderController.getOrderById(orderId);
             if (order == null) {
                 System.out.println("ERROR!! order doesnt exist!!");
