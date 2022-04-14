@@ -50,7 +50,7 @@ public class HRPS {
                 Duration.ofDays(1).toMillis(),
                 TimeUnit.MILLISECONDS);
 
-        main();
+        main_display();
 
         
         
@@ -64,7 +64,7 @@ public class HRPS {
         
     }
 
-    public static void main() {
+    public static void main_display() {
         do {
             int choice = mainDisplayOptions();
             switch (choice) {
@@ -130,7 +130,7 @@ public class HRPS {
 
     public static void expireRes() {
         res.toExpireRes();
-        main();
+        main_display();
     }
 
     
