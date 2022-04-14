@@ -162,6 +162,9 @@ public class ReservationController {
         System.out.println();
         for (int i=0; i<allData.size(); i++) {
             Reservation r = (Reservation) allData.get(i);
+            if(r.getReservationStatus()==ReservationStatus.EXPIRED){
+                continue;
+            }
 
             System.out.printf("%-16s %-10s %-7s %-14s %-13s %-19s %-14s %-10s", 
                         r.getReservationNum(), r.getGuestId(), r.getRoomId(),
