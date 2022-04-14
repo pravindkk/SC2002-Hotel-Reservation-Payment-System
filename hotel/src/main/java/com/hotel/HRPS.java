@@ -31,40 +31,10 @@ public class HRPS {
     static ReservationController resController = new ReservationController();
     public static void main(String[] args) throws IOException {
 
-        // Next run 3pm GMT - Singapore Time
-        final ZonedDateTime now = ZonedDateTime.now(ZoneId.systemDefault());
-        ZonedDateTime nextRun = now.withHour(16).withMinute(0).withSecond(0);
-
-        // If in the past, add one day
-        if (now.compareTo(nextRun) > 0) {
-            nextRun = nextRun.plusDays(1);
-        }
-
-        // Get duration between now and midnight
-        final Duration initialDelay = Duration.between(now, nextRun);
-
-        // Schedule a task to run at midnight and then every day
-        final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-        scheduler.scheduleAtFixedRate(() -> expireRes(),
-                initialDelay.toMillis(),
-                Duration.ofDays(1).toMillis(),
-                TimeUnit.MILLISECONDS);
-
-        main_display();
-
-        
         
 
-        // PaymentUI pay = new PaymentUI();
-        // pay.printPayment();
-        
+        timing();
 
-
-        
-        
-    }
-
-    public static void main_display() {
         do {
             int choice = mainDisplayOptions();
             switch (choice) {
@@ -102,6 +72,37 @@ public class HRPS {
             }
             // choice
         } while (true);
+        
+        
+
+        // PaymentUI pay = new PaymentUI();
+        // pay.printPayment();
+        
+
+
+        
+        
+    }
+
+    public static void timing() {
+        // Next run 3pm GMT - Singapore Time
+        final ZonedDateTime now = ZonedDateTime.now(ZoneId.systemDefault());
+        ZonedDateTime nextRun = now.withHour(16).withMinute(0).withSecond(0);
+
+        // If in the past, add one day
+        if (now.compareTo(nextRun) > 0) {
+            nextRun = nextRun.plusDays(1);
+        }
+
+        // Get duration between now and midnight
+        final Duration initialDelay = Duration.between(now, nextRun);
+
+        // Schedule a task to run at midnight and then every day
+        final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+        scheduler.scheduleAtFixedRate(() -> expireRes(),
+                initialDelay.toMillis(),
+                Duration.ofDays(1).toMillis(),
+                TimeUnit.MILLISECONDS);
     }
 
     public static int mainDisplayOptions() {
@@ -119,7 +120,12 @@ public class HRPS {
             try {
                 System.out.print("What is your choice:  ");
                 choice = sc.nextInt();
+                if (choice >=1 && choice <=8) break;
+                else throw new Exception();
+                // choice = Integer.parseInt(sc.next());
             } catch (Exception e) {
+                choice = sc.nextInt();
+                if (choice >=1 && choice <=8) break;
                 //TODO: handle exception
             }
 
@@ -130,7 +136,7 @@ public class HRPS {
 
     public static void expireRes() {
         res.toExpireRes();
-        main_display();
+        // main_display();
     }
 
     

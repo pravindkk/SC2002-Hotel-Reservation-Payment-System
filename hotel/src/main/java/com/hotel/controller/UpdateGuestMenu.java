@@ -2,6 +2,9 @@ package com.hotel.controller;
 
 import java.io.IOException;
 import java.util.Scanner;
+
+import javax.swing.tree.ExpandVetoException;
+
 import org.apache.commons.lang3.StringUtils;
 import com.hotel.system.enums.*;
 
@@ -25,6 +28,7 @@ public class UpdateGuestMenu {
     public static String UpdateGuestId() throws IOException{
         String guestId = null;
         String licencePattern = "((?i)^[STFG]\\d{7}[A-JZ]$)";
+        String passportPattern = "((?i)^[STFG]\\d{8}[A-JZ]$)";
         do{
             System.out.println("Please Choose Identity Type");
             System.out.println("(1) Driving License");
@@ -46,7 +50,14 @@ public class UpdateGuestMenu {
                     case 1:
                     do{
                         System.out.print("Enter Driving License Number:");
-                        guestId = sc.nextLine();
+                        try {
+                            guestId = sc.next();
+                            if (guestId.equals("")) throw new Exception();
+                        } catch (Exception e) {
+                            //TODO: handle exception
+                            guestId = sc.next();
+                        }
+                        // guestId = sc.nextLine();
                         if (!guestId.matches(licencePattern)) {
                             System.out.println("ERROR!! The format for the license is SXXXXXXXA");
                         }
@@ -56,8 +67,17 @@ public class UpdateGuestMenu {
                     case 2:
                     do{
                         System.out.print("Enter passport Number:");
-                        guestId = sc.nextLine();
-                    }while(guestId==null);
+                        try {
+                            guestId = sc.next();
+                            if (guestId.equals("")) throw new Exception();
+                        } catch (Exception e) {
+                            //TODO: handle exception
+                            guestId = sc.next();
+                        }
+                        if (!guestId.matches(passportPattern)) {
+                            System.out.println("ERROR!! The format for the passport is SXXXXXXXXA");
+                        }
+                    }while(guestId==null || !guestId.matches(passportPattern));
 
                         
                 }
