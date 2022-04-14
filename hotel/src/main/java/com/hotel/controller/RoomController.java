@@ -416,7 +416,7 @@ public class RoomController {
         System.out.println("VIP Suite: " + vipRoom.size()+ " out of " + vipRoomCount);
         System.out.print("\t\t\tRooms: ");
         for (int i=0; i<vipRoom.size(); i++) {
-            System.out.print(((Room) vipRoom.get(0)).getRoomId() + ", ");
+            System.out.print(((Room) vipRoom.get(i)).getRoomId() + ", ");
         } 
         System.out.println();
     }
