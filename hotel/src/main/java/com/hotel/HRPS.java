@@ -176,23 +176,28 @@ public class HRPS {
             choice  = MainDisplayUI.displayCheckInOptions();
             switch (choice) {
                 case 1:
-                    sc.nextLine();
+                    String guestId = null;
+                    System.out.println("What is the Guest Id?:  ");
                     try {
-                        System.out.print("What is the Guest Id?:  ");
-                        String guestId = sc.nextLine();
+                        guestId = sc.next();
+                        if (guestId.equals("")) throw new Exception();
                         resController.checkInGuest(guestId, "G");
                     } catch (Exception e) {
+                        guestId = sc.nextLine();
                         //TODO: handle exception
                     }
                     break;
                 case 2:
-                    sc.nextLine();
+                    String roomId = null;
+                    System.out.println("What is the Reservation Id?:  ");
                     try {
-                        System.out.print("What is the Reservation Id?:  ");
-                        String roomId = sc.nextLine();
+                        roomId = sc.next();
+                        if (roomId.equals("")) throw new Exception();
                         resController.checkInGuest(roomId, "R");
                     } catch (Exception e) {
+                        roomId = sc.next();
                         //TODO: handle exception
+
                     }
                     break;
                 case 3:
