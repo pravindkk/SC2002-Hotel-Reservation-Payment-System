@@ -76,7 +76,14 @@ public class UpdateRoomMenuDisplayUI {
 			System.out.println("*Room number from 01 - 08");
             System.out.print("Please enter Room ID(E.g 0204):  ");
 
-            roomId = sc.nextLine();
+            
+            try {
+                roomId = sc.nextLine();
+                if (roomId.equals("")) throw new Exception();
+            } catch (Exception e) {
+                //TODO: handle exception
+                roomId = sc.nextLine();
+            }
             System.out.println();
 			// Matcher matcher = roomIdPattern.matcher(roomId);
             if(roomId.length() != 4 || !roomIdPattern.matcher(roomId).matches()) {
