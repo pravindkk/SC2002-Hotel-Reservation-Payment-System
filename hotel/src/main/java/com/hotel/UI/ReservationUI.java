@@ -79,7 +79,10 @@ public class ReservationUI {
         }
     }
 
-    
+    /**
+     * This method prints the UI for the creation of a walk-in reservation
+     * then obtains the relevant inputs and creates the reservation and updates the room 
+     */
     public void walkIn() {
         try {
             Date checkInDate = new Date();

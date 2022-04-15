@@ -19,16 +19,10 @@ import com.hotel.controller.UpdateRoomMenuDisplayUI;
 public class RoomUI {
     static Scanner sc = new Scanner(System.in);
     RoomController roomController = new RoomController();
-
-
-    
-
     
     /** 
-     * @return int
+     * This method calls the relevant method in another class to create a room
      */
-    
-
     public void createRoom() {
         try {
             roomController.createRoom();
@@ -38,6 +32,9 @@ public class RoomUI {
         }
     }
 
+    /** 
+     * This method calls the relevant method in another class to update a room
+     */
     public void updateRoom() {
         try {
             String roomId = UpdateRoomMenuDisplayUI.updateRoomId();
@@ -48,6 +45,9 @@ public class RoomUI {
         
     }
 
+    /** 
+     * This method calls the relevant method in another class to delete a room
+     */
     public void deleteRoom() {
         try {
             String roomId = UpdateRoomMenuDisplayUI.updateRoomId();
@@ -61,6 +61,9 @@ public class RoomUI {
         }
     }
 
+    /** 
+     * This method calls the relevant method in another class to print a room
+     */
     public void printRoom() {
         try {
             String roomId = UpdateRoomMenuDisplayUI.updateRoomId();
@@ -69,6 +72,10 @@ public class RoomUI {
             //TODO: handle exception
         }
     }
+
+    /** 
+     * This method calls the relevant method in another class to print all rooms
+     */
     public void printAllRooms() {
         try {
             roomController.printAllRooms();
@@ -77,6 +84,10 @@ public class RoomUI {
         }
     }
 
+    /** 
+     * This method calls the relevant method in another class 
+     * to see how many rooms are occpied
+     */
     public void viewOccupancyRate() {
         try {
             roomController.printVacantRoom();
@@ -84,6 +95,10 @@ public class RoomUI {
             //TODO: handle exception
         }
     }
+
+    /** 
+     * This method calls the relevant method in another class to view a room's details
+     */
     public void viewRoomStatus() {
         try {
             roomController.printRoomStatus();
@@ -91,9 +106,5 @@ public class RoomUI {
             //TODO: handle exception
         }
     }
-
-
-
-
 
 }

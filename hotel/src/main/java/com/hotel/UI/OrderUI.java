@@ -317,7 +317,9 @@ public class OrderUI {
         
     }
 
-
+    /**
+     * This method displays the details of all orders to the user
+     */
     public static void displayAllOrders() {
         try {
             ArrayList<Order> orders = OrderController.getAllOrders();
