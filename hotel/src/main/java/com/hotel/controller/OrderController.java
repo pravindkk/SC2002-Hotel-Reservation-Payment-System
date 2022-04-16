@@ -22,7 +22,8 @@ public class OrderController {
 
     
     /** 
-     * @return ArrayList returns an ArrayList of all the Guests stored in the database
+     * Gets and returns all Orders
+     * @return ArrayList returns an ArrayList of all the Orders stored in the database
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
     public static ArrayList<Order> getAllOrders() throws IOException {
@@ -31,6 +32,7 @@ public class OrderController {
 
     
     /** 
+     * Creates an Order object
      * @param order Order object in which the Item needs to be added in 
      * @param itemId Integer input of itemtID is entered so that the corresponding item is added to the Order object
      * @throws IOException IOException Due to communication with the DataBase IOexception is required
@@ -43,6 +45,7 @@ public class OrderController {
 
     
     /** 
+     * Updates an Order object
      * @param order Order object in which the order needs to be updated. 
      * Once order is updated, it is stored in the database
      * @throws IOException IOException Due to communication with the DataBase IOexception is required
@@ -60,6 +63,7 @@ public class OrderController {
 
     
     /** 
+     * Deletes an Order object
      * @param order Order object in which the order needs to be updated. 
      * @throws IOException OException Due to communication with the DataBase IOexception is required
      */
@@ -76,6 +80,7 @@ public class OrderController {
 
     
     /** 
+     * Gets and returns an Order with the corresponding ID parameter
      * @param orderID String input of orderID is entered so that the corresponding order object is retrieved
      * @return Corresponding record for the input OrderID
      * @throws IOException IOException OException Due to communication with the DataBase IOexception is required
@@ -91,6 +96,7 @@ public class OrderController {
 
     
     /** 
+     * Gets the list of Orders related to a roomID
      * @param roomID String input of roomID is entered so that the corresponding order object is retrieved
      * @return Returns an ArrayList<Order> of corresponding orders from the databse
      * @throws IOException IOException OException Due to communication with the DataBase IOexception is required
@@ -108,6 +114,7 @@ public class OrderController {
 
     
     /** 
+     * Displays all details of one specified Order, specified by orderID
      * @param orderID String input of orderID is entered so that the corresponding order object could be displayed
      * @throws IOException IOException OException Due to communication with the DataBase IOexception is required
      */
@@ -120,6 +127,7 @@ public class OrderController {
 
     
     /** 
+     * Adds an Item into an Order
      * @param item Item is passed in as input so that the item in the orders could be updated
      * @throws IOException IOException OException Due to communication with the DataBase IOexception is required
      */
@@ -141,6 +149,7 @@ public class OrderController {
 
     
     /** 
+     * Saves all Items into the database
      * @param toWrite Contains an ArrayList of all the Orders that is going to be stored in the database
      */
     public static void saveAllItems(ArrayList toWrite){
@@ -155,6 +164,7 @@ public class OrderController {
 
     
     /** 
+     * Saves one Order into database
      * @param newOrder Order is passed as input so that it can be written to the database
      * @throws IOException IOException OException Due to communication with the DataBase IOexception is required
      */

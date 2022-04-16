@@ -30,6 +30,7 @@ public class ReservationController {
 
     
     /** 
+     * Gets and returns all Guest data in the database
      * @return returns an ArrayList of all the Guests stored in the database
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
@@ -40,6 +41,7 @@ public class ReservationController {
 
     
     /** 
+     * Saves Reservation objects into the database
      * @param toWrite Contains an ArrayList of all the Reservation that is going to be stored in the database
      */
     public static void saveReservationData(ArrayList toWrite) {
@@ -58,6 +60,7 @@ public class ReservationController {
 
     
     /** 
+     * Saves a specific Reservation, specified by GuestID
      * @param toChange Contains an object of the class Reservation that is going to be stored in the database
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
@@ -77,11 +80,12 @@ public class ReservationController {
 
     }
 
+    
     /** 
+     * Saves a specific Reservation, specified by Reservation Number
      * @param toChange Contains an object of the class Reservation that is going to be stored in the database
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
-
     public static void saveSpecificReservationByResNum(Reservation toChange) throws IOException {
         ArrayList allData = getAllReservations();
 
@@ -100,6 +104,7 @@ public class ReservationController {
 
     
     /** 
+     * Creates and saves a Reservation
      * @param toAdd Contains an object of the class Reservation that is going to be added into the database
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
@@ -113,8 +118,9 @@ public class ReservationController {
 
     
     /** 
+     * Updates and saves a Reservation
      * @param reservation Contains an object of the class Reservation that is needed to be updated
-     * Once the object is updated , it is stored in the database
+     * Once the object is updated, it is stored in the database
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
     public static void updateReservation(Reservation reservation) throws IOException {
@@ -125,9 +131,10 @@ public class ReservationController {
 
     
     /** 
+     * Gets and returns a Reservation specified by reservationID
      * @param reservationId String input of reservation ID is entered
      * The database is queried and if the corrrsponding reservation object is found, the corresponding reservation object is returned
-     * @return If the resevration object that corresponds to the reservationID is found in the database it is returned. Else , null is returned
+     * @return If the resevration object that corresponds to the reservationID is found in the database it is returned. Else, null is returned
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
     public static Reservation getReservationByNum(String reservationId) throws IOException {
@@ -145,7 +152,6 @@ public class ReservationController {
 
         return null;
     }
-
 
     
     /** 
@@ -173,12 +179,12 @@ public class ReservationController {
         }
     }
 
-
     
     /** 
+     * Gets and returns a Reservation by reservationID
      * @param reservationId String input of reservationId is required to query the database
      * @param reservationStatus ReservationStatus is required to see if there is a confirmed reservastion tagged to the room
-     * @return If there is a reservation based on the reservationID and reservationStatus , a reservation record is returned . Else null is returned
+     * @return If there is a reservation based on the reservationID and reservationStatus, a reservation record is returned. Else null is returned
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
     public static Reservation getReservationByNum(String reservationId, ReservationStatus reservationStatus) throws IOException {
@@ -201,13 +207,14 @@ public class ReservationController {
         return null;
     }
 
+    
     /** 
+     * Gets and returns a Reservation by roomID
      * @param roomId String input of reservationId is required to query the database
-     * @param reservationStatusthe reservationStatus needed to check if there is a checked in reservation under the roomId
-     * @return If there is a reservation based on the reservationID and reservationStatus , a reservation record is returned . Else null is returned
+     * @param reservationStatus the reservationStatus needed to check if there is a checked in reservation under the roomId
+     * @return If there is a reservation based on the reservationID and reservationStatus, a reservation record is returned. Else null is returned
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
-
     public static Reservation getReservationByRoom(String roomId, ReservationStatus reservationStatus) throws IOException {
         // ArrayList allReservations = getAllReservations();
 
@@ -229,8 +236,9 @@ public class ReservationController {
     }
     
     /** 
+     * Gets and returns a Reservation by roomID
      * @param roomId String input of roomID is required to query the database for the reservation record
-     * @return If there is a resrvation , a reservation record is returned . Else null is returned
+     * @return If there is a resrvation, a reservation record is returned. Else null is returned
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
     public static Reservation getReservationByRoomId(String roomId) throws IOException {
@@ -258,7 +266,7 @@ public class ReservationController {
      * This method uses the guestID to check if there is a confirmed reservation with the guestId
      * @param guestId String input of GuestID is entered so that the corresponding reservation object is retrieved fron the database
      * @param reservationStatus Reservation status is required to query the database
-     * @return If there is a confirmed resrvation , a reservation record is returned . Else null is returned
+     * @return If there is a confirmed resrvation, a reservation record is returned. Else null is returned
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
     public static Reservation getReservationByGuest(String guestId, ReservationStatus reservationStatus) throws IOException {
@@ -283,6 +291,7 @@ public class ReservationController {
 
     
     /** 
+     * Checks in a guest
      * @param id String input of either GuestID or reservationID
      * @param whatNum String input to identify what ID is used
      * @throws IOException Due to communication with the DataBase IOexception is required
@@ -346,6 +355,7 @@ public class ReservationController {
 
     
     /** 
+     * Checks out a guest
      * @param checkOutRoomId String input of roomID is required so that they can check out out of the rooom
      * @return returns false if the reservation is not checked in or has already been checked out. returns true if completely checked out
      * @throws IOException Due to communication with the DataBase IOexception is required
@@ -410,6 +420,7 @@ public class ReservationController {
 
     
     /** 
+     * Prints the Reservation specified by reservationID
      * @param reservationId String input of reservationID is entered so that the corresponding reservation object could be obtained from the database
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
@@ -439,6 +450,7 @@ public class ReservationController {
 
     
     /** 
+     * Cancels the Reservation specified by reservtionID
      * @param reservationId String input of reservationID is entered so that the corresponding reservation object could be deleted from the database
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
@@ -465,8 +477,9 @@ public class ReservationController {
 
     }
 
-     /** 
-      * This method changes the ReservationStatus to expired if the date of Reservation is todays date
+    
+    /** 
+     * This method changes the ReservationStatus to expired if the date of Reservation is todays date
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
     public static void expireReservation() throws IOException {

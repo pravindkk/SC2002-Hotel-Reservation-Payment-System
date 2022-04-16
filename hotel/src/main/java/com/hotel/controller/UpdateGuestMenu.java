@@ -280,6 +280,7 @@ public class UpdateGuestMenu {
 
     
     /** 
+     * This method updates the Credit Card number tagged to the Guest
      * @return String
      * @throws IOException
      */

@@ -106,6 +106,7 @@ public class OrderUI {
         }
     }
 
+
     /** 
      * This method runs the relevant operations to update an Order
      * It obtains all relevant inputs then updates the order
@@ -250,7 +251,6 @@ public class OrderUI {
 
     }
 
-
     
     /** 
      * This method runs the relevant operations and deletes an order
@@ -283,6 +283,7 @@ public class OrderUI {
         OrderController.deleteOrder(order);
 
     }
+
 
     /**
      * This method displays the details of the order to the user
@@ -317,6 +318,7 @@ public class OrderUI {
         
     }
 
+
     /**
      * This method displays the details of all orders to the user
      */
@@ -333,13 +335,5 @@ public class OrderUI {
         }
         
     }
-
-    
-
-
-
-
-
-
 
 }

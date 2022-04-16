@@ -20,11 +20,11 @@ public class Item{
 
     /**
      * Constructor for Item object
-     * @param itemid
-     * @param name
-     * @param description
-     * @param price
-     * @param foodType
+     * @param itemid        Unique identifier for each Item 
+     * @param name          Name of dish
+     * @param description   Description of dish
+     * @param price         Price of dish
+     * @param foodType      FoodType of Item (STARTER, MAIN_COURSE, DRINKS)
      */
     public Item(Integer itemid, String name, String description,double price,FoodType foodType){
         this.itemid = itemid;
@@ -129,9 +129,4 @@ public class Item{
 
         return (String.format("%-5d%-25s%-45s%.2f", itemid, name, description, price));
     }
-
-
-
-
-
 }

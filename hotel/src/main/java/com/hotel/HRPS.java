@@ -19,6 +19,12 @@ import com.hotel.controller.*;
 import com.hotel.system.CreditCard;
 import com.hotel.system.Guest;
 
+/**
+ * Represents the class of Payment, which holds the information at the instance the payment is made
+ * @author Pravind
+ * @version 1.0
+ * @since 1.0
+ */
 
 public class HRPS {
     static Scanner sc = new Scanner(System.in);
@@ -29,6 +35,12 @@ public class HRPS {
     static GuestController guestController = new GuestController();
     static PaymentUI pay = new PaymentUI();
     static ReservationController resController = new ReservationController();
+    
+    /** 
+     * Main function to start the HRPS system
+     * @param args
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
 
         
@@ -84,6 +96,9 @@ public class HRPS {
         
     }
 
+    /**
+     * Keeps track of time and updates any expired reservations at 4pm every day
+     */
     public static void timing() {
         // Next run 3pm GMT - Singapore Time
         final ZonedDateTime now = ZonedDateTime.now(ZoneId.systemDefault());
@@ -105,6 +120,11 @@ public class HRPS {
                 TimeUnit.MILLISECONDS);
     }
 
+    
+    /** 
+     * Prints the main display options and returns the user's choice as an Integer
+     * @return int
+     */
     public static int mainDisplayOptions() {
 
         int choice=0;
@@ -134,13 +154,17 @@ public class HRPS {
         return choice;
     }
 
+    /**
+     * Helps with setting Reservations as expired
+     */
     public static void expireRes() {
         res.toExpireRes();
         // main_display();
     }
 
-    
-
+    /**
+     * Takes user input when user is in Reservation Menu and returns it as an Integer
+     */
     public static void chooseReservation() {
         
         int choice =0;
@@ -176,6 +200,10 @@ public class HRPS {
         } while (true);
         
     }
+    
+    /**
+     * Takes user input when user is in Check-In Menu and returns it as an Integer
+     */
     public static void chooseCheckIn() {
         int choice =0;
         do {
@@ -220,6 +248,9 @@ public class HRPS {
         
     }
 
+    /**
+     * Takes user input when user is in Check-Out Menu and returns it as an Integer
+     */
     public static void chooseCheckOut() {
         sc.nextLine();
         try {
@@ -236,7 +267,9 @@ public class HRPS {
         }
     }
 
-
+    /**
+     * Takes user input when user is in Room Menu and returns it as an Integer
+     */
     public static void chooseRoom() {
         int choice =0;
         do {
@@ -278,6 +311,9 @@ public class HRPS {
         
     }
 
+    /**
+     * Takes user input when user is in Menu Menu and returns it as an Integer
+     */
     public static void chooseMenu() {
         int choice =0;
         do {
@@ -317,7 +353,9 @@ public class HRPS {
 
     }
 
-
+    /**
+     * Takes user input when user is in Order Menu and returns it as an Integer
+     */
     public static void chooseOrder() {
         int choice =0;
         do {
@@ -356,6 +394,9 @@ public class HRPS {
         
     }
     
+    /**
+     * Takes user input when user is in Guest Menu and returns it as an Integer
+     */
     public static void chooseGuest() {
         int choice =0;
         String guestId = null;
@@ -444,7 +485,5 @@ public class HRPS {
         
 
     }
-
-
 
 }

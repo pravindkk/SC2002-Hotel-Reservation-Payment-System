@@ -42,6 +42,7 @@ public class PaymentController {
 
     
 	/** 
+	 * Gets and returns all Payments
 	 * @return Returns an ArrayList of all the Payments stored in the database
 	 * @throws IOException Due to communication with the DataBase IOexception is required
 	 */
@@ -53,6 +54,7 @@ public class PaymentController {
 
     
 	/** 
+	 * Saves all payments into database
 	 * @param toWrite Contains an ArrayList of all the Payments that is going to be stored in the database
 	 * @throws IOException Due to communication with the DataBase IOexception is required
 	 */
@@ -68,6 +70,7 @@ public class PaymentController {
 
     
 	/** 
+	 * Creates a Payment object 
 	 * @param payment Payment object is passed in as parameter so that the payment could be added to the database
 	 * @throws IOException Due to communication with the DataBase IOexception is required
 	 */
@@ -80,6 +83,7 @@ public class PaymentController {
 
     
 	/** 
+	 * Calculates the room total cost and returns it. If unable to calculate, -1 is returned
 	 * @param roomId String input of GuestID is entered so that the room total could be calculated
 	 * @return returns the room total for the corresponding roomId
 	 */
@@ -101,6 +105,7 @@ public class PaymentController {
 
     
 	/** 
+	 * Calculates the total cost summed with the cost of orders and returns the sum
 	 * @param payment Payment object is passed as parameter so that the subtotal field could be updated
 	 * @param roomId String input of roomID is entered so that the room total could be calculated
 	 * @return the total cost of the orders
@@ -123,6 +128,7 @@ public class PaymentController {
 
     
 	/** 
+	 * Calculates the subtotal (Price + SVC + GST) and returns it
 	 * @param payment Payment object is passed as parameter so that the total field could be updated
 	 * @param roomId String input of roomID is entered so that the totalcost could be calculated
 	 * @return total cost of the room is returned
@@ -138,6 +144,7 @@ public class PaymentController {
 
     
 	/** 
+	 * Gets and returns a Payment object
 	 * @param payment Payment object is passed as parameter so that the total field could be used to display the total
 	 * @param roomId String input of roomID is entered so that the correct Payment record is retireved from the database
 	 * @param method Integer input is passed to detemine if the payment is made using cash or card

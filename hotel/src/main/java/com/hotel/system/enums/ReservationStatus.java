@@ -22,14 +22,17 @@ public enum ReservationStatus {
      */
 
     CHECKED_IN,
+
     /**
      * CHECKED_OUT RESERVATION_STATUS
      */
     CHECKED_OUT, 
+
     /**
      * EXPIRED RESERVATION_STATUS
      */
-    EXPIRED, 
+    EXPIRED,
+     
     /**
      * CANCELLED RESERVATION_STATUS
      */

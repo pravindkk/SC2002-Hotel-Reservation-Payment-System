@@ -36,7 +36,6 @@ public class RoomController {
      * Once a instance of the class Room is created , it adds this to the database
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
-
     public static void createRoom() throws IOException {
 
         String roomId = UpdateRoomMenuDisplayUI.createRoomId();
@@ -74,6 +73,7 @@ public class RoomController {
 
     
     /** 
+     * Saves the Rooms to the database
      * @param toWrite Contains an ArrayList of all the Rooms that is going to be stored in the database
      */
     public static void saveData(ArrayList toWrite) {
@@ -90,6 +90,7 @@ public class RoomController {
 
     
     /** 
+     * Updates the roomstatus for a room specified by roomID
      * @param roomId String input of roomID is entered so that the corresponding Room object is returned
      * Then the roomstatus is updated for that particular room object
      * @throws IOException due to communication with the DataBase IOexception is required
@@ -111,6 +112,7 @@ public class RoomController {
 
     
     /** 
+     * Saves the room specified by roomID 
      * @param toChange Contains an object of the class Room that is going to be stored in the database
      * @throws IOException due to communication with the DataBase IOexception is required
      */

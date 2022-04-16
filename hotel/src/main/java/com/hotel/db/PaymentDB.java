@@ -33,7 +33,9 @@ public class PaymentDB extends DB {
     SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
     
 
-
+    /**
+     * Constructor for PaymentDB
+     */
     public PaymentDB(){
         super();
         try {
@@ -47,21 +49,21 @@ public class PaymentDB extends DB {
     }
 
     
-    /** 
-     * @return The fucntion getPath returns the path of the file as a String
+    /**
+     * The function getPath returns the path of the file as a String 
+     * @return returns the path of the file as a String 
      */
-
     public String getPath() {
         return this.path;
     }
 
     
     /** 
+     * Reads data from the database
      * @param fileName The name of the text file is passed in as a String input
      * @return ArrayList of the data in the text file is returned
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
-
     @Override
 	public ArrayList read(String fileName) throws IOException {
         List<String[]> listing = super.readAllData(fileName);
@@ -120,6 +122,7 @@ public class PaymentDB extends DB {
 
     
     /** 
+     * Saves data to the database
      * @param fileName The name of the text file that the data is going to be written to is passed in as a String input
      * @param al ArrayList of the data that is going to be written to is passed as a input
      * @throws IOException Due to communication with the DataBase IOexception is required

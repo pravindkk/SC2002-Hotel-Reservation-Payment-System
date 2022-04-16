@@ -14,21 +14,23 @@ public enum BedType {
     /**
      * SINGLE BED
      */
-
     SINGLE, 
 
     /**
      * DOUBLE BED
      */
     DOUBLE, 
+
     /**
      * SUPER_SINGLE BED
      */
     SUPER_SINGLE, 
+
     /**
      * QUEEN BED
      */
     QUEEN, 
+    
     /**
      * KING BED
      */

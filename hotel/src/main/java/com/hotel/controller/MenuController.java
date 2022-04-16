@@ -26,6 +26,7 @@ public class MenuController {
 
     
     /** 
+     * Returns all items in the database
      * @return ArrayList returns an ArrayList of all the items stored in the database
      * @throws IOException IOException Due to communication with the DataBase IOexception is required
      */
@@ -88,6 +89,7 @@ public class MenuController {
 
     
     /** 
+     * Saves items into database
      * @param toWrite Contains an ArrayList of all the Items that is going to be stored in the database
      */
     public static void saveAllItems(ArrayList toWrite){
@@ -104,6 +106,7 @@ public class MenuController {
 
     
     /**  
+     * Creates menu Item
      * @param item An object of the class Item is passed so that this object could be written to the database
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
@@ -115,6 +118,7 @@ public class MenuController {
 
     
     /** 
+     * Gets and returns an Item
      * @param itemId String input of itemID is entered so that the corresponding Item object is returned
      * @return Item The corresponding Item object is returned
      * @throws IOException due to communication with the DataBase IOexception is required
@@ -134,6 +138,7 @@ public class MenuController {
 
     
     /** 
+     * Deletes an item if it is valid
      * @param itemId tring input of itemID is entered so that the corresponding Item object could be deleted
      * @throws IOException due to communication with the DataBase IOexception is required
      */
@@ -157,6 +162,7 @@ public class MenuController {
 
     
     /** 
+     * Updates the details of an Item
      * @param newItem String input of GuestID is entered so that the corresponding Item object is updated
      * @throws IOException due to communication with the DataBase IOexception is required
      */

@@ -139,9 +139,6 @@ public class MenuUI {
 
         MenuController.deleteItem(itemdId);
     }
-
-
-
     
     /** 
      * This method prints the UI to update name of an item
@@ -167,7 +164,6 @@ public class MenuUI {
      * This method prints the UI to get the name of an item
      * @return Name as a string output
      */
-
     public static String getNewItemName() {
         String itemName=null;
         do {
@@ -189,7 +185,6 @@ public class MenuUI {
     }
 
 
-    
     /** 
      * This method prints the UI to get the description of an item
      * After the description is obtained, it will be returned as a String
@@ -211,12 +206,12 @@ public class MenuUI {
         return itemDesc;
     }
 
+    
     /** 
      * This method prints the UI to get the description of a new item
      * After the description is obtained, it will be returned as a String
      * @return String output is description is returned
      */
-
     public static String getNewItemDesc(){
         String itemDesc=null;
         do {

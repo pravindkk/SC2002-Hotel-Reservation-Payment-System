@@ -18,30 +18,27 @@ import java.util.List;
 
 abstract class DB {
     /**
-     * 
+     * Abstract method to read data from the database. This will be overwritten by child classes
      * @param fileName The name of the file is passed as the parameter so that data could be read from the text file
      * @return An arraylist of the data is returned
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
     public abstract ArrayList read(String fileName) throws IOException ;
 
+
     /**
-     * 
+     * Abstract method to save data to the database. This will be overwritten by child classes
      * @param fileName The name of the file that is the data is going to be written to 
      * @param al Contains data that is going to be written in to the file
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
-
-
-
 	public abstract void save(String fileName, List al) throws IOException ;
 
     /**
-     * 
+     * Reads all data to the database
      * @param file The name of the file is passed as the parameter so that data could be read from the text file
      * @return An arraylist of the data is returned
      */
-
     public static List readAllData(String file)
     {
         try {
@@ -65,12 +62,11 @@ abstract class DB {
     }
 
     /**
-     * 
+     * Saves all data to the database
      * @param fileName The name of the file that is the data is going to be writtten to 
      * @param stringArray Contains data that is going to be written in to the file
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
-
     public static void writeAllData(String fileName, List<String[]> stringArray) throws IOException {
         CSVWriter writer = new CSVWriter(new FileWriter(fileName));
         for (String[] array : stringArray) {

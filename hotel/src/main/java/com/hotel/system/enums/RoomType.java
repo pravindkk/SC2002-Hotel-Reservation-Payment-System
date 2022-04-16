@@ -21,6 +21,7 @@ public enum RoomType {
      */
 
     DOUBLE, 
+    
      /**
      * DELUXE ROOM
      */

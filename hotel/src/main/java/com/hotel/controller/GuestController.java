@@ -27,6 +27,7 @@ public class GuestController {
 
     
     /** 
+     * Creates and returns a Guest object
      * @return returns an Object of the class Guest
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
@@ -56,6 +57,7 @@ public class GuestController {
 
     
     /** 
+     * Saves all Guest objects
      * @param toWrite Contains an ArrayList of all the Guests that is going to be stored in the database
      */
     public static void saveGuests(ArrayList toWrite) {
@@ -72,7 +74,7 @@ public class GuestController {
     }
 
     
-    /** 
+    /** Saves a Guest object
      * @param guest Contains an object of the class Guest that is going to be stored in the database
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
@@ -92,6 +94,7 @@ public class GuestController {
 
     
     /** 
+     * Updates a Guest object's details
      * @param guestId String input of GuestID is entered so that the corresponding Guest object is returned
      * @throws IOException due to communication with the DataBase IOexception is required
      */
@@ -185,6 +188,7 @@ public class GuestController {
 
     
     /** 
+     * Deletes a Guest object
      * @param guestId String input of GuestID is entered so that the corresponding guest object is deleted
      * @throws IOException Due to communication with the DataBase IOexception is required
      */

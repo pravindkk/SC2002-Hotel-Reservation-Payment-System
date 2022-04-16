@@ -14,17 +14,19 @@ public enum RoomStatus {
      * VACANT ROOMSTATUS 
      */
     VACANT, 
+
     /**
      * OCCUPIED ROOMSTATUS 
      */
     OCCUPIED, 
+
      /**
      * RESEVRED ROOMSTATUS 
      */
     RESERVED, 
+
     /**
      * UNDER_MAINTAINANCE ROOMSTATUS 
      */
-
     UNDER_MAINTAINANCE
 }

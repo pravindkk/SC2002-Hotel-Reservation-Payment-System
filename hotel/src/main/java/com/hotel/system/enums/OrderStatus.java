@@ -14,10 +14,12 @@ public enum OrderStatus {
      */
 
     PREPARING, 
+
     /**
      * PREPARED ORDER STATUS
      */
-    PREPARED, 
+    PREPARED,
+     
     /**
      * DELIVERED ORDER STATUS
      */

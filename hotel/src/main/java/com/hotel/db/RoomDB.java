@@ -24,6 +24,9 @@ public class RoomDB extends DB{
     private File database = new File("hotel/room.csv");
     private String path;
 
+    /** 
+     * Constructor for RoomDB
+     */
     public RoomDB(){
         super();
         try {
@@ -37,16 +40,17 @@ public class RoomDB extends DB{
     }
 
     
-    /** 
-     * @return The fucntion getPath returns the path of the file as a String
+    /**
+     * The function getPath returns the path of the file as a String 
+     * @return returns the path of the file as a String 
      */
- 
     public String getPath() {
         return this.path;
     }
 
     
     /** 
+     * Reads data from the database
      * @param fileName The name of the text file is passed in as a String input
      * @return ArrayList of the data in the text file is returned
      * @throws IOException Due to communication with the DataBase IOexception is required
@@ -92,6 +96,11 @@ public class RoomDB extends DB{
 		
 	}
 
+    /**
+     * Sorts the rooms by their level and returns them as an ArrayList
+     * @param rooms to be sorted, in an ArrayList 
+     * @return ArrayList of sorted rooms
+     */
     public ArrayList sortRoomsByLevel(ArrayList rooms) {
         Collections.sort(rooms, new Comparator<Room>() {
             @Override
@@ -104,6 +113,7 @@ public class RoomDB extends DB{
 
     
     /** 
+     * Saves data to the database
      * @param fileName The name of the text file that the data is going to be written to is passed in as a String input
      * @param al ArrayList of the data that is going to be written to is passed as a input
      * @throws IOException Due to communication with the DataBase IOexception is required

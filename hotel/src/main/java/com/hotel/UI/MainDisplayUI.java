@@ -12,7 +12,6 @@ import com.hotel.controller.MenuController;
 public class MainDisplayUI {
     static Scanner sc = new Scanner(System.in);
 
-    
     /** 
      * This method prints out the reservation options for HRPS. It then asks the user to select an option
      * @return Choice is returned as a int output
@@ -46,7 +45,6 @@ public class MainDisplayUI {
         return choice;
     }
 
-    
     /** 
      * This method prints out the room options for HRPS. It then asks the user to select an option
      * @return Choice is returned as a int output
@@ -81,7 +79,6 @@ public class MainDisplayUI {
 
         return choice;
     }
-
     
     /** 
      * This method prints out the menu options for HRPS. It then asks the user to select an option
@@ -111,8 +108,6 @@ public class MainDisplayUI {
         return choice;
     }
 
-
-    
     /** 
      * This method prints out the order options for HRPS. It then asks the user to select an option
      * @return Choice is returned as a int output
@@ -145,6 +140,10 @@ public class MainDisplayUI {
         return choice;
     }
 
+    /** 
+     * This method prints out the guest options for HRPS. It then asks the user to select an option
+     * @return Choice is returned as a int output
+     */
     public static int displayGuestOptions() {
         int choice;
         do {
@@ -172,6 +171,11 @@ public class MainDisplayUI {
 
         return choice;
     }
+    
+    /** 
+     * This method prints out the check-in options for HRPS. It then asks the user to select an option
+     * @return Choice is returned as a int output
+     */
     public static int displayCheckInOptions() {
         int choice;
         do {
@@ -197,6 +201,5 @@ public class MainDisplayUI {
 
         return choice;
     }
-
     
 }

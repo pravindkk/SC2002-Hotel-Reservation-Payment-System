@@ -26,6 +26,7 @@ public class CreditCardController {
 
     
     /** 
+     * This method creates a credit card object and returns it
      * @return returns an Object of the class CreditCard
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
@@ -43,6 +44,14 @@ public class CreditCardController {
         saveCards(allData);
         return card;
     }
+    
+    /**
+     * This method makes use of relevant functions from  
+     * UpdateCreditCardDetails to update credit card details
+     * @param guestId
+     * @return
+     * @throws IOException
+     */
     public static CreditCard updateCreditCard(String guestId) throws IOException{
         // String guestId = UpdateCreditCardDetails.UpdateGuestId();
         // String name = UpdateCreditCardDetails.UpdateName();
@@ -69,6 +78,12 @@ public class CreditCardController {
         return null; 
     }
 
+
+    /**
+     * This method deletes a CreditCard object
+     * @param guestId
+     * @throws IOException
+     */
     public static void deleteCreditCard(String guestId) throws IOException {
         CreditCard card = RetrieveCreditCard(guestId);
 

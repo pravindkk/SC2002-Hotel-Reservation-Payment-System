@@ -126,11 +126,6 @@ public class ReservationUI {
         }
     }
 
-    
-
-
-
-
     /**
      * This method prints the UI for the updating of a reservation
      * then obtains the relevant inputs and updates the reservation
