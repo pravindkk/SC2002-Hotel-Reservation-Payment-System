@@ -103,6 +103,7 @@ public class CreditCardController {
 
     
     /** 
+     * Gets and returns an ArrayList of all CreditCard objects in the database
      * @return returns an ArrayList of all the CreditCard stored in the database
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
@@ -114,6 +115,7 @@ public class CreditCardController {
 
     
     /** 
+     * Saves the ArrayList of CreditCard objects to the database
      * @param toWrite  Contains an ArrayList of all the creditcard that is going to be stored in the database
      */
     public static void saveCards(ArrayList toWrite) {
@@ -131,6 +133,7 @@ public class CreditCardController {
 
     
     /** 
+     * Saves one CreditCard object into the database
      * @param card Contains an object of the class CreditCard that is going to be stored in the database
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
@@ -150,6 +153,7 @@ public class CreditCardController {
 
     
     /** 
+     * Gets and returns one CreditCard objects from the database
      * @param GuestID String input of GuestID is entered so that the corresponding CreditCard is returned
      * @return An object of creditcard that matches the GuestID is returned . If no record is found , null value is returned
      * @throws IOException Due to communication with the DataBase IOexception is required
@@ -170,6 +174,7 @@ public class CreditCardController {
 
     
     /** 
+     * Deletes the CreditCard object that is related to a Guest that has been deleted
      * @param guestId String input of GuestID is entered so that the corresponding CreditCard object is deleted
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
@@ -188,6 +193,7 @@ public class CreditCardController {
 
     
     /** 
+     * Updates CreditCard details
      * @param guestId String input of GuestID is entered so that the corresponding CreditCard object could be updated
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
@@ -255,14 +261,4 @@ public class CreditCardController {
         saveCardByID(card);
     }
 
-
-    
-
-    // public static void main(String[] args) throws IOException {
-    //     CreditCardController c = new CreditCardController();
-    //     c.createCreditCard();
- 
-    // }
-
-    
 }
