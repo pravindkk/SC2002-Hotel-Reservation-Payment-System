@@ -5,7 +5,7 @@ and displaying of records. It is solely used by the hotel staff.
 
 ## Unified Modeling Language (UML)
 ### Class Diagram
-![Class Diagram](./Class%20Diagram.png)
+![Class Diagram](./Class%20Diagram.jpeg)
 
 ## Assumptions made in this program:
 - The currency will be in Singapore Dollar (SGD)
