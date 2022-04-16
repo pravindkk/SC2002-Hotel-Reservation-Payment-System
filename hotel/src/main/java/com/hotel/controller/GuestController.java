@@ -225,6 +225,7 @@ public class GuestController {
 
     
     /** 
+     * This method returns an ArryaList of all the Guests stored in the database
      * @return Returns an ArrayList of all the Guests stored in the database
      * @throws IOException Due to communication with the DataBase IOexception is required
      */
@@ -275,6 +276,7 @@ public class GuestController {
     // }
 
     /**
+     * This method retrieves a guest object given a guestID
      * @param GuestID String input of GuestID is entered so that the corresponding guest object is retrieved
      * @return Returns the corresponding Guest object from the database
      * @throws IOException @throws IOException ue to communication with the DataBase IOexception is required

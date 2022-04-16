@@ -48,9 +48,9 @@ public class CreditCardController {
     /**
      * This method makes use of relevant functions from  
      * UpdateCreditCardDetails to update credit card details
-     * @param guestId
-     * @return
-     * @throws IOException
+     * @param guestId String input of guestId is passed as input
+     * @return returns an Object of the class CreditCard
+     * @throws IOException Due to communication with the DataBase IOexception is required
      */
     public static CreditCard updateCreditCard(String guestId) throws IOException{
         // String guestId = UpdateCreditCardDetails.UpdateGuestId();
@@ -81,8 +81,8 @@ public class CreditCardController {
 
     /**
      * This method deletes a CreditCard object
-     * @param guestId
-     * @throws IOException
+     * @param guestId String input of guestId is passed as input
+     * @throws IOException Due to communication with the DataBase IOexception is required
      */
     public static void deleteCreditCard(String guestId) throws IOException {
         CreditCard card = RetrieveCreditCard(guestId);
