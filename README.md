@@ -31,3 +31,7 @@ and displaying of records. It is solely used by the hotel staff.
 [Kar Min](https://github.com/qkm2000)
 
 [Melissa](https://github.com/Mel-NLY)
+
+
+## Source Code
+* Our source code is located at sc2002/hotel/src/main/java/com/hotel/
