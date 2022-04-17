@@ -31,7 +31,17 @@ and displaying of records. It is solely used by the hotel staff.
 [Kar Min](https://github.com/qkm2000)
 
 [Melissa](https://github.com/Mel-NLY)
+
+
 ## Source Code
 * Our source code is located at [sc2002/hotel/src/main/java/com/hotel/](https://github.com/pravindkk/sc2002/tree/main/hotel/src/main/java/com/hotel)
 
+
+## Video 
 [Video Run Through of the App](https://youtu.be/uKySn22YNC8)
+
+
+## How to run:
+1. Download all the relevant files (source code, interpreter, other relevant softwares)
+2. Open HRPS.java
+3. Run Java file in VSCode
