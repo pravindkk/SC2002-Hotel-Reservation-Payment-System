@@ -34,4 +34,4 @@ and displaying of records. It is solely used by the hotel staff.
 
 
 ## Source Code
-* Our source code is located at [sc2002/hotel/src/main/java/com/hotel/] (https://github.com/pravindkk/sc2002/tree/main/hotel/src/main/java/com/hotel)
+* Our source code is located at [sc2002/hotel/src/main/java/com/hotel/](https://github.com/pravindkk/sc2002/tree/main/hotel/src/main/java/com/hotel)
